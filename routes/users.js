@@ -14,7 +14,8 @@ router.post('/', (req, res) => {
 
 router.get('/:id', (req, res) => {
   const foundUser = usersData.find((el) => el.id === +req.params.id);
-  res.json(foundUser);
+  if (foundUser) res.json(foundUser);
+  else res.status(404).json({ message: "user doesn't exist" });
 });
 
 module.exports = router;
