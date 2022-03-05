@@ -1,4 +1,4 @@
-let accountsData = [
+const accountsData = [
   {
     id: 1,
     title: 'some title',
