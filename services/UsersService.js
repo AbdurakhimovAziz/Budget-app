@@ -2,7 +2,7 @@ const usersData = require('../public/usersData');
 
 class UsersService {
   create(user) {
-    if (usersData.findIndex((el) => el.id === user.id) === -1) {
+    if (usersData.findIndex((el) => el.email === user.email) === -1) {
       usersData.push(user);
       return user;
     } else return null;
@@ -13,8 +13,7 @@ class UsersService {
   }
 
   getOne(id) {
-    const foundUser = usersData.find((el) => el.id === id);
-    return foundUser ? foundUser : null;
+    return usersData.find((el) => el.id === id);
   }
 }
 
