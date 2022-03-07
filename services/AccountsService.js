@@ -2,8 +2,10 @@ const accountsData = require('../public/accountsData');
 
 class AccountsService {
   create(account) {
-    accountsData.push(account);
-    return account;
+    if (accountsData.findIndex((el) => el.id === account.id) === -1) {
+      accountsData.push(account);
+      return account;
+    } else return null;
   }
 
   getAll() {
