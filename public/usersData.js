@@ -2,7 +2,7 @@ const usersData = [
   {
     id: 1,
     email: 'example@mail.com',
-    password: '12345',
+    password: '$2b$10$QR01iOjI8wgOQ.H3eHDld.BkIpLOzgDBcRk7FNBNwDdAPKwvkcIJC', // '12345'
     firstName: 'John',
     lastName: 'Doe',
     dob: new Date(1999, 2, 11),
@@ -13,7 +13,7 @@ const usersData = [
   {
     id: 2,
     email: 'example1@mail.com',
-    password: 'adfhdaj',
+    password: '$2b$10$pDwpMRhOmHFAkuX5/OeRHenHrAtmRpgPjNToCA.RqVIQS/XEBatQi', // 'adfhdaj'
     firstName: 'Mary',
     lastName: 'Jane',
     dob: new Date(1995, 8, 25),
@@ -24,7 +24,7 @@ const usersData = [
   {
     id: 3,
     email: 'example2@mail.com',
-    password: 'qwerty',
+    password: '$2b$10$5GX1825Jlhg9DFnv9Lfl5.nLdbFbQycknYBWVxyDk/jfEUb8xCYeG', // 'qwerty'
     firstName: 'Aziz',
     lastName: 'Abdurakhimov',
     dob: new Date(2002, 9, 15),

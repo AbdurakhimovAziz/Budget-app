@@ -4,7 +4,7 @@ const bcrypt = require('bcrypt');
 class UsersService {
   create(user) {
     if (!this.getByEmail(user.email)) {
-      const newUser = { ...user, password: bcrypt.hashSync(user.password, 10) };
+      const newUser = { id: Date.now(), ...user, password: bcrypt.hashSync(user.password, 10) };
       usersData.push(newUser);
       return newUser;
     } else return null;
