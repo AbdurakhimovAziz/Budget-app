@@ -14,7 +14,7 @@ class UsersController {
       const tokenObject = issueJWT(user);
       res.json(tokenObject);
     } else {
-      res.status(401).json({ message: 'you entered wrong password' });
+      res.status(401).json({ message: 'wrong email or password' });
     }
   }
 
