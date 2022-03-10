@@ -1,7 +1,13 @@
 const usersService = require('../services/UsersService');
 
 class UsersController {
-  create(req, res) {
+  register(req, res) {
+    const newUser = req.body;
+    const createdUser = usersService.create(newUser);
+    createdUser ? res.json(createdUser) : res.status(400).json({ message: 'user with this email already exists' });
+  }
+
+  login(req, res) {
     const newUser = req.body;
     const createdUser = usersService.create(newUser);
     createdUser ? res.json(createdUser) : res.status(400).json({ message: 'user with this email already exists' });
