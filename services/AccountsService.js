@@ -22,7 +22,7 @@ class AccountsService {
     if (index !== -1) {
       accountsData.splice(index, 1, account);
     }
-    return index !== 1;
+    return index !== -1;
   }
 
   delete(id) {

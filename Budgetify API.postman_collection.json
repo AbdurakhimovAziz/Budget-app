@@ -18,7 +18,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"id\": 5,\r\n    \"title\": \"tyrw\",\r\n    \"currency\": \"jjj\"\r\n}",
+							"raw": "",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -41,13 +41,13 @@
 					"response": []
 				},
 				{
-					"name": "Create user",
+					"name": "Register",
 					"request": {
 						"method": "POST",
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "  {\r\n        \"id\": 4,\r\n        \"email\": \"example2@mail.com\",\r\n        \"password\": \"qwerty\",\r\n        \"firstName\": \"Aziz\",\r\n        \"lastName\": \"Abdurakhimov\",\r\n        \"dob\": \"2002-10-14T19:00:00.000Z\",\r\n        \"gender\": \"male\",\r\n        \"country\": \"Uzbekistan\",\r\n        \"role\": \"admin\"\r\n    }",
+							"raw": "  {\r\n        \"id\": 4,\r\n        \"email\": \"hgh@mail.com\",\r\n        \"password\": \"qwerty\",\r\n        \"firstName\": \"Aziz\",\r\n        \"lastName\": \"Abdurakhimov\",\r\n        \"dob\": \"2002-10-14T19:00:00.000Z\",\r\n        \"gender\": \"male\",\r\n        \"country\": \"Uzbekistan\",\r\n        \"role\": \"admin\"\r\n    }",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -55,7 +55,7 @@
 							}
 						},
 						"url": {
-							"raw": "http://localhost:3000/users/",
+							"raw": "http://localhost:3000/users/register",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -63,7 +63,7 @@
 							"port": "3000",
 							"path": [
 								"users",
-								""
+								"register"
 							]
 						}
 					},
@@ -75,7 +75,7 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:3000/users/2",
+							"raw": "http://localhost:3000/users/4",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -83,7 +83,36 @@
 							"port": "3000",
 							"path": [
 								"users",
-								"2"
+								"4"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Login",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"email\": \"hgh@mail.com\",\r\n    \"password\": \"qwerty\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/users/login",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"users",
+								"login"
 							]
 						}
 					},
@@ -98,7 +127,13 @@
 					"name": "Get all accounts",
 					"request": {
 						"method": "GET",
-						"header": [],
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjQsImlhdCI6MTY0NjkzMzExNTMxNSwiZXhwIjoxNjQ2OTMzMjAxNzE1fQ.HCVcfRh5NMK41Svw7159KqgwaA8xic7cbhRDfzVl4wA",
+								"type": "text"
+							}
+						],
 						"url": {
 							"raw": "http://localhost:3000/accounts",
 							"protocol": "http",
@@ -117,9 +152,15 @@
 					"name": "Get account by id",
 					"request": {
 						"method": "GET",
-						"header": [],
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjQsImlhdCI6MTY0NjkzMzExNTMxNSwiZXhwIjoxNjQ2OTMzMjAxNzE1fQ.HCVcfRh5NMK41Svw7159KqgwaA8xic7cbhRDfzVl4wA",
+								"type": "text"
+							}
+						],
 						"url": {
-							"raw": "http://localhost:3000/accounts/4",
+							"raw": "http://localhost:3000/accounts/2",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -127,7 +168,7 @@
 							"port": "3000",
 							"path": [
 								"accounts",
-								"4"
+								"2"
 							]
 						}
 					},
@@ -137,7 +178,13 @@
 					"name": "Create account",
 					"request": {
 						"method": "POST",
-						"header": [],
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjQsImlhdCI6MTY0NjkzMzExNTMxNSwiZXhwIjoxNjQ2OTMzMjAxNzE1fQ.HCVcfRh5NMK41Svw7159KqgwaA8xic7cbhRDfzVl4wA",
+								"type": "text"
+							}
+						],
 						"body": {
 							"mode": "raw",
 							"raw": "{\r\n    \"id\": 5,\r\n    \"title\": \"poiuiou\",\r\n    \"currency\": \"jpy\"\r\n}",
@@ -165,7 +212,13 @@
 					"name": "Delete Account",
 					"request": {
 						"method": "DELETE",
-						"header": [],
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjQsImlhdCI6MTY0NjkzMzExNTMxNSwiZXhwIjoxNjQ2OTMzMjAxNzE1fQ.HCVcfRh5NMK41Svw7159KqgwaA8xic7cbhRDfzVl4wA",
+								"type": "text"
+							}
+						],
 						"url": {
 							"raw": "http://localhost:3000/accounts/5",
 							"protocol": "http",
@@ -185,7 +238,13 @@
 					"name": "Update account",
 					"request": {
 						"method": "PUT",
-						"header": [],
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjQsImlhdCI6MTY0NjkzMzExNTMxNSwiZXhwIjoxNjQ2OTMzMjAxNzE1fQ.HCVcfRh5NMK41Svw7159KqgwaA8xic7cbhRDfzVl4wA",
+								"type": "text"
+							}
+						],
 						"body": {
 							"mode": "raw",
 							"raw": "{\r\n    \"id\": 3,\r\n    \"title\": \"ryerw\",\r\n    \"currency\": \"nzd\"\r\n}",
@@ -196,7 +255,7 @@
 							}
 						},
 						"url": {
-							"raw": "http://localhost:3000/accounts/4",
+							"raw": "http://localhost:3000/accounts/5",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -204,7 +263,7 @@
 							"port": "3000",
 							"path": [
 								"accounts",
-								"4"
+								"5"
 							]
 						}
 					},
