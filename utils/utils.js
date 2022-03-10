@@ -11,7 +11,6 @@ function issueJWT(user) {
 
   const signedToken = jsonwebtoken.sign(payload, process.env.JWT_SECRET, {
     expiresIn: expiresIn,
-    algorithm: 'RS256',
   });
 
   return {
