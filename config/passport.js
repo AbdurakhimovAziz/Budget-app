@@ -11,10 +11,7 @@ module.exports = (passport) => {
   passport.use(
     new JwtStrategy(options, function (jwt_payload, done) {
       const user = usersService.getOne(jwt_payload.sub);
-      if (user) {
-        return done(null, user);
-      }
-      return done(null, false);
+      return done(null, user || false);
     })
   );
 };

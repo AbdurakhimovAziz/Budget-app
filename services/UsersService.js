@@ -1,10 +1,11 @@
 const usersData = require('../public/usersData');
 const bcrypt = require('bcrypt');
+const { mapUser } = require('../utils/utils');
 
 class UsersService {
   create(user) {
     if (!this.getByEmail(user.email)) {
-      const newUser = { id: Date.now(), ...user, password: bcrypt.hashSync(user.password, 10) };
+      const newUser = mapUser(user);
       usersData.push(newUser);
       return newUser;
     } else return null;
