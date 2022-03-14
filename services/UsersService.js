@@ -1,11 +1,11 @@
 const usersData = require('../public/usersData');
 const bcrypt = require('bcrypt');
-const { mapUser } = require('../utils/utils');
+const UserDto = require('../controllers/mappings/UserDto');
 
 class UsersService {
   create(user) {
     if (!this.getByEmail(user.email)) {
-      const newUser = mapUser(user);
+      const newUser = new UserDto(user);
       usersData.push(newUser);
       return newUser;
     } else return null;

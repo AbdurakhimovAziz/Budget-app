@@ -1,5 +1,5 @@
 const usersService = require('../services/UsersService');
-const { issueJWT } = require('../utils/utils');
+const issueJWT = require('../utils/utils');
 
 class UsersController {
   register(req, res) {
