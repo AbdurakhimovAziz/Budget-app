@@ -1,10 +1,21 @@
 const usersService = require('../services/UsersService');
+const issueJWT = require('../utils/utils');
 
 class UsersController {
-  create(req, res) {
+  register(req, res) {
     const newUser = req.body;
     const createdUser = usersService.create(newUser);
     createdUser ? res.json(createdUser) : res.status(400).json({ message: 'user with this email already exists' });
+  }
+
+  login(req, res) {
+    const user = usersService.login(req.body.email, req.body.password);
+    if (user) {
+      const tokenObject = issueJWT(user);
+      res.json(tokenObject);
+    } else {
+      res.status(401).json({ message: 'wrong email or password' });
+    }
   }
 
   getAll(req, res) {

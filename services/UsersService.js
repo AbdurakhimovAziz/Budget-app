@@ -1,10 +1,13 @@
 const usersData = require('../public/usersData');
+const bcrypt = require('bcrypt');
+const UserDto = require('../controllers/mappings/UserDto');
 
 class UsersService {
   create(user) {
-    if (usersData.findIndex((el) => el.email === user.email) === -1) {
-      usersData.push(user);
-      return user;
+    if (!this.getByEmail(user.email)) {
+      const newUser = new UserDto(user);
+      usersData.push(newUser);
+      return newUser;
     } else return null;
   }
 
@@ -14,6 +17,15 @@ class UsersService {
 
   getOne(id) {
     return usersData.find((el) => el.id === id);
+  }
+
+  getByEmail(email) {
+    return usersData.find((el) => el.email === email);
+  }
+
+  login(email, password) {
+    const user = this.getByEmail(email);
+    return user && bcrypt.compareSync(password, user.password) ? user : null;
   }
 }
 
