@@ -1,6 +1,14 @@
+const Account = require('../models/accounts-model');
 const accountsData = require('../public/accounts-data');
 
 class AccountsService {
+  constructor() {
+    // Account.insertMany(accountsData).then((data) => {
+    //   Account.find()
+    //     .populate('userId')
+    //     .then((data) => console.log(data));
+    // });
+  }
   create(account) {
     if (accountsData.findIndex((el) => el.id === account.id) === -1) {
       accountsData.push(account);
@@ -8,8 +16,8 @@ class AccountsService {
     } else return null;
   }
 
-  getAll() {
-    return accountsData;
+  async getAll() {
+    return Account.find();
   }
 
   getOne(id) {

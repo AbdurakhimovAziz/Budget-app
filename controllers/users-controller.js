@@ -1,4 +1,4 @@
-const usersService = require('../services/UsersService');
+const usersService = require('../services/users-service');
 const issueJWT = require('../utils/utils');
 
 class UsersController {

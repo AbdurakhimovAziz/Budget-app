@@ -32,5 +32,5 @@ app.get('/', (req, res) => {
 });
 
 app.use('/users', usersRouter);
-app.use('/accounts', auth, accountsRouter);
+app.use('/accounts', accountsRouter); // TODO: add authmiddleware after implementing accounts
 app.listen(3000);

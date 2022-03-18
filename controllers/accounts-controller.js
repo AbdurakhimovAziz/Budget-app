@@ -1,4 +1,4 @@
-const accountsService = require('../services/AccountsService');
+const accountsService = require('../services/accounts-service');
 
 class AccountsController {
   create(req, res) {
@@ -7,8 +7,8 @@ class AccountsController {
     createdAcc ? res.json(createdAcc) : res.status(400).json({ message: 'invalid request' });
   }
 
-  getAll(req, res) {
-    const accounts = accountsService.getAll();
+  async getAll(req, res) {
+    const accounts = await accountsService.getAll();
     res.json(accounts);
   }
 
