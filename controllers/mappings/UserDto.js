@@ -2,7 +2,6 @@ const bcrypt = require('bcrypt');
 
 class UserDto {
   constructor(user) {
-    this.id = Date.now();
     this.email = user.email;
     this.password = bcrypt.hashSync(user.password, 10);
     this.firstName = user.firstName;

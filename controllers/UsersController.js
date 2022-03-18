@@ -3,13 +3,17 @@ const issueJWT = require('../utils/utils');
 
 class UsersController {
   async register(req, res) {
-    const newUser = req.body;
-    const createdUser = await usersService.create(newUser);
-    createdUser ? res.json(createdUser) : res.status(400).json({ message: 'user with this email already exists' });
+    try {
+      const newUser = req.body;
+      const createdUser = await usersService.create(newUser);
+      createdUser ? res.json(createdUser) : res.status(400).json({ message: 'user with this email already exists' });
+    } catch (error) {
+      res.status(400).json(error);
+    }
   }
 
-  login(req, res) {
-    const user = usersService.login(req.body.email, req.body.password);
+  async login(req, res) {
+    const user = await usersService.login(req.body.email, req.body.password);
     if (user) {
       const tokenObject = issueJWT(user);
       res.json(tokenObject);
@@ -18,15 +22,24 @@ class UsersController {
     }
   }
 
-  getAll(req, res) {
-    const users = usersService.getAll();
-    res.json(users);
+  async getAll(req, res) {
+    try {
+      const users = await usersService.getAll();
+      res.status(200).json(users);
+    } catch (error) {
+      res.status(400).json(error);
+    }
   }
 
-  getOne(req, res) {
-    const id = +req.params.id;
-    const user = usersService.getOne(id);
-    user ? res.json(user) : res.status(404).json({ message: "user doesn't exist" });
+  async getOne(req, res) {
+    try {
+      const { id } = req.params;
+      const user = await usersService.getById(id);
+      user ? res.json(user) : res.status(404).json({ message: "user doesn't exist" });
+    } catch (error) {
+      console.log(error);
+      res.status(400).json(error);
+    }
   }
 }
 
