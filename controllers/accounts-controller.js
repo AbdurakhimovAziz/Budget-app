@@ -1,36 +1,38 @@
 const accountsService = require('../services/accounts-service');
 
 class AccountsController {
-  create(req, res) {
+  async create(req, res) {
     const newAcc = req.body;
-    const createdAcc = accountsService.create(newAcc);
-    createdAcc ? res.json(createdAcc) : res.status(400).json({ message: 'invalid request' });
+    const createdAcc = await accountsService.create(newAcc);
+    createdAcc
+      ? res.status(200).json(createdAcc)
+      : res.status(400).json({ message: 'account with this title already exists' });
   }
 
   async getAll(req, res) {
     const accounts = await accountsService.getAll();
-    res.json(accounts);
+    res.status(200).json(accounts);
   }
 
-  getOne(req, res) {
-    const id = +req.params.id;
-    const account = accountsService.getOne(id);
+  async getOne(req, res) {
+    const { id } = req.params;
+    const account = await accountsService.getById(id);
 
-    account ? res.send(account) : res.status(404).json({ message: "account doesn't exist" });
+    account ? res.status(200).send(account) : res.status(404).json({ message: "account doesn't exist" });
   }
 
-  update(req, res) {
+  async update(req, res) {
     const account = req.body;
-    account.id = +req.params.id;
+    const updatedAcc = await accountsService.update(account);
 
-    accountsService.update(account) ? res.json(account) : res.status(404).json({ message: "account doesn't exist" });
+    updatedAcc ? res.status(200).json(updatedAcc) : res.status(404).json({ message: "account doesn't exist" });
   }
 
-  delete(req, res) {
-    const id = +req.params.id;
+  async delete(req, res) {
+    const { id } = req.params;
 
     accountsService.delete(id)
-      ? res.json({ message: 'success' })
+      ? res.status(200).json({ message: 'success' })
       : res.status(404).json({ message: "account doesn't exist" });
   }
 }

@@ -9,10 +9,12 @@ class AccountsService {
     //     .then((data) => console.log(data));
     // });
   }
-  create(account) {
-    if (accountsData.findIndex((el) => el.id === account.id) === -1) {
-      accountsData.push(account);
-      return account;
+  async create(account) {
+    const foundAcc = await Account.findOne({ title: account.title, userId: account.userId });
+
+    if (!foundAcc) {
+      const newAccount = await new Account(account).save();
+      return newAccount;
     } else return null;
   }
 
@@ -20,26 +22,17 @@ class AccountsService {
     return Account.find();
   }
 
-  getOne(id) {
-    return accountsData.find((acc) => acc.id === id);
+  async getById(id) {
+    return Account.findById(id);
   }
 
-  update(account) {
-    const index = accountsData.findIndex((acc) => acc.id === account.id);
-
-    if (index !== -1) {
-      accountsData.splice(index, 1, account);
-    }
-    return index !== -1;
+  async update(account) {
+    const updatedAcc = await Account.findByIdAndUpdate(account._id, account, { new: true });
+    return updatedAcc;
   }
 
-  delete(id) {
-    const index = accountsData.findIndex((account) => account.id === id);
-
-    if (index !== -1) {
-      accountsData.splice(index, 1);
-    }
-    return index !== -1;
+  async delete(id) {
+    return Account.deleteOne({ _id: id });
   }
 }
 
