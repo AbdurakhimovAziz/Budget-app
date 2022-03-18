@@ -2,9 +2,9 @@ const usersService = require('../services/UsersService');
 const issueJWT = require('../utils/utils');
 
 class UsersController {
-  register(req, res) {
+  async register(req, res) {
     const newUser = req.body;
-    const createdUser = usersService.create(newUser);
+    const createdUser = await usersService.create(newUser);
     createdUser ? res.json(createdUser) : res.status(400).json({ message: 'user with this email already exists' });
   }
 

@@ -1,12 +1,22 @@
 const usersData = require('../public/usersData');
 const bcrypt = require('bcrypt');
 const UserDto = require('../controllers/mappings/UserDto');
+const User = require('../models/users');
 
 class UsersService {
-  create(user) {
-    if (!this.getByEmail(user.email)) {
-      const newUser = new UserDto(user);
-      usersData.push(newUser);
+  constructor() {
+    // User.insertMany(usersData).then(() => {
+    //   console.log('inserted');
+    // });
+    this.getByEmail('rs@mail.com').then((data) => console.log(data));
+  }
+
+  async create(user) {
+    if (!(await this.getByEmail(user.email))) {
+      // usersData.push(newUser);
+      const newUser = new User(new UserDto(user));
+      await newUser.save();
+      console.log(newUser);
       return newUser;
     } else return null;
   }
@@ -19,8 +29,9 @@ class UsersService {
     return usersData.find((el) => el.id === id);
   }
 
-  getByEmail(email) {
-    return usersData.find((el) => el.email === email);
+  async getByEmail(email) {
+    return await User.findOne({ email: email });
+    // return usersData.find((el) => el.email === email);
   }
 
   login(email, password) {
