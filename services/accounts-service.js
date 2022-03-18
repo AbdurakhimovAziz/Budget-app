@@ -1,4 +1,4 @@
-const accountsData = require('../public/accountsData');
+const accountsData = require('../public/accounts-data');
 
 class AccountsService {
   create(account) {

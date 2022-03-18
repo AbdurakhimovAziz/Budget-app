@@ -6,7 +6,9 @@ class UsersController {
     try {
       const newUser = req.body;
       const createdUser = await usersService.create(newUser);
-      createdUser ? res.json(createdUser) : res.status(400).json({ message: 'user with this email already exists' });
+      createdUser
+        ? res.status(200).json(createdUser)
+        : res.status(400).json({ message: 'user with this email already exists' });
     } catch (error) {
       res.status(400).json(error);
     }
@@ -16,7 +18,7 @@ class UsersController {
     const user = await usersService.login(req.body.email, req.body.password);
     if (user) {
       const tokenObject = issueJWT(user);
-      res.json(tokenObject);
+      res.status(200).json(tokenObject);
     } else {
       res.status(401).json({ message: 'wrong email or password' });
     }
@@ -35,7 +37,7 @@ class UsersController {
     try {
       const { id } = req.params;
       const user = await usersService.getById(id);
-      user ? res.json(user) : res.status(404).json({ message: "user doesn't exist" });
+      user ? res.status(200).json(user) : res.status(404).json({ message: "user doesn't exist" });
     } catch (error) {
       console.log(error);
       res.status(400).json(error);

@@ -1,7 +1,7 @@
 // const usersData = require('../public/usersData');
 const bcrypt = require('bcrypt');
-const UserDto = require('../controllers/mappings/UserDto');
-const User = require('../models/users');
+const UserDto = require('../controllers/mappings/user-dto');
+const User = require('../models/users-model');
 
 class UsersService {
   constructor() {
