@@ -33,12 +33,24 @@ class CategiresService {
     // Category.insertMany(this.categories);
   }
 
-  async getAll() {
+  getAll() {
     return Category.find();
   }
 
-  async create(category) {
+  getById(id) {
+    return Category.findById(id);
+  }
+
+  update(category) {
+    return Category.findByIdAndUpdate(category._id, category, { new: true });
+  }
+
+  create(category) {
     return new Category(category).save();
+  }
+
+  delete(id) {
+    return Category.findByIdAndDelete(id);
   }
 }
 

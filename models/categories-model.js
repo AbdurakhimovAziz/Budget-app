@@ -4,10 +4,12 @@ const categoriesSchema = new mongoose.Schema({
   title: {
     type: String,
     required: true,
+    unique: false,
   },
   type: {
     type: String,
     required: true,
+    unique: false,
     enum: ['income', 'expense'],
   },
   user_id: {
@@ -21,14 +23,7 @@ const categoriesSchema = new mongoose.Schema({
   },
 });
 
-categoriesSchema.pre('validate', async function (next) {
-  const exists = await Category.exists({ title: this.title, type: this.type });
-  console.log(this);
-  if (exists) {
-    const err = this.invalidate('title', 'category with this title already exists');
-    next(err);
-  }
-});
+categoriesSchema.index({ title: 1, type: 1 }, { unique: true });
 
 const Category = mongoose.model('Category', categoriesSchema);
 module.exports = Category;
