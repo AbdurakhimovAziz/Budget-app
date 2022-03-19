@@ -6,6 +6,7 @@ const mongoose = require('mongoose');
 const usersRouter = require('./routes/users');
 const accountsRouter = require('./routes/accounts');
 const categoriesRouter = require('./routes/categories');
+const transactionsRouter = require('./routes/transactions');
 
 require('dotenv').config();
 
@@ -35,4 +36,5 @@ app.get('/', (req, res) => {
 app.use('/users', usersRouter);
 app.use('/accounts', accountsRouter); // TODO: add authmiddleware after implementing accounts
 app.use('/categories', categoriesRouter);
+app.use('/transactions', transactionsRouter);
 app.listen(3000);

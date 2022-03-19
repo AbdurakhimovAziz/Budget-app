@@ -29,6 +29,25 @@ class AccountsService {
   delete(id) {
     return Account.findByIdAndDelete(id);
   }
+
+  async updateBalance({ transactionBefore, transactionAfter }) {
+    const { account_id } = transactionAfter || transactionBefore;
+    const account = await Account.findById(account_id);
+
+    if (transactionBefore) {
+      const { type, amount } = transactionBefore;
+      if (type === 'income') account.balance -= amount;
+      else account.balance += amount;
+    }
+
+    if (transactionAfter) {
+      const { type, amount } = transactionAfter;
+      if (type === 'income') account.balance += amount;
+      else account.balance -= amount;
+    }
+
+    await account.save();
+  }
 }
 
 module.exports = new AccountsService();
