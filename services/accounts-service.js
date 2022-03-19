@@ -5,12 +5,12 @@ class AccountsService {
   constructor() {
     // Account.insertMany(accountsData).then((data) => {
     //   Account.find()
-    //     .populate('userId')
+    //     .populate('user_id')
     //     .then((data) => console.log(data));
     // });
   }
   async create(account) {
-    const foundAcc = await Account.findOne({ title: account.title, userId: account.userId });
+    const foundAcc = await Account.findOne({ title: account.title, user_id: account.user_id });
 
     if (!foundAcc) {
       const newAccount = await new Account(account).save();
