@@ -21,4 +21,14 @@ const categoriesSchema = new mongoose.Schema({
   },
 });
 
-module.exports = mongoose.model('Category', categoriesSchema);
+categoriesSchema.pre('validate', async function (next) {
+  const exists = await Category.exists({ title: this.title, type: this.type });
+  console.log(this);
+  if (exists) {
+    const err = this.invalidate('title', 'category with this title already exists');
+    next(err);
+  }
+});
+
+const Category = mongoose.model('Category', categoriesSchema);
+module.exports = Category;

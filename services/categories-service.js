@@ -36,6 +36,10 @@ class CategiresService {
   async getAll() {
     return Category.find();
   }
+
+  async create(category) {
+    return new Category(category).save();
+  }
 }
 
 module.exports = new CategiresService();
