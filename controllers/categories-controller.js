@@ -9,7 +9,7 @@ class CategoriesControlle {
   async getOne(req, res) {
     const { id } = req.params;
     const category = await categoriesService.getById(id);
-    category ? res.status(200).json(category) : res.status(404).json({ message: "category doesn't exist" });
+    category ? res.status(200).json(category) : res.status(404).json({ message: "Category doesn't exist" });
   }
 
   async create(req, res) {
@@ -26,9 +26,9 @@ class CategoriesControlle {
       const updatedCategory = await categoriesService.update(req.body);
       updatedCategory
         ? res.status(200).json(updatedCategory)
-        : res.status(404).json({ message: "category doesn't exist" });
+        : res.status(404).json({ message: "Category doesn't exist" });
     } catch (error) {
-      res.status(400).json({ message: 'A category with this name already exists' });
+      res.status(400).json({ message: 'A category with this title already exists' });
     }
   }
 
@@ -38,7 +38,7 @@ class CategoriesControlle {
       const deletedCategory = await categoriesService.delete(id);
       deletedCategory
         ? res.status(200).json(deletedCategory)
-        : res.status(404).json({ message: "category doesn't exist" });
+        : res.status(404).json({ message: "Category doesn't exist" });
     } catch (error) {
       res.status(400).json(error);
     }

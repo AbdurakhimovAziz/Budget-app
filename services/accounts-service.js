@@ -9,30 +9,25 @@ class AccountsService {
     //     .then((data) => console.log(data));
     // });
   }
-  async create(account) {
-    const foundAcc = await Account.findOne({ title: account.title, user_id: account.user_id });
 
-    if (!foundAcc) {
-      const newAccount = await new Account(account).save();
-      return newAccount;
-    } else return null;
+  create(account) {
+    return new Account(account).save();
   }
 
-  async getAll() {
+  getAll() {
     return Account.find();
   }
 
-  async getById(id) {
+  getById(id) {
     return Account.findById(id);
   }
 
-  async update(account) {
-    const updatedAcc = await Account.findByIdAndUpdate(account._id, account, { new: true });
-    return updatedAcc;
+  update(account) {
+    return Account.findByIdAndUpdate(account._id, account, { new: true });
   }
 
-  async delete(id) {
-    return Account.deleteOne({ _id: id });
+  delete(id) {
+    return Account.findByIdAndDelete(id);
   }
 }
 
