@@ -4,13 +4,10 @@ const issueJWT = require('../utils/utils');
 class UsersController {
   async register(req, res) {
     try {
-      const newUser = req.body;
-      const createdUser = await usersService.create(newUser);
-      createdUser
-        ? res.status(200).json(createdUser)
-        : res.status(400).json({ message: 'user with this email already exists' });
+      const createdUser = await usersService.create(req.body);
+      res.status(200).json(createdUser);
     } catch (error) {
-      res.status(400).json(error);
+      res.status(400).json({ message: 'user with this email already exists' });
     }
   }
 
@@ -39,7 +36,6 @@ class UsersController {
       const user = await usersService.getById(id);
       user ? res.status(200).json(user) : res.status(404).json({ message: "user doesn't exist" });
     } catch (error) {
-      console.log(error);
       res.status(400).json(error);
     }
   }

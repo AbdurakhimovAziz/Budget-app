@@ -10,23 +10,19 @@ class UsersService {
     // });
   }
 
-  async create(user) {
-    if (!(await this.getByEmail(user.email))) {
-      const newUser = new User(new UserDto(user));
-      await newUser.save();
-      return newUser;
-    } else return null;
+  create(user) {
+    return new User(new UserDto(user)).save();
   }
 
-  async getAll() {
+  getAll() {
     return User.find();
   }
 
-  async getById(id) {
+  getById(id) {
     return User.findById(id);
   }
 
-  async getByEmail(email) {
+  getByEmail(email) {
     return User.findOne({ email: email });
   }
 
