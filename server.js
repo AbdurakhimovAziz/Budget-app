@@ -1,10 +1,11 @@
 const express = require('express');
 const cors = require('cors');
 const passport = require('passport');
+const mongoose = require('mongoose');
 
 const usersRouter = require('./routes/users');
 const accountsRouter = require('./routes/accounts');
-const mongoose = require('mongoose');
+const categoriesRouter = require('./routes/categories');
 
 require('dotenv').config();
 
@@ -33,4 +34,5 @@ app.get('/', (req, res) => {
 
 app.use('/users', usersRouter);
 app.use('/accounts', accountsRouter); // TODO: add authmiddleware after implementing accounts
+app.use('/categories', categoriesRouter);
 app.listen(3000);
