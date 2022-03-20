@@ -2,14 +2,22 @@ const categoriesService = require('../services/categories-service');
 
 class CategoriesControlle {
   async getAll(req, res) {
-    const categories = await categoriesService.getAll();
-    res.status(200).json(categories);
+    try {
+      const categories = await categoriesService.getAll();
+      res.status(200).json(categories);
+    } catch (error) {
+      res.status(500).json(error);
+    }
   }
 
   async getOne(req, res) {
-    const { id } = req.params;
-    const category = await categoriesService.getById(id);
-    category ? res.status(200).json(category) : res.status(404).json({ message: "Category doesn't exist" });
+    try {
+      const { id } = req.params;
+      const category = await categoriesService.getById(id);
+      category ? res.status(200).json(category) : res.status(404).json({ message: "Category doesn't exist" });
+    } catch (error) {
+      res.status(500).json(error);
+    }
   }
 
   async create(req, res) {
@@ -17,7 +25,9 @@ class CategoriesControlle {
       const createdCategory = await categoriesService.create(req.body);
       res.status(200).json(createdCategory);
     } catch (error) {
-      res.status(400).json({ message: 'A category with this title already exists' });
+      const status = error.status || 500;
+      const message = error.message || 'Internal server error';
+      res.status(status).json({ message });
     }
   }
 
@@ -29,7 +39,9 @@ class CategoriesControlle {
         ? res.status(200).json(updatedCategory)
         : res.status(404).json({ message: "Category doesn't exist" });
     } catch (error) {
-      res.status(400).json({ message: 'A category with this title already exists' });
+      const status = error.status || 500;
+      const message = error.message || 'Internal server error';
+      res.status(status).json({ message });
     }
   }
 
@@ -41,7 +53,7 @@ class CategoriesControlle {
         ? res.status(200).json(deletedCategory)
         : res.status(404).json({ message: "Category doesn't exist" });
     } catch (error) {
-      res.status(400).json(error);
+      res.status(500).json(error);
     }
   }
 }
