@@ -1,15 +1,6 @@
 const Account = require('../models/accounts-model');
-const accountsData = require('../public/accounts-data');
 
 class AccountsService {
-  constructor() {
-    // Account.insertMany(accountsData).then((data) => {
-    //   Account.find()
-    //     .populate('user_id')
-    //     .then((data) => console.log(data));
-    // });
-  }
-
   create(account) {
     return new Account(account).save();
   }
