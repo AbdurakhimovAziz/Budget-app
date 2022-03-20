@@ -1,4 +1,5 @@
 const categoriesService = require('../services/categories-service');
+const { handleError } = require('../utils/utils');
 
 class CategoriesControlle {
   async getAll(req, res) {
@@ -6,7 +7,7 @@ class CategoriesControlle {
       const categories = await categoriesService.getAll();
       res.status(200).json(categories);
     } catch (error) {
-      res.status(500).json(error);
+      handleError(res, error);
     }
   }
 
@@ -16,7 +17,7 @@ class CategoriesControlle {
       const category = await categoriesService.getById(id);
       category ? res.status(200).json(category) : res.status(404).json({ message: "Category doesn't exist" });
     } catch (error) {
-      res.status(500).json(error);
+      handleError(res, error);
     }
   }
 
@@ -25,9 +26,7 @@ class CategoriesControlle {
       const createdCategory = await categoriesService.create(req.body);
       res.status(200).json(createdCategory);
     } catch (error) {
-      const status = error.status || 500;
-      const message = error.message || 'Internal server error';
-      res.status(status).json({ message });
+      handleError(res, error);
     }
   }
 
@@ -39,9 +38,7 @@ class CategoriesControlle {
         ? res.status(200).json(updatedCategory)
         : res.status(404).json({ message: "Category doesn't exist" });
     } catch (error) {
-      const status = error.status || 500;
-      const message = error.message || 'Internal server error';
-      res.status(status).json({ message });
+      handleError(res, error);
     }
   }
 
@@ -53,7 +50,7 @@ class CategoriesControlle {
         ? res.status(200).json(deletedCategory)
         : res.status(404).json({ message: "Category doesn't exist" });
     } catch (error) {
-      res.status(500).json(error);
+      handleError(res, error);
     }
   }
 }

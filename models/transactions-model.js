@@ -33,10 +33,6 @@ const transactionSchema = new mongoose.Schema({
     ref: 'Account',
     required: true,
   },
-  __v: {
-    type: Number,
-    select: false,
-  },
 });
 
 const Transaction = mongoose.model('Transaction', transactionSchema);

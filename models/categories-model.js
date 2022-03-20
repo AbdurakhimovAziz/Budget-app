@@ -17,10 +17,6 @@ const categoriesSchema = new mongoose.Schema({
     ref: 'User',
     required: true,
   },
-  __v: {
-    type: Number,
-    select: false,
-  },
 });
 
 categoriesSchema.index({ title: 1, type: 1 }, { unique: true });

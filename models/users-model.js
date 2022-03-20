@@ -36,7 +36,6 @@ const userSchema = new mongoose.Schema({
     required: true,
     enum: ['admin', 'user'],
   },
-  __v: { type: Number, select: false },
 });
 
 module.exports = mongoose.model('User', userSchema);

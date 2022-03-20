@@ -1,5 +1,6 @@
 const accountsService = require('../services/accounts-service');
 const transactionsService = require('../services/transactions-service');
+const { handleError } = require('../utils/utils');
 
 class TransactionsController {
   async getAll(req, res) {
@@ -7,7 +8,7 @@ class TransactionsController {
       const transactions = await transactionsService.getAll();
       res.status(200).json(transactions);
     } catch (error) {
-      res.status(500).json(error);
+      handleError(res, error);
     }
   }
 
@@ -17,7 +18,7 @@ class TransactionsController {
       const transaction = await transactionsService.getById(id);
       transaction ? res.status(200).json(transaction) : res.status(404).json({ message: "transaction doesn't exist" });
     } catch (error) {
-      res.status(500).json(error);
+      handleError(res, error);
     }
   }
 
@@ -27,9 +28,7 @@ class TransactionsController {
       await accountsService.updateBalance({ transactionAfter: transaction });
       res.status(200).json(transaction);
     } catch (error) {
-      const status = error.status || 500;
-      const message = error.message || 'Internal server error';
-      res.status(status).json({ message });
+      handleError(res, error);
     }
   }
 
@@ -42,9 +41,7 @@ class TransactionsController {
         await accountsService.updateBalance({ transactionBefore: updatedTransaction, transactionAfter: transaction });
       res.status(200).json(transaction);
     } catch (error) {
-      const status = error.status || 500;
-      const message = error.message || 'Internal server error';
-      res.status(status).json({ message });
+      handleError(res, error);
     }
   }
 
@@ -57,7 +54,7 @@ class TransactionsController {
         ? res.status(200).json(deletedTransaction)
         : res.status(404).json({ message: "transaction doesn't exist" });
     } catch (error) {
-      res.status(500).json(error);
+      handleError(res, error);
     }
   }
 }

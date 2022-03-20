@@ -19,10 +19,6 @@ const accountSchema = new mongoose.Schema({
     required: true,
   },
   description: String,
-  __v: {
-    type: Number,
-    select: false,
-  },
 });
 
 accountSchema.index({ title: 1, user_id: 1 }, { unique: true });
