@@ -41,8 +41,8 @@ class CategiresService {
     return Category.findById(id);
   }
 
-  update(category) {
-    return Category.findByIdAndUpdate(category._id, category, { new: true });
+  update(id, category) {
+    return Category.findByIdAndUpdate(id, category, { new: true });
   }
 
   create(category) {

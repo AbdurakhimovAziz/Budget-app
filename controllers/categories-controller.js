@@ -23,7 +23,8 @@ class CategoriesControlle {
 
   async update(req, res) {
     try {
-      const updatedCategory = await categoriesService.update(req.body);
+      const { id } = req.params;
+      const updatedCategory = await categoriesService.update(id, req.body);
       updatedCategory
         ? res.status(200).json(updatedCategory)
         : res.status(404).json({ message: "Category doesn't exist" });

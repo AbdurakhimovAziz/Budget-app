@@ -47,7 +47,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "  {\r\n        \"email\": \"hghdg@mail.com\",\r\n        \"password\": \"qwerty\",\r\n        \"firstName\": \"Aziz\",\r\n        \"lastName\": \"Abdurakhimov\",\r\n        \"dob\": \"2002-10-14T19:00:00.000Z\",\r\n        \"gender\": \"male\",\r\n        \"country\": \"Uzbekistan\",\r\n        \"role\": \"admin\"\r\n    }",
+							"raw": "  {\r\n        \"email\": \"hghg@mail.com\",\r\n        \"password\": \"qwerty\",\r\n        \"firstName\": \"Aziz\",\r\n        \"lastName\": \"Abdurakhimov\",\r\n        \"dob\": \"2002-10-14T19:00:00.000Z\",\r\n        \"gender\": \"male\",\r\n        \"country\": \"Uzbekistan\",\r\n        \"role\": \"admin\"\r\n    }",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -75,7 +75,7 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:3000/users/3",
+							"raw": "http://localhost:3000/users/6235fb7e280289ab63b414fa",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -83,7 +83,7 @@
 							"port": "3000",
 							"path": [
 								"users",
-								"3"
+								"6235fb7e280289ab63b414fa"
 							]
 						}
 					},
@@ -96,7 +96,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"email\": \"hghdg@mail.com\",\r\n    \"password\": \"qwerty\"\r\n}",
+							"raw": "{\r\n    \"email\": \"hghg@mail.com\",\r\n    \"password\": \"qwerty\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -130,7 +130,7 @@
 						"header": [
 							{
 								"key": "Authorization",
-								"value": "",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjE2NDcyNzUyNjkzMDMsImlhdCI6MTY0NzI3NTI3NDk0NiwiZXhwIjoxNjQ3Mjc1Mjc4NTQ2fQ.lLTwGpH3mbVN00RF8rwco9FcNnVIxZlkVDKogqk2xPQ",
 								"description": "add bearer token",
 								"type": "text"
 							}
@@ -156,13 +156,13 @@
 						"header": [
 							{
 								"key": "Authorization",
-								"value": "",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjE2NDcxODkwMDUwODMsImlhdCI6MTY0NzE4OTAxODE5NywiZXhwIjoxNjQ3MTg5MDIxNzk3fQ.CzrEfXQ_zTBhXbqJhqX2UdzHVbQBjTLET5oQsw-2SBs",
 								"description": "add bearer token",
 								"type": "text"
 							}
 						],
 						"url": {
-							"raw": "http://localhost:3000/accounts/2",
+							"raw": "http://localhost:3000/accounts/6235b6163c5ffbd301105ce3",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -170,7 +170,7 @@
 							"port": "3000",
 							"path": [
 								"accounts",
-								"2"
+								"6235b6163c5ffbd301105ce3"
 							]
 						}
 					},
@@ -190,7 +190,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"id\": 5,\r\n    \"title\": \"poiuiou\",\r\n    \"currency\": \"jpy\"\r\n}",
+							"raw": "{\r\n    \"title\": \"aa\",\r\n    \"currency\": \"jpy\",\r\n    \"user_id\": \"623418427775e062b27f417b\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -224,7 +224,7 @@
 							}
 						],
 						"url": {
-							"raw": "http://localhost:3000/accounts/5",
+							"raw": "http://localhost:3000/accounts/6235b6163c5ffbd301105ce6",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -232,7 +232,7 @@
 							"port": "3000",
 							"path": [
 								"accounts",
-								"5"
+								"6235b6163c5ffbd301105ce6"
 							]
 						}
 					},
@@ -252,7 +252,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"id\": 3,\r\n    \"title\": \"ryerw\",\r\n    \"currency\": \"nzd\"\r\n}",
+							"raw": "{\r\n    \"_id\": \"6235b6163c5ffbd301105ce6\",\r\n    \"title\": \"some title\",\r\n    \"currency\": \"rub\",\r\n    \"user_id\": \"6235b6163c5ffbd301105ce6\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -260,15 +260,254 @@
 							}
 						},
 						"url": {
-							"raw": "http://localhost:3000/accounts/5",
+							"raw": "http://localhost:3000/accounts",
 							"protocol": "http",
 							"host": [
 								"localhost"
 							],
 							"port": "3000",
 							"path": [
-								"accounts",
-								"5"
+								"accounts"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Categories",
+			"item": [
+				{
+					"name": "Get all categories",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3000/categories",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"categories"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create category",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"title\": \"rental income\",\r\n    \"type\": \"income\",\r\n    \"user_id\": \"623418427775e062b27f417d\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/categories",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"categories"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get category by Id",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3000/categories/6235f621d84ca58b80b23d72",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"categories",
+								"6235f621d84ca58b80b23d72"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update category",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"_id\": \"6235f621d84ca58b80b23d72\",\r\n    \"title\": \"dfd\",\r\n    \"type\": \"expense\",\r\n    \"user_id\": \"623418427775e062b27f417d\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/categories",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"categories"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete category",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3000/categories/6235f621d84ca58b80b23d72",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"categories",
+								"6235f621d84ca58b80b23d72"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Transactions",
+			"item": [
+				{
+					"name": "Get all transactions",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3000/transactions",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"transactions"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create transaction",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"title\": \"aaaaa\",\r\n    \"amount\": 100,\r\n    \"date\": \"2022-03-19T17:03:23.548Z\",\r\n    \"type\": \"income\",\r\n    \"category\": [\r\n        \"6235d6381a80712715f7a784\"\r\n    ],\r\n    \"account_id\": \"6235f9986eead15af706dbd9\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/transactions",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"transactions"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get transaction by id",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3000/transactions/623613a2beb93dae29f1cf95",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"transactions",
+								"623613a2beb93dae29f1cf95"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update transaction",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"_id\": \"623618d4fe3bb2ea175ac832\",\r\n    \"title\": \"eee\",\r\n    \"amount\": 100,\r\n    \"date\": \"2022-03-19T17:03:23.548Z\",\r\n    \"type\": \"income\",\r\n    \"category\": [\r\n        \"6235d6381a80712715f7a784\"\r\n    ],\r\n    \"account_id\": \"6235f9986eead15af706dbd9\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/transactions",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"transactions"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete transaction",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3000/transactions/62361da07437fcf3b181bffc",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"transactions",
+								"62361da07437fcf3b181bffc"
 							]
 						}
 					},

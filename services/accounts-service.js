@@ -22,8 +22,8 @@ class AccountsService {
     return Account.findById(id);
   }
 
-  update(account) {
-    return Account.findByIdAndUpdate(account._id, account, { new: true });
+  update(id, account) {
+    return Account.findByIdAndUpdate(id, account, { new: true });
   }
 
   delete(id) {

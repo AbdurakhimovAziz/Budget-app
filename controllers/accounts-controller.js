@@ -25,7 +25,8 @@ class AccountsController {
 
   async update(req, res) {
     try {
-      const updatedAcc = await accountsService.update(req.body);
+      const { id } = req.params;
+      const updatedAcc = await accountsService.update(id, req.body);
       updatedAcc ? res.status(200).json(updatedAcc) : res.status(404).json({ message: "Account doesn't exist" });
     } catch (error) {
       res.status(400).json({ message: 'An account with this title already exists' });

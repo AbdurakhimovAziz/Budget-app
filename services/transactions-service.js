@@ -36,8 +36,8 @@ class TransactionsService {
     return new Transaction(transaction).save();
   }
 
-  update(transaction) {
-    return Transaction.findByIdAndUpdate(transaction._id, transaction);
+  update(id, transaction) {
+    return Transaction.findByIdAndUpdate(id, transaction);
   }
 
   delete(id) {

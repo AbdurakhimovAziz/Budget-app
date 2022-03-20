@@ -10,7 +10,7 @@ class TransactionsController {
   async getOne(req, res) {
     const { id } = req.params;
     const transaction = await transactionsService.getById(id);
-    res.status(200).json(transaction);
+    transaction ? res.status(200).json(transaction) : res.status(404).json({ message: "transaction doesn't exist" });
   }
 
   async create(req, res) {
@@ -25,8 +25,9 @@ class TransactionsController {
 
   async update(req, res) {
     try {
+      const { id } = req.params;
       const transaction = req.body;
-      const updatedTransaction = await transactionsService.update(transaction);
+      const updatedTransaction = await transactionsService.update(id, transaction);
       if (transaction.amount !== updatedTransaction.amount)
         await accountsService.updateBalance({ transactionBefore: updatedTransaction, transactionAfter: transaction });
       res.status(200).json(transaction);
