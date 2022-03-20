@@ -1,4 +1,5 @@
 const Transaction = require('../models/transactions-model');
+const accountsService = require('./accounts-service');
 
 class TransactionsService {
   getAll() {
@@ -9,16 +10,23 @@ class TransactionsService {
     return Transaction.findById(id);
   }
 
-  create(transaction) {
-    return new Transaction(transaction).save();
+  async create(transaction) {
+    const newTransaction = await new Transaction(transaction).save();
+    await accountsService.updateBalance({ newTransaction: transaction });
+    return newTransaction;
   }
 
-  update(id, transaction) {
-    return Transaction.findByIdAndUpdate(id, transaction);
+  async update(id, transaction) {
+    const oldTransaction = await Transaction.findByIdAndUpdate(id, transaction);
+    if (transaction.amount !== oldTransaction.amount)
+      await accountsService.updateBalance({ oldTransaction: oldTransaction, newTransaction: transaction });
+    return oldTransaction;
   }
 
-  delete(id) {
-    return Transaction.findByIdAndDelete(id);
+  async delete(id) {
+    const deletedTransaction = await Transaction.findByIdAndDelete(id);
+    await accountsService.updateBalance({ oldTransaction: deletedTransaction });
+    return deletedTransaction;
   }
 }
 

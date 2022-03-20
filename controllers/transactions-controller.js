@@ -1,4 +1,3 @@
-const accountsService = require('../services/accounts-service');
 const transactionsService = require('../services/transactions-service');
 const { handleError } = require('../utils/utils');
 
@@ -25,7 +24,6 @@ class TransactionsController {
   async create(req, res) {
     try {
       const transaction = await transactionsService.create(req.body);
-      await accountsService.updateBalance({ transactionAfter: transaction });
       res.status(200).json(transaction);
     } catch (error) {
       handleError(res, error);
@@ -36,9 +34,8 @@ class TransactionsController {
     try {
       const { id } = req.params;
       const transaction = req.body;
-      const updatedTransaction = await transactionsService.update(id, transaction);
-      if (transaction.amount !== updatedTransaction.amount)
-        await accountsService.updateBalance({ transactionBefore: updatedTransaction, transactionAfter: transaction });
+      await transactionsService.update(id, transaction);
+
       res.status(200).json(transaction);
     } catch (error) {
       handleError(res, error);
@@ -49,7 +46,6 @@ class TransactionsController {
     try {
       const { id } = req.params;
       const deletedTransaction = await transactionsService.delete(id);
-      await accountsService.updateBalance({ transactionBefore: deletedTransaction });
       deletedTransaction
         ? res.status(200).json(deletedTransaction)
         : res.status(404).json({ message: "transaction doesn't exist" });
