@@ -1,8 +1,8 @@
 const request = require('supertest');
 const mongoose = require('mongoose');
-const app = require('./app');
+const app = require('../app');
 
-describe('user', () => {
+describe('Test users route', () => {
   beforeAll(async () => {
     await mongoose.disconnect();
     await mongoose.connect(process.env.MONGODB_URI);
@@ -12,11 +12,7 @@ describe('user', () => {
     await mongoose.disconnect();
   });
 
-  describe('Test example', () => {
-    it('should test that true === true', () => {
-      expect(true).toBe(true);
-    });
-
+  describe('GET /users', () => {
     it('should return all users', async () => {
       const response = await request(app).get('/users');
 
