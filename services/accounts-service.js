@@ -21,22 +21,9 @@ class AccountsService {
     return Account.findByIdAndDelete(id);
   }
 
-  async updateBalance({ oldTransaction, newTransaction }) {
-    const { account_id } = newTransaction || oldTransaction;
-    const account = await Account.findById(account_id);
-
-    if (oldTransaction) {
-      const { type, amount } = oldTransaction;
-      if (type === 'income') account.balance -= amount;
-      else account.balance += amount;
-    }
-
-    if (newTransaction) {
-      const { type, amount } = newTransaction;
-      if (type === 'income') account.balance += amount;
-      else account.balance -= amount;
-    }
-
+  async updateBalance(accountId, amount) {
+    const account = await Account.findById(accountId);
+    account.balance += amount;
     await account.save();
   }
 }

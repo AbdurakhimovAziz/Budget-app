@@ -12,20 +12,25 @@ class TransactionsService {
 
   async create(transaction) {
     const newTransaction = await new Transaction(transaction).save();
-    await accountsService.updateBalance({ newTransaction: transaction });
+    const { account_id, amount } = newTransaction;
+    await accountsService.updateBalance(account_id, amount);
     return newTransaction;
   }
 
   async update(id, transaction) {
     const oldTransaction = await Transaction.findByIdAndUpdate(id, transaction);
-    if (transaction.amount !== oldTransaction.amount)
-      await accountsService.updateBalance({ oldTransaction: oldTransaction, newTransaction: transaction });
+    if (transaction.amount !== oldTransaction.amount) {
+      const { account_id, amount } = oldTransaction;
+      let newAmount = transaction.amount - amount;
+      await accountsService.updateBalance(account_id, newAmount);
+    }
     return oldTransaction;
   }
 
   async delete(id) {
     const deletedTransaction = await Transaction.findByIdAndDelete(id);
-    await accountsService.updateBalance({ oldTransaction: deletedTransaction });
+    const { account_id, amount } = deletedTransaction;
+    await accountsService.updateBalance(account_id, -amount);
     return deletedTransaction;
   }
 }
