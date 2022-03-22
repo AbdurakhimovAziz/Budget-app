@@ -34,8 +34,8 @@ app.get('/', (req, res) => {
 });
 
 app.use('/users', usersRouter);
-app.use('/accounts', accountsRouter); // TODO: add authmiddleware after implementing accounts
-app.use('/categories', categoriesRouter);
-app.use('/transactions', transactionsRouter);
+app.use('/accounts', auth, accountsRouter);
+app.use('/categories', auth, categoriesRouter);
+app.use('/transactions', auth, transactionsRouter);
 
 module.exports = app;

@@ -20,7 +20,13 @@ const issueJWT = (user) => {
 };
 
 const handleError = (res, error) => {
-  const status = error.status || 500;
+  const status =
+    error.message.includes('validation failed') ||
+    error.message.includes('arguments required') ||
+    error.message.includes('duplicate key')
+      ? 400
+      : 500;
+
   const message = error.message || 'Internal server error';
   res.status(status).json({ message });
 };
