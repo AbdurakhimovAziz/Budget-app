@@ -1,40 +1,5 @@
-const express = require('express');
-const cors = require('cors');
-const passport = require('passport');
-const mongoose = require('mongoose');
+const app = require('./app');
 
-const usersRouter = require('./routes/users');
-const accountsRouter = require('./routes/accounts');
-const categoriesRouter = require('./routes/categories');
-const transactionsRouter = require('./routes/transactions');
+const PORT = process.env.PORT || 3000;
 
-require('dotenv').config();
-
-const app = express();
-
-app.use(express.json());
-app.use(express.urlencoded({ extended: false }));
-app.use(cors());
-
-mongoose.connect(
-  process.env.MONGODB_URI,
-  () => {
-    console.log('Connected to database');
-  },
-  (err) => {
-    console.log(err);
-  }
-);
-
-require('./config/passport')(passport);
-const auth = passport.authenticate('jwt', { session: false });
-
-app.get('/', (req, res) => {
-  res.send('hi');
-});
-
-app.use('/users', usersRouter);
-app.use('/accounts', accountsRouter); // TODO: add authmiddleware after implementing accounts
-app.use('/categories', categoriesRouter);
-app.use('/transactions', transactionsRouter);
-app.listen(3000);
+app.listen(PORT);
