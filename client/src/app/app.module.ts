@@ -12,6 +12,7 @@ import { NotFoundComponent } from './not-found/not-found.component';
 import { StatisticsComponent } from './statistics/statistics.component';
 import { MainComponent } from './main/main.component';
 import { AppMaterialModule } from './app-material/app-material.module';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -29,6 +30,7 @@ import { AppMaterialModule } from './app-material/app-material.module';
     AppMaterialModule,
     NoopAnimationsModule,
     ReactiveFormsModule,
+    HttpClientModule,
   ],
   providers: [],
   bootstrap: [AppComponent],
