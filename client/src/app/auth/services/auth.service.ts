@@ -1,11 +1,12 @@
 import { HttpClient } from '@angular/common/http';
+
 import { Injectable } from '@angular/core';
 import { Observable, tap } from 'rxjs';
 
 const BASE_URL = 'http://localhost:3000';
 interface IToken {
   token: string;
-  expiresIn: number;
+  expiresIn: string;
 }
 
 @Injectable({
@@ -22,6 +23,7 @@ export class AuthService {
 
   isLoggedIn(): boolean {
     const expiresIn = localStorage.getItem('expiresIn');
+
     if (expiresIn) {
       return Date.now() < Number(expiresIn);
     }
@@ -33,8 +35,11 @@ export class AuthService {
   }
 
   private saveToken(token: IToken): void {
-    localStorage.setItem('token', token.token);
-    localStorage.setItem('expiresIn', token.expiresIn.toString());
+    const { token: idToken, expiresIn } = token;
+    const expTime = Date.now() + parseInt(expiresIn) * 1000 * 60 * 60;
+
+    localStorage.setItem('token', idToken);
+    localStorage.setItem('expiresIn', expTime.toString());
   }
 
   logout(): void {

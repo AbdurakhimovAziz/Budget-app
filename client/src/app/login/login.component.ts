@@ -18,8 +18,9 @@ export class LoginComponent {
 
   onSubmit() {
     const { email, password } = this.loginForm.value;
-    this.auth.login(email, password).subscribe((data) => console.log(data));
-    this.router.navigateByUrl('/');
+    this.auth.login(email, password).subscribe((data) => {
+      this.router.navigateByUrl('/');
+    });
   }
 
   get email() {
