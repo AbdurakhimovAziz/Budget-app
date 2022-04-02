@@ -7,9 +7,9 @@ import { NotFoundComponent } from './not-found/not-found.component';
 import { StatisticsComponent } from './statistics/statistics.component';
 
 const routes: Routes = [
-  { path: '', component: LoginComponent },
+  { path: 'login', component: LoginComponent },
   {
-    path: 'dashboard',
+    path: '',
     component: MainComponent,
     children: [
       {

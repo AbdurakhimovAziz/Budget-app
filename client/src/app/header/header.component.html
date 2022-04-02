@@ -1,7 +1,7 @@
 <mat-toolbar color="primary">
-  <span routerLink="/dashboard">Budgetify</span>
+  <span routerLink="/">Budgetify</span>
   <span class="fill-remaining-space"></span>
   <button mat-button routerLink="categories">Categories</button>
   <button mat-button routerLink="statistics">Statistics</button>
-  <button mat-flat-button>Log out</button>
+  <button mat-flat-button (click)="logout()">Log out</button>
 </mat-toolbar>
