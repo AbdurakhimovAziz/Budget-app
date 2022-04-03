@@ -1,3 +1,4 @@
+@import "../shared/scss/_variables";
 .login {
   display: flex;
   align-items: center;
@@ -8,7 +9,7 @@
   background-position: center;
   &__title {
     font-size: 40px;
-    color: #000;
+    color: $black;
     margin-bottom: 35px;
   }
   &__card {
@@ -16,18 +17,18 @@
     margin: 2em auto;
     text-align: center;
     padding: 60px 80px;
-    background: rgba(255, 255, 255, 0.8);
+    background: $white-transparent;
     border-radius: 10px;
   }
   &__input {
     width: 100%;
-    background-color: #fff;
+    background-color: $white;
   }
   &__btn {
     width: 100%;
     margin-top: 20px;
-    background-color: #b9e2e6;
-    color: #373737;
+    background-color: $blue;
+    color: $text-dark;
   }
 }
 
