@@ -16,7 +16,7 @@ interface IToken {
 export class AuthService {
   constructor(private http: HttpClient, private user: UserService) {}
 
-  login(email: string, password: string): Observable<Object> {
+  public login(email: string, password: string): Observable<Object> {
     return this.http.post(this.getUrl(), { email, password }).pipe(
       tap((res: any) => {
         this.saveToken(res);
@@ -25,7 +25,7 @@ export class AuthService {
     );
   }
 
-  isLoggedIn(): boolean {
+  public isLoggedIn(): boolean {
     const expiresIn = localStorage.getItem('expiresIn');
 
     if (expiresIn) {
@@ -46,7 +46,7 @@ export class AuthService {
     localStorage.setItem('expiresIn', expTime.toString());
   }
 
-  logout(): void {
+  public logout(): void {
     localStorage.removeItem('token');
     localStorage.removeItem('expiresIn');
     this.user.setUser(null);

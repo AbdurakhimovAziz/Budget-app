@@ -1,5 +1,10 @@
 import { Component } from '@angular/core';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
+import {
+  AbstractControl,
+  FormControl,
+  FormGroup,
+  Validators,
+} from '@angular/forms';
 import { Router } from '@angular/router';
 import { AuthService } from '../auth/services/auth.service';
 
@@ -9,27 +14,27 @@ import { AuthService } from '../auth/services/auth.service';
   styleUrls: ['./login.component.scss'],
 })
 export class LoginComponent {
-  hide: Boolean = true;
+  public hide: Boolean = true;
 
-  loginForm: FormGroup = new FormGroup({
+  public loginForm: FormGroup = new FormGroup({
     email: new FormControl('', [Validators.required, Validators.email]),
     password: new FormControl('', [Validators.required]),
   });
 
   constructor(private auth: AuthService, private router: Router) {}
 
-  onSubmit(): void {
+  public onSubmit(): void {
     const { email, password } = this.loginForm.value;
     this.auth.login(email, password).subscribe(() => {
       this.router.navigateByUrl('/');
     });
   }
 
-  get email() {
+  public get email(): AbstractControl | null {
     return this.loginForm.get('email');
   }
 
-  get password() {
+  public get password(): AbstractControl | null {
     return this.loginForm.get('password');
   }
 }

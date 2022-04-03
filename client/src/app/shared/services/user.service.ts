@@ -5,16 +5,15 @@ import { User } from '../models/user';
   providedIn: 'root',
 })
 export class UserService {
-  user: User | null = null;
+  private user: User | null = null;
 
   constructor() {}
 
-  setUser(user: User | null): void {
+  public setUser(user: User | null): void {
     this.user = user;
-    console.log('setUser', this.user);
   }
 
-  getUser(): User | null {
+  public getUser(): User | null {
     return this.user;
   }
 }
