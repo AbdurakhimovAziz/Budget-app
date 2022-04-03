@@ -10,15 +10,17 @@ import { AuthService } from '../auth/services/auth.service';
 })
 export class LoginComponent {
   hide: Boolean = true;
+
   loginForm: FormGroup = new FormGroup({
     email: new FormControl('', [Validators.required, Validators.email]),
     password: new FormControl('', [Validators.required]),
   });
+
   constructor(private auth: AuthService, private router: Router) {}
 
-  onSubmit() {
+  onSubmit(): void {
     const { email, password } = this.loginForm.value;
-    this.auth.login(email, password).subscribe((data) => {
+    this.auth.login(email, password).subscribe(() => {
       this.router.navigateByUrl('/');
     });
   }

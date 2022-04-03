@@ -16,6 +16,7 @@ const issueJWT = (user) => {
   return {
     token: signedToken,
     expiresIn: expiresIn,
+    user,
   };
 };
 

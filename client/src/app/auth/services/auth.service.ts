@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 
 import { Injectable } from '@angular/core';
 import { Observable, tap } from 'rxjs';
+import { UserService } from 'src/app/shared/services/user.service';
 
 const BASE_URL = 'http://localhost:3000';
 interface IToken {
@@ -13,12 +14,15 @@ interface IToken {
   providedIn: 'root',
 })
 export class AuthService {
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient, private user: UserService) {}
 
   login(email: string, password: string): Observable<Object> {
-    return this.http
-      .post(this.getUrl(), { email, password })
-      .pipe(tap((res: any) => this.saveToken(res)));
+    return this.http.post(this.getUrl(), { email, password }).pipe(
+      tap((res: any) => {
+        this.saveToken(res);
+        this.user.setUser(res.user);
+      })
+    );
   }
 
   isLoggedIn(): boolean {
@@ -45,5 +49,6 @@ export class AuthService {
   logout(): void {
     localStorage.removeItem('token');
     localStorage.removeItem('expiresIn');
+    this.user.setUser(null);
   }
 }
