@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
+import { Account } from 'src/app/shared/models/account';
 
 @Component({
   selector: 'app-accounts-item',
@@ -6,7 +7,7 @@ import { Component } from '@angular/core';
   styleUrls: ['./accounts-item.component.scss'],
 })
 export class AccountsItemComponent {
-  public title: string = 'Debit Card';
-  public balance: number = 1000.5;
+  @Input() public account!: Account;
+
   constructor() {}
 }

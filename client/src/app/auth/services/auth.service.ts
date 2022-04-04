@@ -2,9 +2,9 @@ import { HttpClient } from '@angular/common/http';
 
 import { Injectable } from '@angular/core';
 import { Observable, tap } from 'rxjs';
+import { BASE_URL } from 'src/app/shared/constants';
 import { UserService } from 'src/app/shared/services/user.service';
 
-const BASE_URL = 'http://localhost:3000';
 interface IToken {
   token: string;
   expiresIn: string;

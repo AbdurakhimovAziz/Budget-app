@@ -1,15 +1,12 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input } from '@angular/core';
+import { Account } from 'src/app/shared/models/account';
 
 @Component({
   selector: 'app-accounts-list',
   templateUrl: './accounts-list.component.html',
-  styleUrls: ['./accounts-list.component.scss']
+  styleUrls: ['./accounts-list.component.scss'],
 })
-export class AccountsListComponent implements OnInit {
-
-  constructor() { }
-
-  public ngOnInit(): void {
-  }
-
+export class AccountsListComponent {
+  @Input() public accounts: Account[] = [];
+  constructor() {}
 }
