@@ -25,13 +25,8 @@ export class AuthService {
     );
   }
 
-<<<<<<< HEAD
   public isLoggedIn(): boolean {
-    const expiresIn = localStorage.getItem('expiresIn');
-=======
-  isLoggedIn(): boolean {
     const expiresIn = localStorage.getItem('expiresAt');
->>>>>>> ba85ab6 (feat: add auth interceptor)
 
     if (expiresIn) {
       return Date.now() < Number(expiresIn);
