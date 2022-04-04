@@ -25,8 +25,13 @@ export class AuthService {
     );
   }
 
+<<<<<<< HEAD
   public isLoggedIn(): boolean {
     const expiresIn = localStorage.getItem('expiresIn');
+=======
+  isLoggedIn(): boolean {
+    const expiresIn = localStorage.getItem('expiresAt');
+>>>>>>> ba85ab6 (feat: add auth interceptor)
 
     if (expiresIn) {
       return Date.now() < Number(expiresIn);
@@ -40,15 +45,15 @@ export class AuthService {
 
   private saveToken(token: IToken): void {
     const { token: idToken, expiresIn } = token;
-    const expTime = Date.now() + parseInt(expiresIn) * 1000 * 60 * 60;
+    const expiresAt = Date.now() + parseInt(expiresIn) * 1000 * 60 * 60;
 
     localStorage.setItem('token', idToken);
-    localStorage.setItem('expiresIn', expTime.toString());
+    localStorage.setItem('expiresAt', expiresAt.toString());
   }
 
   public logout(): void {
     localStorage.removeItem('token');
-    localStorage.removeItem('expiresIn');
+    localStorage.removeItem('expiresAt');
     this.user.setUser(null);
   }
 }
