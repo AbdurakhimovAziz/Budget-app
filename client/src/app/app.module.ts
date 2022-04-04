@@ -17,6 +17,7 @@ import { AuthInterceptor } from './auth/auth.interceptor';
 import { AccountsComponent } from './accounts/accounts.component';
 import { AccountsListComponent } from './accounts/accounts-list/accounts-list.component';
 import { AccountsItemComponent } from './accounts/accounts-item/accounts-item.component';
+import { FooterComponent } from './footer/footer.component';
 
 @NgModule({
   declarations: [
@@ -30,6 +31,7 @@ import { AccountsItemComponent } from './accounts/accounts-item/accounts-item.co
     AccountsComponent,
     AccountsListComponent,
     AccountsItemComponent,
+    FooterComponent,
   ],
   imports: [
     BrowserModule,
