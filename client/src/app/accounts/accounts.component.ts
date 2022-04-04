@@ -9,7 +9,7 @@ export class AccountsComponent implements OnInit {
 
   constructor() { }
 
-  ngOnInit(): void {
+ public ngOnInit(): void {
   }
 
 }

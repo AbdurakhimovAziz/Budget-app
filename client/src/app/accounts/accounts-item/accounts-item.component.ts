@@ -6,7 +6,7 @@ import { Component } from '@angular/core';
   styleUrls: ['./accounts-item.component.scss'],
 })
 export class AccountsItemComponent {
-  title = 'Debit Card';
-  balance = '1000.5';
+  public title: string = 'Debit Card';
+  public balance: number = 1000.5;
   constructor() {}
 }
