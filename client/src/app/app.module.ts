@@ -14,6 +14,9 @@ import { MainComponent } from './main/main.component';
 import { AppMaterialModule } from './app-material/app-material.module';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { AuthInterceptor } from './auth/auth.interceptor';
+import { AccountsComponent } from './accounts/accounts.component';
+import { AccountsListComponent } from './accounts/accounts-list/accounts-list.component';
+import { AccountsItemComponent } from './accounts/accounts-item/accounts-item.component';
 
 @NgModule({
   declarations: [
@@ -24,6 +27,9 @@ import { AuthInterceptor } from './auth/auth.interceptor';
     NotFoundComponent,
     StatisticsComponent,
     MainComponent,
+    AccountsComponent,
+    AccountsListComponent,
+    AccountsItemComponent,
   ],
   imports: [
     BrowserModule,

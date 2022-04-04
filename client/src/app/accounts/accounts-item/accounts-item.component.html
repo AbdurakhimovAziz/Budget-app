@@ -1,0 +1,14 @@
+<mat-card class="account__item">
+  <div class="account__item-col">
+    <mat-card-title>{{title}} </mat-card-title>
+    <p class="account__item-subtitle"> {{balance | currency | titlecase}}</p>
+  </div>
+  <div class="account__item-col">
+    <div class="account__item-currency">$</div>
+    <mat-card-actions align="end" class="account__item-icon">
+      <button mat-icon-button matSuffix [attr.aria-label]="'Show account details'" type="button">
+        <mat-icon>{{'visibility'}}</mat-icon>
+      </button>
+    </mat-card-actions>
+  </div>
+</mat-card>
