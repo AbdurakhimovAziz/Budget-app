@@ -10,6 +10,7 @@ import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { AuthInterceptor } from './auth/auth.interceptor';
 
 import { ComponentsModule } from './components/components.module';
+import { ComponentsRoutingModule } from './components/components-routing.module';
 
 @NgModule({
   declarations: [AppComponent],
@@ -21,6 +22,7 @@ import { ComponentsModule } from './components/components.module';
     ReactiveFormsModule,
     HttpClientModule,
     ComponentsModule,
+    ComponentsRoutingModule,
   ],
   providers: [
     {

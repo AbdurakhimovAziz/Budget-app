@@ -35,17 +35,6 @@ import { AccountsComponent } from './accounts/accounts.component';
     ReactiveFormsModule,
   ],
 
-  exports: [
-    HeaderComponent,
-    CategoriesComponent,
-    LoginComponent,
-    NotFoundComponent,
-    StatisticsComponent,
-    MainComponent,
-    AccountsComponent,
-    AccountsListComponent,
-    AccountsItemComponent,
-    FooterComponent,
-  ],
+  exports: [],
 })
 export class ComponentsModule {}
