@@ -5,25 +5,15 @@ import { ReactiveFormsModule } from '@angular/forms';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { HeaderComponent } from './header/header.component';
-import { CategoriesComponent } from './categories/categories.component';
-import { LoginComponent } from './login/login.component';
-import { NotFoundComponent } from './not-found/not-found.component';
-import { StatisticsComponent } from './statistics/statistics.component';
-import { MainComponent } from './main/main.component';
-import { AppMaterialModule } from './app-material/app-material.module';
-import { HttpClientModule } from '@angular/common/http';
+import { AppMaterialModule } from './shared/modules/app-material.module';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
+import { AuthInterceptor } from './auth/auth.interceptor';
+
+import { ComponentsModule } from './components/components.module';
+import { ComponentsRoutingModule } from './components/components-routing.module';
 
 @NgModule({
-  declarations: [
-    AppComponent,
-    HeaderComponent,
-    CategoriesComponent,
-    LoginComponent,
-    NotFoundComponent,
-    StatisticsComponent,
-    MainComponent,
-  ],
+  declarations: [AppComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,
@@ -31,8 +21,16 @@ import { HttpClientModule } from '@angular/common/http';
     NoopAnimationsModule,
     ReactiveFormsModule,
     HttpClientModule,
+    ComponentsModule,
+    ComponentsRoutingModule,
   ],
-  providers: [],
+  providers: [
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: AuthInterceptor,
+      multi: true,
+    },
+  ],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

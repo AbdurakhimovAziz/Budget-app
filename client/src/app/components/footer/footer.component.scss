@@ -1,0 +1,22 @@
+@import "../../shared//scss/variables";
+
+:host {
+  margin-top: auto;
+}
+
+.footer {
+  background-color: $bg-primary;
+  padding: 20px;
+  margin-top: auto;
+  text-align: center;
+  font-size: 14px;
+  color: $text-dark;
+  &__copyright {
+    margin-top: 20px;
+  }
+  &__container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+}
