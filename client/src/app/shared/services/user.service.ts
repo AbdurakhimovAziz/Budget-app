@@ -1,19 +1,27 @@
 import { Injectable } from '@angular/core';
+import { BehaviorSubject, Observable } from 'rxjs';
 import { User } from '../models/user';
 
 @Injectable({
   providedIn: 'root',
 })
 export class UserService {
-  private user: User | null = null;
+  private userSubject: BehaviorSubject<User | null>;
+  public user$!: Observable<User | null>;
 
-  constructor() {}
+  constructor() {
+    this.userSubject = new BehaviorSubject<User | null>(this.getUser());
+    this.user$ = this.userSubject.asObservable();
+  }
 
   public setUser(user: User | null): void {
-    this.user = user;
+    console.log('setUser', user);
+    localStorage.setItem('user', JSON.stringify(user));
+    this.userSubject.next(user);
   }
 
   public getUser(): User | null {
-    return this.user;
+    const user = localStorage.getItem('user');
+    return user ? JSON.parse(user) : null;
   }
 }
