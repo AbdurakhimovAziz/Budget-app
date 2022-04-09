@@ -14,8 +14,8 @@ class UsersController {
   async login(req, res) {
     const user = await usersService.login(req.body.email, req.body.password);
     if (user) {
-      const tokenObject = issueJWT(user);
-      res.status(200).json(tokenObject);
+      const userWithJWT = issueJWT(user);
+      res.status(200).json(userWithJWT);
     } else {
       res.status(400).json({ message: 'wrong email or password' });
     }
