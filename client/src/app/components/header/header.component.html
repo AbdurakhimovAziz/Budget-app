@@ -1,8 +1,8 @@
 <mat-toolbar color="primary">
   <span routerLink="/">Budgetify</span>
   <span class="fill-remaining-space"></span>
-  <button mat-button routerLink="categories">Categories</button>
-  <button mat-button routerLink="statistics">Statistics</button>
+  <button mat-button routerLink="categories" routerLinkActive="active">Categories</button>
+  <button mat-button routerLink="statistics" routerLinkActive="active">Statistics</button>
   <span class="fill-remaining-space"></span>
   <button class="user" mat-button [matMenuTriggerFor]="menu" *ngIf="user$ | async as user">
     <mat-icon>person</mat-icon>{{user.firstName + ' ' + user.lastName}}
