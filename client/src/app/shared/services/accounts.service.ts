@@ -11,12 +11,16 @@ export class AccountsService {
   private accounts: Account[] = [];
   constructor(private http: HttpClient) {}
 
-  public getAll(): Observable<Account[]> {
-    return this.http.get<Account[]>(this.getUrl());
+  public getAll(userId: string): Observable<Account[]> {
+    return this.http.get<Account[]>(this.getUrlWithQueryParams(userId));
   }
 
   private getUrl(): string {
-    return `${BASE_URL}/accounts`;
+    return `${BASE_URL}/accounts/`;
+  }
+
+  private getUrlWithQueryParams(userId: string): string {
+    return `${this.getUrl()}?userId=${userId}`;
   }
 
   public getAccounts(): Account[] {

@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Account } from 'src/app/shared/models/account';
 import { AccountsService } from 'src/app/shared/services/accounts.service';
+import { UserService } from 'src/app/shared/services/user.service';
 
 @Component({
   selector: 'app-accounts',
@@ -9,11 +10,16 @@ import { AccountsService } from 'src/app/shared/services/accounts.service';
 })
 export class AccountsComponent implements OnInit {
   public accounts: Account[] = [];
-  constructor(private accountsService: AccountsService) {}
+  constructor(
+    private accountsService: AccountsService,
+    private user: UserService
+  ) {}
 
   public ngOnInit(): void {
-    this.accountsService.getAll().subscribe((accounts: Account[]) => {
-      this.accounts = accounts;
-    });
+    this.accountsService
+      .getAll(this.user.getId())
+      .subscribe((accounts: Account[]) => {
+        this.accounts = accounts;
+      });
   }
 }
