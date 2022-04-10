@@ -5,8 +5,8 @@ class AccountsService {
     return new Account(account).save();
   }
 
-  getAll() {
-    return Account.find();
+  getAll(userId) {
+    return userId ? Account.find({ user_id: userId }) : Account.find();
   }
 
   getById(id) {

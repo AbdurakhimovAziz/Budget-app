@@ -13,7 +13,7 @@ class AccountsController {
 
   async getAll(req, res) {
     try {
-      const accounts = await accountsService.getAll();
+      const accounts = await accountsService.getAll(req.query.userId || null);
       res.status(200).json(accounts);
     } catch (error) {
       handleError(res, error);

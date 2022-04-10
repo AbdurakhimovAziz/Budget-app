@@ -2,8 +2,10 @@ const Transaction = require('../models/transactions-model');
 const accountsService = require('./accounts-service');
 
 class TransactionsService {
-  getAll() {
-    return Transaction.find().populate('categories', 'title');
+  getAll(accountId) {
+    return accountId
+      ? Transaction.find({ account_id: accountId }).populate('categories', 'title')
+      : Transaction.find().populate('categories', 'title');
   }
 
   getById(id) {

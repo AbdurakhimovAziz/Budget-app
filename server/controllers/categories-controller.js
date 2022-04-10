@@ -4,7 +4,7 @@ const { handleError } = require('../utils/utils');
 class CategoriesControlle {
   async getAll(req, res) {
     try {
-      const categories = await categoriesService.getAll();
+      const categories = await categoriesService.getAll(req.query.userId || null);
       res.status(200).json(categories);
     } catch (error) {
       handleError(res, error);
