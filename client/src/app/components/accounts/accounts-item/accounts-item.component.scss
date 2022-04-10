@@ -3,9 +3,10 @@
 .account__item {
   display: flex;
   justify-content: space-between;
-  max-width: 360px;
+  max-width: 350px;
   min-height: 150px;
   width: 100%;
+  margin-bottom: 40px;
   color: $white;
   background-image: url("/assets/images/account-bg.jpg");
   background-position: center;
