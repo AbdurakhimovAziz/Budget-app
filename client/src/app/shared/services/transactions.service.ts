@@ -10,12 +10,12 @@ import { Transaction } from '../models/transaction';
 export class TransactionsService {
   constructor(private http: HttpClient) {}
 
-  public getAll(accountId: string): Observable<Transaction> {
-    return this.http.get<Transaction>(this.getUrlWithQueryParams(accountId));
+  public getAll(accountId: string): Observable<Transaction[]> {
+    return this.http.get<Transaction[]>(this.getUrlWithQueryParams(accountId));
   }
 
   private getUrl(): string {
-    return `${BASE_URL}/accounts/`;
+    return `${BASE_URL}/transactions/`;
   }
 
   private getUrlWithQueryParams(accountId: string): string {
