@@ -8,7 +8,6 @@ import { Account } from '../models/account';
   providedIn: 'root',
 })
 export class AccountsService {
-  private accounts: Account[] = [];
   constructor(private http: HttpClient) {}
 
   public getAll(userId: string): Observable<Account[]> {
@@ -21,9 +20,5 @@ export class AccountsService {
 
   private getUrlWithQueryParams(userId: string): string {
     return `${this.getUrl()}?userId=${userId}`;
-  }
-
-  public getAccounts(): Account[] {
-    return this.accounts;
   }
 }
