@@ -1,1 +1,18 @@
-<p>transactions-item works!</p>
+<mat-card class="transaction-item">
+  <div class="transaction-item__content">
+    <div class="transaction-item__category">
+      {{ transaction.categories[0]?.title }}
+    </div>
+    <div class="transaction-item__body">
+      <mat-card-title>{{transaction.title}} </mat-card-title>
+      <mat-card-subtitle>
+        <span> {{transaction.type}} </span>
+        <span> * {{transaction.date | date}}</span>
+        <span> * {{transaction.payee || '--' }} </span>
+      </mat-card-subtitle>
+    </div>
+    <div class="transaction-item__amount">
+      {{ transaction.amount | currency }}
+    </div>
+  </div>
+</mat-card>

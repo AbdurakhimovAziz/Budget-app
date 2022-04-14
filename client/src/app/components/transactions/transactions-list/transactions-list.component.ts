@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { Transaction } from 'src/app/shared/models/transaction';
 
 @Component({
@@ -7,7 +7,7 @@ import { Transaction } from 'src/app/shared/models/transaction';
   styleUrls: ['./transactions-list.component.scss'],
 })
 export class TransactionsListComponent {
-  @Input() transactions: Transaction[] = [];
+  @Input() public transactions: Transaction[] = [];
 
   constructor() {}
 }

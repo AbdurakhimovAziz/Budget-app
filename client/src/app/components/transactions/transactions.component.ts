@@ -13,12 +13,13 @@ export class TransactionsComponent implements OnInit {
   private currentAccount!: Account | null;
 
   public transactions: Transaction[] = [];
+
   constructor(
     private transactionsService: TransactionsService,
     private accountsService: AccountsService
   ) {}
 
-  ngOnInit(): void {
+  public ngOnInit(): void {
     this.accountsService.currentAccount$.subscribe((account) => {
       this.currentAccount = account;
       account &&
@@ -26,6 +27,7 @@ export class TransactionsComponent implements OnInit {
           .getAll(account._id)
           .subscribe((transactions) => {
             this.transactions = transactions;
+            console.log(transactions);
           });
     });
   }

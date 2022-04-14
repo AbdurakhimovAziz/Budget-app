@@ -8,11 +8,11 @@ import { Account } from '../models/account';
   providedIn: 'root',
 })
 export class AccountsService {
-  private currentAccountSubject: BehaviorSubject<Account | null>;
+  private currentAccountSubject: BehaviorSubject<Account | null> =
+    new BehaviorSubject<Account | null>(null);
   public currentAccount$!: Observable<Account | null>;
 
   constructor(private http: HttpClient) {
-    this.currentAccountSubject = new BehaviorSubject<Account | null>(null);
     this.currentAccount$ = this.currentAccountSubject.asObservable();
   }
 

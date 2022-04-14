@@ -11,7 +11,7 @@ import { AuthService } from '../../auth/services/auth.service';
   styleUrls: ['./header.component.scss'],
 })
 export class HeaderComponent implements OnInit {
-  user$!: Observable<User | null>;
+  public user$!: Observable<User | null>;
 
   constructor(
     private userService: UserService,
@@ -19,11 +19,11 @@ export class HeaderComponent implements OnInit {
     private router: Router
   ) {}
 
-  ngOnInit(): void {
+  public ngOnInit(): void {
     this.user$ = this.userService.user$;
   }
 
-  logout(): void {
+  public logout(): void {
     this.authService.logout();
     this.router.navigate(['/login']);
   }

@@ -15,7 +15,6 @@ export class UserService {
   }
 
   public setUser(user: User | null): void {
-    console.log('setUser', user);
     localStorage.setItem('user', JSON.stringify(user));
     this.userSubject.next(user);
   }
