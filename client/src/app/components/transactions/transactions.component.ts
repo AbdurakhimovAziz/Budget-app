@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
+import { EMPTY, Subject, switchMap, takeUntil } from 'rxjs';
 import { Account } from 'src/app/shared/models/account';
 import { Transaction } from 'src/app/shared/models/transaction';
 import { AccountsService } from 'src/app/shared/services/accounts.service';
@@ -9,10 +10,10 @@ import { TransactionsService } from 'src/app/shared/services/transactions.servic
   templateUrl: './transactions.component.html',
   styleUrls: ['./transactions.component.scss'],
 })
-export class TransactionsComponent implements OnInit {
+export class TransactionsComponent implements OnInit, OnDestroy {
   private currentAccount!: Account | null;
-
   public transactions: Transaction[] = [];
+  private unsubscribe$ = new Subject<void>();
 
   constructor(
     private transactionsService: TransactionsService,
@@ -20,15 +21,23 @@ export class TransactionsComponent implements OnInit {
   ) {}
 
   public ngOnInit(): void {
-    this.accountsService.currentAccount$.subscribe((account) => {
-      this.currentAccount = account;
-      account &&
-        this.transactionsService
-          .getAll(account._id)
-          .subscribe((transactions) => {
-            this.transactions = transactions;
-            console.log(transactions);
-          });
-    });
+    this.accountsService.currentAccount$
+      .pipe(
+        switchMap((account: Account | null) => {
+          this.currentAccount = account;
+          return account
+            ? this.transactionsService.getAll(account?._id)
+            : EMPTY;
+        })
+      )
+      .pipe(takeUntil(this.unsubscribe$))
+      .subscribe((transactions: Transaction[]) => {
+        this.transactions = transactions;
+      });
+  }
+
+  public ngOnDestroy(): void {
+    this.unsubscribe$.next();
+    this.unsubscribe$.complete();
   }
 }
