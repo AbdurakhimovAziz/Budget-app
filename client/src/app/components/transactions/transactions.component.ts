@@ -28,9 +28,9 @@ export class TransactionsComponent implements OnInit, OnDestroy {
           return account
             ? this.transactionsService.getAll(account?._id)
             : EMPTY;
-        })
+        }),
+        takeUntil(this.unsubscribe$)
       )
-      .pipe(takeUntil(this.unsubscribe$))
       .subscribe((transactions: Transaction[]) => {
         this.transactions = transactions;
       });
