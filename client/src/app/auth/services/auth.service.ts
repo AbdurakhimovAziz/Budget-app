@@ -1,14 +1,10 @@
 import { HttpClient } from '@angular/common/http';
 
 import { Injectable } from '@angular/core';
-import { Observable, tap } from 'rxjs';
+import { catchError, Observable, tap, throwError } from 'rxjs';
 import { BASE_URL } from 'src/app/shared/constants';
+import { Token } from 'src/app/shared/models/token';
 import { UserService } from 'src/app/shared/services/user.service';
-
-interface IToken {
-  token: string;
-  expiresIn: string;
-}
 
 @Injectable({
   providedIn: 'root',
@@ -21,7 +17,8 @@ export class AuthService {
       tap((res: any) => {
         this.saveToken(res);
         this.user.setUser(res.user);
-      })
+      }),
+      catchError((err) => throwError(() => '401'))
     );
   }
 
@@ -38,7 +35,7 @@ export class AuthService {
     return `${BASE_URL}/users/login`;
   }
 
-  private saveToken(token: IToken): void {
+  public saveToken(token: Token): void {
     const { token: idToken, expiresIn } = token;
     const expiresAt = Date.now() + parseInt(expiresIn) * 1000 * 60 * 60;
 
