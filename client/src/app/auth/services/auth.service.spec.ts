@@ -15,6 +15,24 @@ describe('AuthService', () => {
   let httpController: HttpTestingController;
   let mockUserService: jasmine.SpyObj<UserService>;
 
+  const user: User = {
+    _id: 'some id',
+    email: 'some email',
+    password: 'some password',
+    firstName: 'some name',
+    lastName: 'some last name',
+    dob: 'some dob',
+    gender: 'male',
+    role: 'admin',
+    country: 'usa',
+  };
+
+  const token: Token = {
+    token: 'some token',
+    expiresIn: '10000',
+    user: user,
+  };
+
   beforeEach(() => {
     mockUserService = jasmine.createSpyObj('UserService', ['setUser']);
 
@@ -34,25 +52,15 @@ describe('AuthService', () => {
     expect(service).toBeTruthy();
   });
 
+  it('should succesfully save token', () => {
+    spyOn(localStorage, 'setItem');
+
+    service.saveToken(token);
+    expect(localStorage.setItem).toHaveBeenCalledTimes(2);
+  });
+
   it('should call saveToken and userservice.setUser on succesfull login', (done: DoneFn) => {
     spyOn(service, 'saveToken');
-    const user: User = {
-      _id: 'some id',
-      email: 'some email',
-      password: 'some password',
-      firstName: 'some name',
-      lastName: 'some last name',
-      dob: 'some dob',
-      gender: 'male',
-      role: 'admin',
-      country: 'usa',
-    };
-
-    const token: Token = {
-      token: 'some token',
-      expiresIn: '10000',
-      user: user,
-    };
 
     service.login('test@gmail.com', 'test').subscribe(() => {
       expect(service.saveToken).toHaveBeenCalledOnceWith(token);
@@ -82,5 +90,13 @@ describe('AuthService', () => {
       url: `${BASE_URL}/users/login`,
     });
     req.error(new ProgressEvent('401'));
+  });
+
+  it('should succesfully log out', () => {
+    spyOn(localStorage, 'removeItem');
+    service.logout();
+    expect(localStorage.removeItem).toHaveBeenCalledWith('token');
+    expect(localStorage.removeItem).toHaveBeenCalledWith('expiresAt');
+    expect(mockUserService.setUser).toHaveBeenCalledWith(null);
   });
 });
