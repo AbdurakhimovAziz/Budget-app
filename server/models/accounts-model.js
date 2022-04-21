@@ -8,6 +8,7 @@ const accountSchema = new mongoose.Schema({
   currency: {
     type: String,
     required: true,
+    validate: [/^[a-z]+\s\([\W]{1}\)$/i, 'Currency must be in format: "USD (US Dollar)"'],
   },
   balance: {
     type: Number,

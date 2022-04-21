@@ -20,6 +20,9 @@ const transactionSchema = new mongoose.Schema({
     enum: ['income', 'expense'],
     required: true,
   },
+  payee: {
+    type: String,
+  },
   desciption: {
     type: String,
   },

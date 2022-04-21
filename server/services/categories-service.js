@@ -1,8 +1,8 @@
 const Category = require('../models/categories-model');
 
 class CategiresService {
-  getAll() {
-    return Category.find();
+  getAll(userId) {
+    return userId ? Category.find({ user_id: userId }) : Category.find();
   }
 
   getById(id) {

@@ -6,6 +6,7 @@ import { LoginComponent } from './login/login.component';
 import { MainComponent } from './main/main.component';
 import { NotFoundComponent } from './not-found/not-found.component';
 import { StatisticsComponent } from './statistics/statistics.component';
+import { TransactionsComponent } from './transactions/transactions.component';
 
 const routes: Routes = [
   { path: 'login', component: LoginComponent },
@@ -14,6 +15,10 @@ const routes: Routes = [
     component: MainComponent,
     canActivate: [AuthGuard],
     children: [
+      {
+        path: '',
+        component: TransactionsComponent,
+      },
       {
         path: 'categories',
         component: CategoriesComponent,

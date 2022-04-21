@@ -14,6 +14,10 @@ import { StatisticsComponent } from './statistics/statistics.component';
 import { AccountsItemComponent } from './accounts/accounts-item/accounts-item.component';
 import { AccountsListComponent } from './accounts/accounts-list/accounts-list.component';
 import { AccountsComponent } from './accounts/accounts.component';
+import { TransactionsComponent } from './transactions/transactions.component';
+import { ControlsComponent } from './controls/controls.component';
+import { TransactionsListComponent } from './transactions/transactions-list/transactions-list.component';
+import { TransactionsItemComponent } from './transactions/transactions-item/transactions-item.component';
 
 @NgModule({
   declarations: [
@@ -27,6 +31,10 @@ import { AccountsComponent } from './accounts/accounts.component';
     AccountsListComponent,
     AccountsItemComponent,
     FooterComponent,
+    TransactionsComponent,
+    ControlsComponent,
+    TransactionsListComponent,
+    TransactionsItemComponent,
   ],
   imports: [
     CommonModule,

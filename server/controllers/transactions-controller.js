@@ -4,7 +4,7 @@ const { handleError } = require('../utils/utils');
 class TransactionsController {
   async getAll(req, res) {
     try {
-      const transactions = await transactionsService.getAll();
+      const transactions = await transactionsService.getAll(req.query.accountId || null);
       res.status(200).json(transactions);
     } catch (error) {
       handleError(res, error);

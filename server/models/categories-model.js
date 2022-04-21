@@ -19,7 +19,7 @@ const categoriesSchema = new mongoose.Schema({
   },
 });
 
-categoriesSchema.index({ title: 1, type: 1 }, { unique: true });
+categoriesSchema.index({ title: 1, type: 1, user_id: 1 }, { unique: true });
 
 const Category = mongoose.model('Category', categoriesSchema);
 module.exports = Category;
