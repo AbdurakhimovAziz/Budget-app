@@ -15,9 +15,10 @@
   }
 
   &__accounts {
-    flex: 1 0 auto;
+    flex-basis: 30%;
   }
-  &__view {
-    flex: 1 0 auto;
+
+  &__controls {
+    flex-basis: 20%;
   }
 }
