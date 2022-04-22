@@ -4,11 +4,11 @@
       {{ transaction.categories[0]?.title }}
     </div>
     <div class="transaction-item__body">
-      <mat-card-title>{{transaction.title}} </mat-card-title>
+      <mat-card-title> {{transaction.title}} </mat-card-title>
       <mat-card-subtitle>
         <span> {{transaction.type}} </span>
-        <span> * {{transaction.date | date}}</span>
-        <span> * {{transaction.payee || '--' }} </span>
+        <span> · {{transaction.date | date}}</span>
+        <span> · {{transaction.payee || '--' }} </span>
       </mat-card-subtitle>
     </div>
     <div class="transaction-item__amount">

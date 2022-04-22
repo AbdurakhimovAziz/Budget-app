@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, HostBinding, OnInit } from '@angular/core';
 import { Account } from 'src/app/shared/models/account';
 import { AccountsService } from 'src/app/shared/services/accounts.service';
 import { TransactionsService } from 'src/app/shared/services/transactions.service';
@@ -9,6 +9,8 @@ import { TransactionsService } from 'src/app/shared/services/transactions.servic
   styleUrls: ['./transactions.component.scss'],
 })
 export class TransactionsComponent implements OnInit {
+  @HostBinding('class') class = 'scroll';
+
   constructor(
     public transactionsService: TransactionsService,
     private accountsService: AccountsService

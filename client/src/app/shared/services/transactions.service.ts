@@ -21,8 +21,8 @@ export class TransactionsService {
       });
   }
 
-  public getAll(accountId: string): Observable<Transaction[]> {
-    return this.http.get<Transaction[]>(this.getUrlWithQueryParams(accountId));
+  public getTransactions(): Transaction[] {
+    return this.transactionsSubject.getValue();
   }
 
   private getUrl(): string {
