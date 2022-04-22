@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import { BehaviorSubject, Observable } from 'rxjs';
 import { BASE_URL } from '../constants';
 import { Transaction } from '../models/transaction';
 
@@ -8,7 +8,18 @@ import { Transaction } from '../models/transaction';
   providedIn: 'root',
 })
 export class TransactionsService {
+  private readonly transactionsSubject = new BehaviorSubject<Transaction[]>([]);
+  public readonly transactions$ = this.transactionsSubject.asObservable();
+
   constructor(private http: HttpClient) {}
+
+  public fetchTransactions(accountId: string): void {
+    this.http
+      .get<Transaction[]>(this.getUrlWithQueryParams(accountId))
+      .subscribe((transactions: Transaction[]) => {
+        this.transactionsSubject.next(transactions);
+      });
+  }
 
   public getAll(accountId: string): Observable<Transaction[]> {
     return this.http.get<Transaction[]>(this.getUrlWithQueryParams(accountId));

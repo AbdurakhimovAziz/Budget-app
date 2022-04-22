@@ -1,4 +1,4 @@
-<mat-card class="account__item">
+<mat-card class="account__item" (click)="onClick()" [class.active]="isCurrentAccount">
   <div class="account__item-col">
     <mat-card-title>{{account.title}}</mat-card-title>
     <p class="account__item-subtitle"> {{ account.balance | currency: currencyName | titlecase }}</p>

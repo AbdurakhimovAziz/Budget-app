@@ -8,20 +8,31 @@ import { Account } from '../models/account';
   providedIn: 'root',
 })
 export class AccountsService {
-  private currentAccountSubject: BehaviorSubject<Account | null> =
-    new BehaviorSubject<Account | null>(null);
-  public currentAccount$!: Observable<Account | null>;
+  private readonly accountsSubject = new BehaviorSubject<Account[]>([]);
+  readonly accounts$ = this.accountsSubject.asObservable();
 
-  constructor(private http: HttpClient) {
-    this.currentAccount$ = this.currentAccountSubject.asObservable();
+  private readonly currentAccountSubject: BehaviorSubject<Account | null> =
+    new BehaviorSubject<Account | null>(null);
+  public readonly currentAccount$: Observable<Account | null> =
+    this.currentAccountSubject.asObservable();
+
+  constructor(private http: HttpClient) {}
+
+  public fetchAccounts(userId: string): void {
+    this.http
+      .get<Account[]>(this.getUrlWithQueryParams(userId))
+      .subscribe((accounts: Account[]) => {
+        this.accountsSubject.next(accounts);
+        this.currentAccountSubject.next(accounts[0]);
+      });
   }
 
-  public getAll(userId: string): Observable<Account[]> {
-    return this.http.get<Account[]>(this.getUrlWithQueryParams(userId)).pipe(
-      tap((accounts) => {
-        this.currentAccountSubject.next(accounts[0]);
-      })
-    );
+  public getAccounts(): Account[] {
+    return this.accountsSubject.getValue();
+  }
+
+  public getCurrentAccount(): Account | null {
+    return this.currentAccountSubject.getValue();
   }
 
   public setCurrentAccount(account: Account | null): void {

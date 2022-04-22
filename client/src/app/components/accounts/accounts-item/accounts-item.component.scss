@@ -10,9 +10,14 @@
   color: $white;
   background-image: url("/assets/images/account-bg.jpg");
   background-position: center;
-  filter: drop-shadow(5px 10px 20px $shadow-black);
+  opacity: 0.5;
   cursor: pointer;
   border-radius: 10px;
+
+  &.active {
+    filter: drop-shadow(5px 10px 20px $shadow-black);
+    opacity: 1;
+  }
 
   &-col {
     display: flex;

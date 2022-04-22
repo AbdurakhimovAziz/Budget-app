@@ -1,1 +1,4 @@
-<app-transactions-item *ngFor="let transaction of transactions" [transaction]="transaction"></app-transactions-item>
+<div *ngIf="transactions.length !== 0">
+  <app-transactions-item *ngFor="let transaction of transactions" [transaction]="transaction"></app-transactions-item>
+</div>
+<div *ngIf="transactions.length === 0">You don't have any transactions. Please, add a transaction</div>
