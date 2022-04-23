@@ -10,21 +10,9 @@
 			"item": [
 				{
 					"name": "Get all users",
-					"protocolProfileBehavior": {
-						"disableBodyPruning": true
-					},
 					"request": {
 						"method": "GET",
 						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": "",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
 						"url": {
 							"raw": "http://localhost:3000/users/",
 							"protocol": "http",
@@ -47,7 +35,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "  {\r\n        \"email\": \"hghg@mail.com\",\r\n        \"password\": \"qwerty\",\r\n        \"firstName\": \"Aziz\",\r\n        \"lastName\": \"Abdurakhimov\",\r\n        \"dob\": \"2002-10-14T19:00:00.000Z\",\r\n        \"gender\": \"male\",\r\n        \"country\": \"Uzbekistan\",\r\n        \"role\": \"admin\"\r\n    }",
+							"raw": "  {\r\n        \"email\": \"test@gmail.com\",\r\n        \"password\": \"test\",\r\n        \"firstName\": \"Aziz\",\r\n        \"lastName\": \"Abdurakhimov\",\r\n        \"dob\": \"2002-10-14T19:00:00.000Z\",\r\n        \"gender\": \"male\",\r\n        \"country\": \"Uzbekistan\",\r\n        \"role\": \"admin\"\r\n    }",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -75,7 +63,7 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:3000/users/6235fb7e280289ab63b414fa",
+							"raw": "http://localhost:3000/users/62528119e67ee4439a93980c",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -83,7 +71,7 @@
 							"port": "3000",
 							"path": [
 								"users",
-								"6235fb7e280289ab63b414fa"
+								"62528119e67ee4439a93980c"
 							]
 						}
 					},
@@ -96,7 +84,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"email\": \"hghg@mail.com\",\r\n    \"password\": \"qwerty\"\r\n}",
+							"raw": "{\r\n    \"email\": \"test@gmail.com\",\r\n    \"password\": \"test\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -130,13 +118,13 @@
 						"header": [
 							{
 								"key": "Authorization",
-								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjE2NDcyNzUyNjkzMDMsImlhdCI6MTY0NzI3NTI3NDk0NiwiZXhwIjoxNjQ3Mjc1Mjc4NTQ2fQ.lLTwGpH3mbVN00RF8rwco9FcNnVIxZlkVDKogqk2xPQ",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2MjM0MTg0Mjc3NzVlMDYyYjI3ZjQxN2IiLCJpYXQiOjE2NDg5ODM4Mzc2NjMsImV4cCI6MTY0ODk4Mzg0MTI2M30.vZx54VmwrQYZg9CeevYuwHQ1negDz1Fme2e22WfZ9Hk",
 								"description": "add bearer token",
 								"type": "text"
 							}
 						],
 						"url": {
-							"raw": "http://localhost:3000/accounts",
+							"raw": "http://localhost:3000/accounts?userId=62528119e67ee4439a93980c",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -144,6 +132,12 @@
 							"port": "3000",
 							"path": [
 								"accounts"
+							],
+							"query": [
+								{
+									"key": "userId",
+									"value": "62528119e67ee4439a93980c"
+								}
 							]
 						}
 					},
@@ -183,14 +177,14 @@
 						"header": [
 							{
 								"key": "Authorization",
-								"value": "",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2MjM0MTg0Mjc3NzVlMDYyYjI3ZjQxN2IiLCJpYXQiOjE2NDg5ODM4Mzc2NjMsImV4cCI6MTY0ODk4Mzg0MTI2M30.vZx54VmwrQYZg9CeevYuwHQ1negDz1Fme2e22WfZ9Hk",
 								"description": "add bearer token",
 								"type": "text"
 							}
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"title\": \"aa\",\r\n    \"currency\": \"jpy\",\r\n    \"user_id\": \"623418427775e062b27f417b\"\r\n}",
+							"raw": "{\r\n    \"title\": \"terter\",\r\n    \"currency\": \"usd ($)\",\r\n    \"user_id\": \"623418427775e062b27f417c\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -224,7 +218,7 @@
 							}
 						],
 						"url": {
-							"raw": "http://localhost:3000/accounts/6235b6163c5ffbd301105ce6",
+							"raw": "http://localhost:3000/accounts/6236f33b4e5d1ee9459ecc15",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -232,7 +226,7 @@
 							"port": "3000",
 							"path": [
 								"accounts",
-								"6235b6163c5ffbd301105ce6"
+								"6236f33b4e5d1ee9459ecc15"
 							]
 						}
 					},
@@ -252,7 +246,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"_id\": \"6235b6163c5ffbd301105ce6\",\r\n    \"title\": \"some title\",\r\n    \"currency\": \"rub\",\r\n    \"user_id\": \"6235b6163c5ffbd301105ce6\"\r\n}",
+							"raw": "{\r\n    \"title\": \"title\",\r\n    \"currency\": \"rub\",\r\n    \"user_id\": \"6235b6163c5ffbd301105ce6\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -260,14 +254,15 @@
 							}
 						},
 						"url": {
-							"raw": "http://localhost:3000/accounts",
+							"raw": "http://localhost:3000/accounts/6236f33b4e5d1ee9459ecc15",
 							"protocol": "http",
 							"host": [
 								"localhost"
 							],
 							"port": "3000",
 							"path": [
-								"accounts"
+								"accounts",
+								"6236f33b4e5d1ee9459ecc15"
 							]
 						}
 					},
@@ -282,9 +277,15 @@
 					"name": "Get all categories",
 					"request": {
 						"method": "GET",
-						"header": [],
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{token}}",
+								"type": "text"
+							}
+						],
 						"url": {
-							"raw": "http://localhost:3000/categories",
+							"raw": "http://localhost:3000/categories?userId=62528119e67ee4439a93980c",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -292,6 +293,12 @@
 							"port": "3000",
 							"path": [
 								"categories"
+							],
+							"query": [
+								{
+									"key": "userId",
+									"value": "62528119e67ee4439a93980c"
+								}
 							]
 						}
 					},
@@ -301,10 +308,16 @@
 					"name": "Create category",
 					"request": {
 						"method": "POST",
-						"header": [],
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2MjM0MTg0Mjc3NzVlMDYyYjI3ZjQxN2IiLCJpYXQiOjE2NDg5ODM4Mzc2NjMsImV4cCI6MTY0ODk4Mzg0MTI2M30.vZx54VmwrQYZg9CeevYuwHQ1negDz1Fme2e22WfZ9Hk",
+								"type": "text"
+							}
+						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"title\": \"rental income\",\r\n    \"type\": \"income\",\r\n    \"user_id\": \"623418427775e062b27f417d\"\r\n}",
+							"raw": "{\r\n    \"title\": \"rental income\",\r\n    \"type\": \"income\",\r\n    \"user_id\": \"62528119e67ee4439a93980c\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -331,7 +344,7 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:3000/categories/6235f621d84ca58b80b23d72",
+							"raw": "http://localhost:3000/categories/6236f3da4e5d1ee9459ecc1c",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -339,7 +352,7 @@
 							"port": "3000",
 							"path": [
 								"categories",
-								"6235f621d84ca58b80b23d72"
+								"6236f3da4e5d1ee9459ecc1c"
 							]
 						}
 					},
@@ -352,7 +365,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"_id\": \"6235f621d84ca58b80b23d72\",\r\n    \"title\": \"dfd\",\r\n    \"type\": \"expense\",\r\n    \"user_id\": \"623418427775e062b27f417d\"\r\n}",
+							"raw": "{\r\n    \"title\": \"fasfa\",\r\n    \"type\": \"expense\",\r\n    \"user_id\": \"623418427775e062b27f417d\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -360,14 +373,15 @@
 							}
 						},
 						"url": {
-							"raw": "http://localhost:3000/categories",
+							"raw": "http://localhost:3000/categories/6236f3da4e5d1ee9459ecc1c",
 							"protocol": "http",
 							"host": [
 								"localhost"
 							],
 							"port": "3000",
 							"path": [
-								"categories"
+								"categories",
+								"6236f3da4e5d1ee9459ecc1c"
 							]
 						}
 					},
@@ -379,7 +393,7 @@
 						"method": "DELETE",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:3000/categories/6235f621d84ca58b80b23d72",
+							"raw": "http://localhost:3000/categories/6236f3da4e551ee9459ecc1c",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -387,7 +401,39 @@
 							"port": "3000",
 							"path": [
 								"categories",
-								"6235f621d84ca58b80b23d72"
+								"6236f3da4e551ee9459ecc1c"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create default categories",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{token}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:3000/categories/default?userId=623418427775e062b27f417b",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"categories",
+								"default"
+							],
+							"query": [
+								{
+									"key": "userId",
+									"value": "623418427775e062b27f417b"
+								}
 							]
 						}
 					},
@@ -402,9 +448,15 @@
 					"name": "Get all transactions",
 					"request": {
 						"method": "GET",
-						"header": [],
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2MjM0MTg0Mjc3NzVlMDYyYjI3ZjQxN2IiLCJpYXQiOjE2NDg5ODM4Mzc2NjMsImV4cCI6MTY0ODk4Mzg0MTI2M30.vZx54VmwrQYZg9CeevYuwHQ1negDz1Fme2e22WfZ9Hk",
+								"type": "text"
+							}
+						],
 						"url": {
-							"raw": "http://localhost:3000/transactions",
+							"raw": "http://localhost:3000/transactions?accountId=6252815ce67ee4439a939811",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -412,6 +464,12 @@
 							"port": "3000",
 							"path": [
 								"transactions"
+							],
+							"query": [
+								{
+									"key": "accountId",
+									"value": "6252815ce67ee4439a939811"
+								}
 							]
 						}
 					},
@@ -421,10 +479,16 @@
 					"name": "Create transaction",
 					"request": {
 						"method": "POST",
-						"header": [],
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2MjM0MTg0Mjc3NzVlMDYyYjI3ZjQxN2IiLCJpYXQiOjE2NDg5ODM4Mzc2NjMsImV4cCI6MTY0ODk4Mzg0MTI2M30.vZx54VmwrQYZg9CeevYuwHQ1negDz1Fme2e22WfZ9Hk",
+								"type": "text"
+							}
+						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"title\": \"aaaaa\",\r\n    \"amount\": 100,\r\n    \"date\": \"2022-03-19T17:03:23.548Z\",\r\n    \"type\": \"income\",\r\n    \"category\": [\r\n        \"6235d6381a80712715f7a784\"\r\n    ],\r\n    \"account_id\": \"6235f9986eead15af706dbd9\"\r\n}",
+							"raw": "{\r\n    \"title\": \"salary\",\r\n    \"amount\": 200,\r\n    \"date\": \"2022-03-19T17:03:23.548Z\",\r\n    \"type\": \"income\",\r\n    \"categories\": [\r\n        \"6263be638f254d83d302183d\"\r\n    ],\r\n    \"account_id\": \"6252815ce67ee4439a939811\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -449,9 +513,15 @@
 					"name": "Get transaction by id",
 					"request": {
 						"method": "GET",
-						"header": [],
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2MjM0MTg0Mjc3NzVlMDYyYjI3ZjQxN2IiLCJpYXQiOjE2NDg5ODM4Mzc2NjMsImV4cCI6MTY0ODk4Mzg0MTI2M30.vZx54VmwrQYZg9CeevYuwHQ1negDz1Fme2e22WfZ9Hk",
+								"type": "text"
+							}
+						],
 						"url": {
-							"raw": "http://localhost:3000/transactions/623613a2beb93dae29f1cf95",
+							"raw": "http://localhost:3000/transactions/6236f44b4e5d1ee9459ecc24",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -459,7 +529,7 @@
 							"port": "3000",
 							"path": [
 								"transactions",
-								"623613a2beb93dae29f1cf95"
+								"6236f44b4e5d1ee9459ecc24"
 							]
 						}
 					},
@@ -472,7 +542,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"_id\": \"623618d4fe3bb2ea175ac832\",\r\n    \"title\": \"eee\",\r\n    \"amount\": 100,\r\n    \"date\": \"2022-03-19T17:03:23.548Z\",\r\n    \"type\": \"income\",\r\n    \"category\": [\r\n        \"6235d6381a80712715f7a784\"\r\n    ],\r\n    \"account_id\": \"6235f9986eead15af706dbd9\"\r\n}",
+							"raw": "{\r\n    \"title\": \"eee\",\r\n    \"amount\": 50,\r\n    \"date\": \"2022-03-19T17:03:23.548Z\",\r\n    \"type\": \"income\",\r\n    \"category\": [\r\n        \"6235d6381a80712715f7a784\"\r\n    ],\r\n    \"account_id\": \"6235b6163c5ffbd301105ce5\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -480,14 +550,15 @@
 							}
 						},
 						"url": {
-							"raw": "http://localhost:3000/transactions",
+							"raw": "http://localhost:3000/transactions/623860602ae54349812665f7",
 							"protocol": "http",
 							"host": [
 								"localhost"
 							],
 							"port": "3000",
 							"path": [
-								"transactions"
+								"transactions",
+								"623860602ae54349812665f7"
 							]
 						}
 					},
@@ -497,9 +568,15 @@
 					"name": "Delete transaction",
 					"request": {
 						"method": "DELETE",
-						"header": [],
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{token}}",
+								"type": "text"
+							}
+						],
 						"url": {
-							"raw": "http://localhost:3000/transactions/62361da07437fcf3b181bffc",
+							"raw": "http://localhost:3000/transactions/6263c4402d9cc356199f8223",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -507,13 +584,43 @@
 							"port": "3000",
 							"path": [
 								"transactions",
-								"62361da07437fcf3b181bffc"
+								"6263c4402d9cc356199f8223"
 							]
 						}
 					},
 					"response": []
 				}
 			]
+		},
+		{
+			"name": "Currencies",
+			"item": [
+				{
+					"name": "New Request",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3000/currencies",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"currencies"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	],
+	"variable": [
+		{
+			"key": "token",
+			"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2MjM0MTg0Mjc3NzVlMDYyYjI3ZjQxN2IiLCJpYXQiOjE2NDg5ODM4Mzc2NjMsImV4cCI6MTY0ODk4Mzg0MTI2M30.vZx54VmwrQYZg9CeevYuwHQ1negDz1Fme2e22WfZ9Hk"
 		}
 	]
 }

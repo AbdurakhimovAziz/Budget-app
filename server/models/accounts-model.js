@@ -1,21 +1,21 @@
-const mongoose = require('mongoose');
-
+const mongoose = require('mongoose'),
+  { ObjectId } = mongoose.Types;
 const accountSchema = new mongoose.Schema({
   title: {
     type: String,
     default: '',
   },
   currency: {
-    type: String,
+    type: ObjectId,
+    ref: 'Currency',
     required: true,
-    validate: [/^[a-z]+\s\([\W]{1}\)$/i, 'Currency must be in format: "USD (US Dollar)"'],
   },
   balance: {
     type: Number,
     default: 0,
   },
   user_id: {
-    type: mongoose.Schema.Types.ObjectId,
+    type: ObjectId,
     ref: 'User',
     required: true,
   },

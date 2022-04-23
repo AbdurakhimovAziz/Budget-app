@@ -7,8 +7,6 @@ class TransactionsController {
       const { accountId } = req.query;
       if (accountId) {
         const transactions = await transactionsService.getAll(accountId);
-        console.log('transactions', transactions);
-
         res.status(200).json(transactions);
       } else throw new Error({ message: 'Accound id is required', status: 400 });
     } catch (error) {

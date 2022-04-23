@@ -1,5 +1,6 @@
 import { Component, Input } from '@angular/core';
 import { Transaction } from 'src/app/shared/models/transaction';
+import { AccountsService } from 'src/app/shared/services/accounts.service';
 
 @Component({
   selector: 'app-transactions-item',
@@ -9,5 +10,9 @@ import { Transaction } from 'src/app/shared/models/transaction';
 export class TransactionsItemComponent {
   @Input() public transaction!: Transaction;
 
-  constructor() {}
+  constructor(private accountService: AccountsService) {}
+
+  public get currencySymbol(): string {
+    return this.accountService.getCurrentAccount()?.currency.symbol || '';
+  }
 }

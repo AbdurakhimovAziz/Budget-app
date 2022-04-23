@@ -12,7 +12,7 @@
       </div>
     </div>
     <div class="transaction-item__amount">
-      {{ transaction.amount | currency }}
+      {{transaction.type === 'expense' ? '-' : ''}}{{ transaction.amount | number: '1.2-2' }}{{currencySymbol}}
     </div>
   </div>
 </mat-card>

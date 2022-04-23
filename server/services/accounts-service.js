@@ -6,11 +6,11 @@ class AccountsService {
   }
 
   getAll(userId) {
-    return Account.find({ user_id: userId });
+    return Account.find({ user_id: userId }).populate('currency');
   }
 
   getById(id) {
-    return Account.findById(id);
+    return Account.findById(id).populate('currency');
   }
 
   update(id, account) {

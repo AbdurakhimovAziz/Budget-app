@@ -5,6 +5,7 @@ const mongoose = require('mongoose');
 
 const usersRouter = require('./routes/users');
 const accountsRouter = require('./routes/accounts');
+const currenciesRouter = require('./routes/currencies');
 const categoriesRouter = require('./routes/categories');
 const transactionsRouter = require('./routes/transactions');
 
@@ -37,5 +38,6 @@ app.use('/users', usersRouter);
 app.use('/accounts', auth, accountsRouter);
 app.use('/categories', auth, categoriesRouter);
 app.use('/transactions', auth, transactionsRouter);
+app.use('/currencies', currenciesRouter);
 
 module.exports = app;

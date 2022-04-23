@@ -19,6 +19,11 @@
     opacity: 1;
   }
 
+  &-title {
+    text-transform: capitalize;
+    line-height: 1.2;
+  }
+
   &-col {
     display: flex;
     flex-direction: column;

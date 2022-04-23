@@ -24,7 +24,6 @@ export class AppComponent implements OnInit {
     private categoriesService: CategoriesService
   ) {
     customIcons.forEach((icon) => {
-      console.log('icon', icon);
       this.matIconRegistry.addSvgIcon(
         icon.name,
         this.domSanitizer.bypassSecurityTrustResourceUrl(icon.path)
