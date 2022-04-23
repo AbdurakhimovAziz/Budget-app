@@ -1,0 +1,16 @@
+@import "../../../shared/scss/variables";
+
+.categories__item {
+  padding: 10px;
+  border-width: 2px;
+  border-style: solid;
+  border-radius: 10px;
+  margin-right: 10px;
+  margin-bottom: 20px;
+  &.income {
+    border-color: $green;
+  }
+  &.expense {
+    border-color: $red;
+  }
+}

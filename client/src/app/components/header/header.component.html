@@ -5,7 +5,7 @@
   <button mat-button routerLink="statistics" routerLinkActive="active">Statistics</button>
   <span class="fill-remaining-space"></span>
   <button class="user" mat-button [matMenuTriggerFor]="menu" *ngIf="user$ | async as user">
-    <mat-icon>person</mat-icon>{{user.firstName + ' ' + user.lastName}}
+    <mat-icon svgIcon="user"></mat-icon>{{user.firstName + ' ' + user.lastName}}
   </button>
   <mat-menu #menu="matMenu" xPosition="after">
     <button mat-menu-item (click)="logout()">

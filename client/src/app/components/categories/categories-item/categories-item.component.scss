@@ -1,0 +1,19 @@
+.category__item {
+  &-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  &-title {
+    margin-bottom: 0;
+    flex: 1 0 auto;
+    margin-right: 5px;
+  }
+
+  &-icon {
+    height: 20px;
+    width: 20px;
+    cursor: pointer;
+  }
+}

@@ -18,6 +18,8 @@ import { TransactionsComponent } from './transactions/transactions.component';
 import { ControlsComponent } from './controls/controls.component';
 import { TransactionsListComponent } from './transactions/transactions-list/transactions-list.component';
 import { TransactionsItemComponent } from './transactions/transactions-item/transactions-item.component';
+import { CategoriesListComponent } from './categories/categories-list/categories-list.component';
+import { CategoriesItemComponent } from './categories/categories-item/categories-item.component';
 
 @NgModule({
   declarations: [
@@ -35,6 +37,8 @@ import { TransactionsItemComponent } from './transactions/transactions-item/tran
     ControlsComponent,
     TransactionsListComponent,
     TransactionsItemComponent,
+    CategoriesListComponent,
+    CategoriesItemComponent,
   ],
   imports: [
     CommonModule,

@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { BehaviorSubject, Observable } from 'rxjs';
+import { BehaviorSubject } from 'rxjs';
 import { BASE_URL } from '../constants';
 import { Transaction } from '../models/transaction';
 
@@ -17,8 +17,6 @@ export class TransactionsService {
     this.http
       .get<Transaction[]>(this.getUrlWithQueryParams(accountId))
       .subscribe((transactions: Transaction[]) => {
-        console.log('transactions', transactions);
-
         this.transactionsSubject.next(transactions);
       });
   }
