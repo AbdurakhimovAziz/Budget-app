@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { BehaviorSubject } from 'rxjs';
+import { BehaviorSubject, map } from 'rxjs';
 import { BASE_URL } from '../constants';
 import { Category } from '../models/category';
 import { UserService } from './user.service';
@@ -17,6 +17,11 @@ export class CategoriesService {
   public fetchCategories(): void {
     this.http
       .get<Category[]>(this.getUrlwithQueryParams(this.uesrService.getId()))
+      .pipe(
+        map((categories: Category[]) =>
+          categories.sort((a, b) => a.title.localeCompare(b.title))
+        )
+      )
       .subscribe((categories: Category[]) => {
         this.categoriesSubject.next(categories);
       });
