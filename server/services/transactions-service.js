@@ -19,20 +19,25 @@ class TransactionsService {
 
   async update(id, transaction) {
     const oldTransaction = await Transaction.findByIdAndUpdate(id, transaction);
-    const { account_id, amount, type } = transaction;
-    let newAmount = 0;
-    if (type === oldTransaction.type) newAmount = transaction.amount - oldTransaction.amount;
-    else newAmount = amount + oldTransaction.amount;
-    console.log(newAmount);
+    if (oldTransaction) {
+      const { account_id, amount, type } = transaction;
+      let newAmount = 0;
 
-    await accountsService.updateBalance(account_id, newAmount, type);
+      if (oldTransaction.amount !== amount)
+        throw new Error({ message: 'Transaction type can not be changed', status: 400 });
+      else newAmount = transaction.amount - oldTransaction.amount;
+
+      await accountsService.updateBalance(account_id, newAmount, type);
+    }
     return oldTransaction;
   }
 
   async delete(id) {
     const deletedTransaction = await Transaction.findByIdAndDelete(id);
-    const { account_id, amount, type } = deletedTransaction;
-    await accountsService.updateBalance(account_id, -amount, type);
+    if (deletedTransaction) {
+      const { account_id, amount, type } = deletedTransaction;
+      await accountsService.updateBalance(account_id, -amount, type);
+    }
     return deletedTransaction;
   }
 }

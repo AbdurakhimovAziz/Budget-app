@@ -5,11 +5,12 @@
     </div>
     <div class="transaction-item__body">
       <mat-card-title> {{transaction.title}} </mat-card-title>
-      <mat-card-subtitle>
+      <div>
         <span> {{transaction.type}} </span>
         <span> · {{transaction.date | date}}</span>
         <span> · {{transaction.payee || '--' }} </span>
-      </mat-card-subtitle>
+      </div>
+
     </div>
     <div class="transaction-item__amount">
       {{ transaction.amount | currency }}

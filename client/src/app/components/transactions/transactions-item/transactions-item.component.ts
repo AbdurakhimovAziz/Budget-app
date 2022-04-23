@@ -8,5 +8,6 @@ import { Transaction } from 'src/app/shared/models/transaction';
 })
 export class TransactionsItemComponent {
   @Input() public transaction!: Transaction;
+
   constructor() {}
 }

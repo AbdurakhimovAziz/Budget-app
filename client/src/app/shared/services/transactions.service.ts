@@ -17,6 +17,8 @@ export class TransactionsService {
     this.http
       .get<Transaction[]>(this.getUrlWithQueryParams(accountId))
       .subscribe((transactions: Transaction[]) => {
+        console.log('transactions', transactions);
+
         this.transactionsSubject.next(transactions);
       });
   }

@@ -17,4 +17,12 @@
   &__body {
     flex: 1 1 auto;
   }
+
+  &__category {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.2rem;
+    color: $text-dark;
+  }
 }
