@@ -4,7 +4,7 @@
       {{ transaction.categories[0]?.title }}
     </div>
     <div class="transaction-item__body">
-      <mat-card-title> {{transaction.title}} </mat-card-title>
+      <mat-card-title> {{transaction.title || transaction.categories[0]?.title}} </mat-card-title>
       <div>
         <span> {{transaction.type}} </span>
         <span> · {{transaction.date | date}}</span>

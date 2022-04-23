@@ -1,8 +1,16 @@
-<app-header></app-header>
-<div class="container">
-  <div class="main__content">
-    <app-accounts *ngIf="this.areAccountsVisible()" class="main__accounts scroll"></app-accounts>
-    <router-outlet></router-outlet>
-    <app-controls class="main__controls"></app-controls>
-  </div>
-</div>
+<mat-drawer-container>
+  <mat-drawer-content class="main">
+    <app-header></app-header>
+    <div class="container">
+      <div class="main__content">
+        <app-accounts *ngIf="this.areAccountsVisible()" class="main__accounts scroll">
+        </app-accounts>
+        <router-outlet></router-outlet>
+        <app-controls class="main__controls"></app-controls>
+      </div>
+    </div>
+  </mat-drawer-content>
+  <mat-drawer #rightPanel position="end">
+    <p>some dummy text</p>
+  </mat-drawer>
+</mat-drawer-container>

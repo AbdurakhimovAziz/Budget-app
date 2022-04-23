@@ -5,6 +5,7 @@ import { customIcons } from './shared/custom-icons';
 import { Account } from './shared/models/account';
 import { AccountsService } from './shared/services/accounts.service';
 import { CategoriesService } from './shared/services/categories.service';
+import { CurrenciesService } from './shared/services/currencies.service';
 import { TransactionsService } from './shared/services/transactions.service';
 import { UserService } from './shared/services/user.service';
 
@@ -21,7 +22,8 @@ export class AppComponent implements OnInit {
     private user: UserService,
     private transactionsService: TransactionsService,
     private accountsService: AccountsService,
-    private categoriesService: CategoriesService
+    private categoriesService: CategoriesService,
+    private currenciesService: CurrenciesService
   ) {
     customIcons.forEach((icon) => {
       this.matIconRegistry.addSvgIcon(
@@ -39,5 +41,6 @@ export class AppComponent implements OnInit {
     );
     this.accountsService.fetchAccounts(this.user.getId());
     this.categoriesService.fetchCategories();
+    this.currenciesService.fetchCurrencies();
   }
 }

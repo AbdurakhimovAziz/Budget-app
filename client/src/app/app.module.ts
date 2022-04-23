@@ -13,6 +13,7 @@ import { ComponentsModule } from './components/components.module';
 import { ComponentsRoutingModule } from './components/components-routing.module';
 import { InfoModalComponent } from './shared/components/info-modal/info-modal.component';
 import { FormComponent } from './shared/components/form/form.component';
+import { PortalModule } from '@angular/cdk/portal';
 
 @NgModule({
   declarations: [AppComponent, InfoModalComponent, FormComponent],
