@@ -4,8 +4,11 @@ const { handleError } = require('../utils/utils');
 class TransactionsController {
   async getAll(req, res) {
     try {
-      const transactions = await transactionsService.getAll(req.query.accountId || null);
-      res.status(200).json(transactions);
+      const { accountId } = req.query;
+      if (accountId) {
+        const transactions = await transactionsService.getAll(accountId);
+        res.status(200).json(transactions);
+      } else throw new Error({ message: 'Accound id is required', status: 400 });
     } catch (error) {
       handleError(res, error);
     }

@@ -3,9 +3,7 @@ const accountsService = require('./accounts-service');
 
 class TransactionsService {
   getAll(accountId) {
-    return accountId
-      ? Transaction.find({ account_id: accountId }).populate('categories', 'title')
-      : Transaction.find().populate('categories', 'title');
+    return Transaction.find({ account_id: accountId }).populate('categories', 'title');
   }
 
   getById(id) {

@@ -4,8 +4,13 @@ const { handleError } = require('../utils/utils');
 class CategoriesControlle {
   async getAll(req, res) {
     try {
-      const categories = await categoriesService.getAll(req.query.userId || null);
-      res.status(200).json(categories);
+      const { userId } = req.query;
+      if (userId) {
+        const categories = await categoriesService.getAll(userId);
+        res.status(200).json(categories);
+      } else {
+        throw new Error({ message: 'User id is required', status: 400 });
+      }
     } catch (error) {
       handleError(res, error);
     }
@@ -25,6 +30,16 @@ class CategoriesControlle {
     try {
       const createdCategory = await categoriesService.create(req.body);
       res.status(200).json(createdCategory);
+    } catch (error) {
+      handleError(res, error);
+    }
+  }
+
+  async createDefault(req, res) {
+    try {
+      const { userId } = req.query;
+      const createdCategories = await categoriesService.createDefault(userId);
+      res.status(200).json(createdCategories);
     } catch (error) {
       handleError(res, error);
     }

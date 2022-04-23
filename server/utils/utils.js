@@ -22,6 +22,7 @@ const issueJWT = (user) => {
 
 const handleError = (res, error) => {
   const status =
+    error.status ||
     error.message.includes('validation failed') ||
     error.message.includes('arguments required') ||
     error.message.includes('duplicate key')

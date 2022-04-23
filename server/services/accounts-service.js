@@ -6,7 +6,7 @@ class AccountsService {
   }
 
   getAll(userId) {
-    return userId ? Account.find({ user_id: userId }) : Account.find();
+    return Account.find({ user_id: userId });
   }
 
   getById(id) {

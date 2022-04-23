@@ -13,8 +13,11 @@ class AccountsController {
 
   async getAll(req, res) {
     try {
-      const accounts = await accountsService.getAll(req.query.userId || null);
-      res.status(200).json(accounts);
+      const { userId } = req.query;
+      if (userId) {
+        const accounts = await accountsService.getAll(userId);
+        res.status(200).json(accounts);
+      } else throw new Error({ message: 'User id is required', status: 400 });
     } catch (error) {
       handleError(res, error);
     }

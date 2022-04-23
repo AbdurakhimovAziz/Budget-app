@@ -1,8 +1,9 @@
 const Category = require('../models/categories-model');
+const defaultCategories = require('../utils/defaultCategories');
 
 class CategiresService {
   getAll(userId) {
-    return userId ? Category.find({ user_id: userId }) : Category.find();
+    return Category.find({ user_id: userId });
   }
 
   getById(id) {
@@ -15,6 +16,13 @@ class CategiresService {
 
   create(category) {
     return new Category(category).save();
+  }
+
+  createDefault(userId) {
+    defaultCategories.forEach((category) => {
+      category.user_id = userId;
+    });
+    return Category.insertMany(defaultCategories);
   }
 
   delete(id) {
