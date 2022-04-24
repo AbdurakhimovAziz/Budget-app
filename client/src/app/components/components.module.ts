@@ -1,6 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
+import { PortalModule } from '@angular/cdk/portal';
 
 import { AppRoutingModule } from '../app-routing.module';
 import { CategoriesComponent } from './categories/categories.component';
@@ -45,6 +46,7 @@ import { CategoriesItemComponent } from './categories/categories-item/categories
     AppRoutingModule,
     AppMaterialModule,
     ReactiveFormsModule,
+    PortalModule,
   ],
 
   exports: [],

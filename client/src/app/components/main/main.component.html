@@ -10,7 +10,7 @@
       </div>
     </div>
   </mat-drawer-content>
-  <mat-drawer #rightPanel position="end">
-    <p>some dummy text</p>
+  <mat-drawer #rightPanel position="end" class="main__modal">
+    <ng-template [cdkPortalOutlet]="panelService.panelPortal | async"></ng-template>
   </mat-drawer>
 </mat-drawer-container>

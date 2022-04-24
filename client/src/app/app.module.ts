@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { NoopAnimationsModule } from '@angular/platform-browser/animations';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ReactiveFormsModule } from '@angular/forms';
 
 import { AppRoutingModule } from './app-routing.module';
@@ -13,7 +13,6 @@ import { ComponentsModule } from './components/components.module';
 import { ComponentsRoutingModule } from './components/components-routing.module';
 import { InfoModalComponent } from './shared/components/info-modal/info-modal.component';
 import { FormComponent } from './shared/components/form/form.component';
-import { PortalModule } from '@angular/cdk/portal';
 
 @NgModule({
   declarations: [AppComponent, InfoModalComponent, FormComponent],
@@ -21,7 +20,7 @@ import { PortalModule } from '@angular/cdk/portal';
     BrowserModule,
     AppRoutingModule,
     AppMaterialModule,
-    NoopAnimationsModule,
+    BrowserAnimationsModule,
     ReactiveFormsModule,
     HttpClientModule,
     ComponentsModule,

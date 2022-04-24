@@ -1,4 +1,5 @@
 import { Component, Input } from '@angular/core';
+import { FormComponent } from 'src/app/shared/components/form/form.component';
 import { Account } from 'src/app/shared/models/account';
 import { AccountsService } from 'src/app/shared/services/accounts.service';
 import { PanelService } from 'src/app/shared/services/panel.service';
@@ -22,6 +23,6 @@ export class AccountsItemComponent {
 
   constructor(
     private accountsService: AccountsService,
-    private panelService: PanelService
+    public panelService: PanelService
   ) {}
 }

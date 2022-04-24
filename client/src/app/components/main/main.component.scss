@@ -28,6 +28,11 @@ mat-drawer-container {
   &__controls {
     flex-basis: 20%;
   }
+
+  &__modal {
+    width: 400px;
+    border: 1px solid #555;
+  }
 }
 
 router-outlet {

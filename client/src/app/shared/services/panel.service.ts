@@ -1,36 +1,68 @@
-import { BooleanInput } from '@angular/cdk/coercion';
-import { Injectable } from '@angular/core';
-import { MatDrawer } from '@angular/material/sidenav';
-import { BehaviorSubject } from 'rxjs';
+import {
+  ComponentPortal,
+  ComponentType,
+  Portal,
+  TemplatePortal,
+} from '@angular/cdk/portal';
+import { Injectable, TemplateRef, ViewContainerRef } from '@angular/core';
+import { MatDrawer, MatDrawerToggleResult } from '@angular/material/sidenav';
+import { BehaviorSubject, from, Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
 })
 export class PanelService {
-  public isOpen: BooleanInput = false;
-  private panelRef: MatDrawer | null = null;
+  private panel!: MatDrawer;
+  private viewContainerRef!: ViewContainerRef;
+  private panelPortal$ = new BehaviorSubject<Portal<any> | null>(null);
 
-  constructor() {}
-
-  public setPanelRef(panelRef: MatDrawer): void {
-    this.panelRef = panelRef;
-    panelRef.closedStart.subscribe(() => {
-      this.isOpen = false;
-    });
+  public get panelPortal(): Observable<Portal<any> | null> {
+    return from(this.panelPortal$);
   }
 
-  public getPanelRef(): MatDrawer | null {
-    return this.panelRef;
+  public setPanelRef(panel: MatDrawer): void {
+    this.panel = panel;
   }
 
-  public open(): void {
-    console.log('open', this.isOpen);
-    this.panelRef?.open();
-    this.isOpen = true;
+  public setViewContainerRef(vcr: ViewContainerRef): void {
+    this.viewContainerRef = vcr;
   }
 
-  public close(): void {
-    this.panelRef?.close();
-    this.isOpen = false;
+  setPanelPortal(panelPortal: Portal<any>): void {
+    this.panelPortal$.next(panelPortal);
+  }
+
+  public setPanelContent(
+    componentOrTemplateRef: ComponentType<any> | TemplateRef<any>
+  ): void {
+    let portal: Portal<any>;
+    if (componentOrTemplateRef instanceof TemplateRef) {
+      portal = new TemplatePortal(
+        componentOrTemplateRef,
+        this.viewContainerRef
+      );
+    } else {
+      portal = new ComponentPortal(componentOrTemplateRef);
+    }
+    this.panelPortal$.next(portal);
+  }
+
+  private clearPanelPortal() {
+    this.panelPortal$.next(null);
+  }
+
+  public open(portal?: Portal<any>): Promise<MatDrawerToggleResult> {
+    if (portal) {
+      this.panelPortal$.next(portal);
+    }
+    return this.panel.open();
+  }
+
+  public toggle(): Promise<MatDrawerToggleResult> {
+    return this.panel.toggle();
+  }
+
+  public close(): Promise<MatDrawerToggleResult> {
+    return this.panel.close();
   }
 }
