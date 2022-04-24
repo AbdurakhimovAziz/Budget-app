@@ -6,4 +6,5 @@ export interface Account {
   balance: number;
   currency: Currency;
   user_id: string;
+  description?: string;
 }

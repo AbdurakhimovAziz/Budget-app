@@ -28,7 +28,7 @@ export class PanelService {
     this.viewContainerRef = vcr;
   }
 
-  setPanelPortal(panelPortal: Portal<any>): void {
+  public setPanelPortal(panelPortal: Portal<any>): void {
     this.panelPortal$.next(panelPortal);
   }
 
@@ -47,7 +47,7 @@ export class PanelService {
     this.panelPortal$.next(portal);
   }
 
-  private clearPanelPortal() {
+  public clearPanelPortal() {
     this.panelPortal$.next(null);
   }
 

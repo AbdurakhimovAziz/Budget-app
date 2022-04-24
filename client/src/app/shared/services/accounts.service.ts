@@ -16,6 +16,8 @@ export class AccountsService {
   public readonly currentAccount$: Observable<Account | null> =
     this.currentAccountSubject.asObservable();
 
+  private viewEditAccount: Account | null = null;
+
   constructor(private http: HttpClient) {}
 
   public fetchAccounts(userId: string): void {
@@ -37,6 +39,14 @@ export class AccountsService {
 
   public setCurrentAccount(account: Account | null): void {
     this.currentAccountSubject.next(account);
+  }
+
+  public setViewEditAccount(account: Account | null): void {
+    this.viewEditAccount = account;
+  }
+
+  public getViewEditAccount(): Account | null {
+    return this.viewEditAccount;
   }
 
   private getUrl(): string {

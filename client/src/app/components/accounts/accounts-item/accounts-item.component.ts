@@ -1,8 +1,8 @@
 import { Component, Input } from '@angular/core';
-import { FormComponent } from 'src/app/shared/components/form/form.component';
 import { Account } from 'src/app/shared/models/account';
 import { AccountsService } from 'src/app/shared/services/accounts.service';
 import { PanelService } from 'src/app/shared/services/panel.service';
+import { AccountViewComponent } from '../account-view/account-view.component';
 
 @Component({
   selector: 'app-accounts-item',
@@ -19,6 +19,12 @@ export class AccountsItemComponent {
   public onClick(): void {
     if (this.accountsService.getCurrentAccount() === this.account) return;
     this.accountsService.setCurrentAccount(this.account);
+  }
+
+  public viewAccount(account: Account): void {
+    this.accountsService.setViewEditAccount(account);
+    this.panelService.setPanelContent(AccountViewComponent);
+    this.panelService.open();
   }
 
   constructor(

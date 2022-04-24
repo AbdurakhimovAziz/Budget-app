@@ -11,11 +11,9 @@ import { AuthInterceptor } from './auth/auth.interceptor';
 
 import { ComponentsModule } from './components/components.module';
 import { ComponentsRoutingModule } from './components/components-routing.module';
-import { InfoModalComponent } from './shared/components/info-modal/info-modal.component';
-import { FormComponent } from './shared/components/form/form.component';
 
 @NgModule({
-  declarations: [AppComponent, InfoModalComponent, FormComponent],
+  declarations: [AppComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,

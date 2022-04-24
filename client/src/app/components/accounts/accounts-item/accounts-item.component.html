@@ -6,7 +6,8 @@
   <div class="account__item-col">
     <div class="account__item-currency"> {{ account.currency.symbol }} </div>
     <mat-card-actions align="end" class="account__item-icon">
-      <button mat-icon-button matSuffix [attr.aria-label]="'Show account details'" type="button">
+      <button mat-icon-button matSuffix (click)="viewAccount(account); $event.stopPropagation();"
+        [attr.aria-label]="'Show account details'" type="button">
         <mat-icon svgIcon="eye"></mat-icon>
       </button>
     </mat-card-actions>
