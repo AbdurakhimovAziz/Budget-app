@@ -7,7 +7,7 @@ const accountSchema = new mongoose.Schema({
   },
   currency: {
     type: ObjectId,
-    ref: 'Currency',
+    ref: 'AccountCurrency',
     required: true,
   },
   balance: {

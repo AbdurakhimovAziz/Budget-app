@@ -10,6 +10,15 @@ class CurrencyController {
       handleError(res, error);
     }
   }
+
+  async getAccountCurrencies(req, res) {
+    try {
+      const accountCurrencies = await currenciesService.getAllAccountCurrencies();
+      res.status(200).json(accountCurrencies);
+    } catch (error) {
+      handleError(res, error);
+    }
+  }
 }
 
 module.exports = new CurrencyController();

@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, map } from 'rxjs';
 import { BASE_URL } from '../constants';
+import { AccountCurrency } from '../models/account-currency';
 import { Currency } from '../models/currency';
 import { UserService } from './user.service';
 
@@ -10,6 +11,9 @@ import { UserService } from './user.service';
 })
 export class CurrenciesService {
   private readonly currenciesSubject = new BehaviorSubject<Currency[]>([]);
+  private readonly AccountCurrenciesSubject = new BehaviorSubject<
+    AccountCurrency[]
+  >([]);
 
   constructor(private http: HttpClient, private usersService: UserService) {}
 
@@ -24,18 +28,25 @@ export class CurrenciesService {
       .subscribe((currencies: Currency[]) => {
         this.currenciesSubject.next(currencies);
       });
+
+    this.http
+      .get<AccountCurrency[]>(`${this.getUrl()}/accountCurrencies`)
+      .pipe(
+        map((currencies: AccountCurrency[]) =>
+          currencies.sort((a, b) => a.cc.localeCompare(b.cc))
+        )
+      )
+      .subscribe((currencies: AccountCurrency[]) => {
+        this.AccountCurrenciesSubject.next(currencies);
+      });
   }
 
   public getCurrencies(): Currency[] {
     return this.currenciesSubject.getValue();
   }
 
-  public getFilteredCurrencies(): Currency[] {
-    return Array.from(new Set(this.getCurrencies().map((a) => a.cc))).map(
-      (cc) => {
-        return this.getCurrencies().find((a) => a.cc === cc)!;
-      }
-    );
+  public getAccountCurrencies(): AccountCurrency[] {
+    return this.AccountCurrenciesSubject.getValue();
   }
 
   private getUrl(): string {

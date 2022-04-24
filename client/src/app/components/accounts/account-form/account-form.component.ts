@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { AccountsService } from 'src/app/shared/services/accounts.service';
 import { CurrenciesService } from 'src/app/shared/services/currencies.service';
@@ -11,7 +11,7 @@ import { AccountViewComponent } from '../account-view/account-view.component';
   templateUrl: './account-form.component.html',
   styleUrls: ['./account-form.component.scss'],
 })
-export class AccountFormComponent implements OnInit {
+export class AccountFormComponent {
   public accountForm: FormGroup = new FormGroup({
     title: new FormControl(
       this.formService.isEditing
@@ -21,8 +21,8 @@ export class AccountFormComponent implements OnInit {
     ),
     currency: new FormControl(
       this.formService.isEditing
-        ? this.accountsService.getSelectedAccount()?.currency._id
-        : this.currecniesService.getDefaultCurrency()._id,
+        ? this.accountsService.getSelectedAccount()?.currency.cc
+        : this.currecniesService.getDefaultCurrency().cc,
       [Validators.required]
     ),
     description: new FormControl(
@@ -38,8 +38,6 @@ export class AccountFormComponent implements OnInit {
     public currecniesService: CurrenciesService,
     private panelService: PanelService
   ) {}
-
-  ngOnInit(): void {}
 
   public close(): void {
     this.resetForm();
