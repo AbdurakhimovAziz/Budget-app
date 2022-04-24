@@ -23,4 +23,8 @@ export const customIcons = [
     name: 'eye',
     path: '../../assets/icons/eye.svg',
   },
+  {
+    name: 'arrow',
+    path: '../../assets/icons/arrow.svg',
+  },
 ];

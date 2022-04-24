@@ -23,6 +23,8 @@ import { CategoriesListComponent } from './categories/categories-list/categories
 import { CategoriesItemComponent } from './categories/categories-item/categories-item.component';
 import { AccountViewComponent } from './accounts/account-view/account-view.component';
 import { AccountFormComponent } from './accounts/account-form/account-form.component';
+import { TransactionIconComponent } from './transaction-icon/transaction-icon.component';
+import { TransactionViewComponent } from './transactions/transaction-view/transaction-view.component';
 
 @NgModule({
   declarations: [
@@ -44,6 +46,8 @@ import { AccountFormComponent } from './accounts/account-form/account-form.compo
     CategoriesItemComponent,
     AccountViewComponent,
     AccountFormComponent,
+    TransactionIconComponent,
+    TransactionViewComponent,
   ],
   imports: [
     CommonModule,

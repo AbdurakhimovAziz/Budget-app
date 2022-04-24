@@ -18,7 +18,7 @@ export class AccountViewComponent implements OnInit {
   ) {}
 
   public ngOnInit(): void {
-    const account = this.accountService.getViewEditAccount();
+    const account = this.accountService.getSelectedAccount();
     if (account) this.account = account;
   }
 

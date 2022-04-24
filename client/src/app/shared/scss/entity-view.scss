@@ -1,0 +1,35 @@
+@import "./variables";
+
+.entity-view {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  color: $text-dark;
+
+  &__header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 20px;
+    padding-left: 16px;
+    padding-right: 16px;
+  }
+
+  &__title {
+    font-size: 32px;
+    margin-bottom: 0;
+  }
+
+  &__property {
+    flex-basis: 40%;
+    font-weight: 700;
+  }
+
+  &__footer {
+    align-self: flex-end;
+    margin-top: auto;
+    button {
+      text-transform: uppercase;
+    }
+  }
+}

@@ -1,0 +1,49 @@
+<div class="entity-view scroll">
+  <div class="entity-view__header">
+    <h3 class="entity-view__title">Transaction Information</h3>
+    <div class="entity-view__icons">
+      <button mat-icon-button>
+        <mat-icon svgIcon="edit" (click)="edit()"></mat-icon>
+      </button>
+      <button mat-icon-button>
+        <mat-icon svgIcon="delete"></mat-icon>
+      </button>
+      <button mat-icon-button (click)="close()">
+        <mat-icon svgIcon="close"></mat-icon>
+      </button>
+    </div>
+  </div>
+
+  <div class="transaction-view__top">
+    <app-transaction-icon class="transaction-view__icon" [type]="transaction.type"></app-transaction-icon>
+    <span> {{transaction.type}} </span>
+    <div class="transaction-view__amount" [ngClass]="transaction.type">
+      {{transaction.type === 'expense' ? '-' : ''}}{{ transaction.amount | number: '1.2-2' }}{{currencySymbol}}
+    </div>
+  </div>
+  <p class="transaction-view__title"> {{transaction.title || transaction.categories[0]?.title}} </p>
+
+  <div class="transaction-view__categories">
+    <div class="transaction-view__category" *ngFor="let category of transaction.categories">
+      {{category.title}}
+    </div>
+  </div>
+
+  <mat-list class="entity-view__content">
+    <mat-list-item>
+      <span class="entity-view__property">Payment date:</span>
+      <span class="entity-view__text">{{transaction.date | date}}</span>
+    </mat-list-item>
+    <mat-divider></mat-divider>
+    <mat-list-item>
+      <span class="entity-view__property">Payee:</span>
+      <span class="entity-view__text">{{transaction.payee}}</span>
+    </mat-list-item>
+    <mat-divider></mat-divider>
+    <mat-list-item>
+      <span class="entity-view__property">Description:</span>
+      <span class="entity-view__text">{{transaction.description}}</span>
+    </mat-list-item>
+  </mat-list>
+  <div class="entity-view__footer"><button mat-button (click)="close()">close</button></div>
+</div>

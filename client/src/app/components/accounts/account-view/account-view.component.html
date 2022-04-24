@@ -1,7 +1,7 @@
-<div class="account-view">
-  <div class="account-view__header">
-    <h3 class="account-view__title">Account Information</h3>
-    <div class="account-view__icons">
+<div class="entity-view scroll">
+  <div class="entity-view__header">
+    <h3 class="entity-view__title">Account Information</h3>
+    <div class="entity-view__icons">
       <button mat-icon-button>
         <mat-icon svgIcon="edit" (click)="edit()"></mat-icon>
       </button>
@@ -13,26 +13,26 @@
       </button>
     </div>
   </div>
-  <mat-list class="account-view__content">
+  <mat-list class="entity-view__content">
     <mat-list-item>
-      <span class="account-view__property">Title:</span>
-      <span class="account-view__text">{{account.title}}</span>
+      <span class="entity-view__property">Title:</span>
+      <span class="entity-view__text">{{account.title}}</span>
     </mat-list-item>
     <mat-divider></mat-divider>
     <mat-list-item>
-      <span class="account-view__property">Balance:</span>
-      <span class="account-view__text">{{account.balance | number: '1.2-2'}}{{account.currency.symbol}}</span>
+      <span class="entity-view__property">Balance:</span>
+      <span class="entity-view__text">{{account.balance | number: '1.2-2'}}{{account.currency.symbol}}</span>
     </mat-list-item>
     <mat-divider></mat-divider>
     <mat-list-item>
-      <span class="account-view__property">Currency:</span>
-      <span class="account-view__text">{{account.currency.cc}} ({{account.currency.symbol}})</span>
+      <span class="entity-view__property">Currency:</span>
+      <span class="entity-view__text">{{account.currency.cc}} ({{account.currency.symbol}})</span>
     </mat-list-item>
     <mat-divider></mat-divider>
     <mat-list-item>
-      <span class="account-view__property">Description:</span>
-      <span class="account-view__text">{{account.description}}</span>
+      <span class="entity-view__property">Description:</span>
+      <span class="entity-view__text">{{account.description}}</span>
     </mat-list-item>
   </mat-list>
-  <div class="account-view__footer"><button mat-stroked-button (click)="close()">close</button></div>
+  <div class="entity-view__footer"><button mat-stroked-button (click)="close()">close</button></div>
 </div>

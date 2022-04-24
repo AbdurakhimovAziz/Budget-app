@@ -22,7 +22,7 @@ export class AccountsItemComponent {
   }
 
   public viewAccount(account: Account): void {
-    this.accountsService.setViewEditAccount(account);
+    this.accountsService.setSelectedAccount(account);
     this.panelService.setPanelContent(AccountViewComponent);
     this.panelService.open();
   }

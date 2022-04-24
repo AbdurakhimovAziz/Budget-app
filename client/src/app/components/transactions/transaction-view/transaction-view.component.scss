@@ -1,0 +1,61 @@
+@import "../../../shared/scss/variables";
+@import "../../../shared/scss/entity-view";
+
+:host {
+  display: block;
+  height: 100%;
+}
+
+.transaction-view {
+  &__top {
+    display: flex;
+    align-items: center;
+    font-size: 1rem;
+    padding-left: 16px;
+    padding-right: 16px;
+    margin-bottom: 20px;
+  }
+
+  &__icon {
+    margin-right: 5px;
+  }
+
+  &__title {
+    font-size: 1.5rem;
+    text-transform: capitalize;
+    margin-bottom: 20px;
+    padding-right: 16px;
+    padding-left: 16px;
+  }
+
+  &__categories {
+    display: flex;
+    flex-wrap: wrap;
+    padding-left: 16px;
+    padding-right: 16px;
+  }
+
+  &__category {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 120px;
+    height: 60px;
+    padding: 1rem;
+    border-radius: 1rem;
+    margin-right: 1rem;
+    border: 1px solid $black;
+    font-size: 1.2rem;
+  }
+
+  &__amount {
+    font-size: 1.5rem;
+    margin-left: auto;
+    &.income {
+      color: $green;
+    }
+    &.expense {
+      color: $red;
+    }
+  }
+}
