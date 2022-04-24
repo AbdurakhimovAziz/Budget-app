@@ -1,1 +1,29 @@
-<p>account-form works!</p>
+<div class="entity__header">
+  <h3 class="entity__title">Account Information</h3>
+  <div class="entity__icons">
+    <button mat-icon-button (click)="close()">
+      <mat-icon svgIcon="close"></mat-icon>
+    </button>
+  </div>
+</div>
+<form [formGroup]="accountForm" class="entity__form">
+  <mat-form-field appearance="outline">
+    <mat-label>Title</mat-label>
+    <input pattern="^([a-zA-Z]+\s)*[a-zA-Z]+$" matInput formControlName="title" type="text" />
+  </mat-form-field>
+  <mat-form-field appearance="outline">
+    <mat-label>Currency</mat-label>
+    <mat-select formControlName="currency">
+      <mat-option *ngFor="let currency of currecniesService.getFilteredCurrencies()" [value]="currency._id">
+        {{ currency.cc }} ({{ currency.symbol }})</mat-option>
+    </mat-select>
+  </mat-form-field>
+  <mat-form-field appearance="outline">
+    <mat-label>Description</mat-label>
+    <input pattern="^([a-zA-Z]+\s)*[a-zA-Z]+$" matInput formControlName="description" type="text" />
+  </mat-form-field>
+  <div class="entity__footer">
+    <button mat-button (click)="cancel()" type="button">Cancel</button>
+    <button mat-button type="submit">save</button>
+  </div>
+</form>

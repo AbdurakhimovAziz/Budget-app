@@ -4,12 +4,13 @@
       {{ transaction.categories[0]?.title }}
     </div>
     <div class="transaction-item__body">
-      <mat-card-title> {{transaction.title || transaction.categories[0]?.title}} </mat-card-title>
+      <mat-card-title class="transaction-item__title"> {{transaction.title || transaction.categories[0]?.title}}
+      </mat-card-title>
       <div class="transaction-item__details">
         <app-transaction-icon class="transaction-item__icon" [type]="transaction.type"></app-transaction-icon>
-        <span> {{transaction.type}} </span>
-        <span> · {{transaction.date | date}}</span>
-        <span> · {{transaction.payee || '--' }} </span>
+        <span>{{transaction.type}}</span>
+        <span>· {{transaction.date | date}}</span>
+        <span>· {{transaction.payee || '--' }} </span>
       </div>
     </div>
     <div class="transaction-item__amount" [ngClass]="transaction.type">

@@ -1,7 +1,7 @@
 <div class="entity-view scroll">
-  <div class="entity-view__header">
-    <h3 class="entity-view__title">Transaction Information</h3>
-    <div class="entity-view__icons">
+  <div class="entity__header">
+    <h3 class="entity__title">Transaction Information</h3>
+    <div class="entity__icons">
       <button mat-icon-button>
         <mat-icon svgIcon="edit" (click)="edit()"></mat-icon>
       </button>
@@ -45,5 +45,5 @@
       <span class="entity-view__text">{{transaction.description}}</span>
     </mat-list-item>
   </mat-list>
-  <div class="entity-view__footer"><button mat-button (click)="close()">close</button></div>
+  <div class="entity__footer"><button mat-button (click)="close()">close</button></div>
 </div>
