@@ -1,8 +1,9 @@
 const Account = require('../models/accounts-model');
 
 class AccountsService {
-  create(account) {
-    return new Account(account).save();
+  async create(account) {
+    const acc = await new Account(account).save();
+    return acc.populate('currency');
   }
 
   getAll(userId) {
@@ -14,7 +15,7 @@ class AccountsService {
   }
 
   update(id, account) {
-    return Account.findByIdAndUpdate(id, account, { new: true });
+    return Account.findByIdAndUpdate(id, account, { new: true }).populate('currency');
   }
 
   delete(id) {

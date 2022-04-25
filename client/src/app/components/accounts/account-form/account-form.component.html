@@ -6,7 +6,7 @@
     </button>
   </div>
 </div>
-<form [formGroup]="accountForm" class="entity__form">
+<form [formGroup]="accountForm" (submit)="saveAccount()" class="entity__form">
   <mat-form-field appearance="outline">
     <mat-label>Title</mat-label>
     <input pattern="^([a-zA-Z]+\s)*[a-zA-Z]+$" matInput formControlName="title" type="text" />

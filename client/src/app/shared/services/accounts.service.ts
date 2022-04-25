@@ -2,7 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable, tap } from 'rxjs';
 import { BASE_URL } from '../constants';
-import { Account } from '../models/account';
+import { Account, AccountForm } from '../models/account';
 
 @Injectable({
   providedIn: 'root',
@@ -29,6 +29,41 @@ export class AccountsService {
       });
   }
 
+  public addAccount(account: AccountForm) {
+    this.http
+      .post<Account>(this.getUrl(), account)
+      .subscribe((account: Account) => {
+        this.accountsSubject.next([
+          ...this.accountsSubject.getValue(),
+          account,
+        ]);
+      });
+  }
+
+  public updateAccount(account: Account) {
+    this.http
+      .put<Account>(this.getUrlWithId(account._id), account)
+      .subscribe((account: Account) => {
+        this.accountsSubject.next([
+          ...this.getAccounts().map((acc) =>
+            acc._id === account._id ? account : acc
+          ),
+        ]);
+      });
+  }
+
+  public deleteAccount(account: Account): void {
+    this.http
+      .delete<Account>(this.getUrlWithId(account._id))
+      .subscribe((account: Account) => {
+        this.accountsSubject.next(
+          this.accountsSubject
+            .getValue()
+            .filter((acc) => acc._id !== account._id)
+        );
+      });
+  }
+
   public getAccounts(): Account[] {
     return this.accountsSubject.getValue();
   }
@@ -51,6 +86,10 @@ export class AccountsService {
 
   private getUrl(): string {
     return `${BASE_URL}/accounts/`;
+  }
+
+  private getUrlWithId(id: string): string {
+    return `${this.getUrl()}${id}`;
   }
 
   private getUrlWithQueryParams(userId: string): string {

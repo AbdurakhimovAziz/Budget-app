@@ -49,6 +49,12 @@ export class CurrenciesService {
     return this.AccountCurrenciesSubject.getValue();
   }
 
+  public getAccCurrencyByCode(cc: string): AccountCurrency {
+    return this.getAccountCurrencies().find(
+      (currency: AccountCurrency) => currency.cc === cc
+    )!;
+  }
+
   private getUrl(): string {
     return `${BASE_URL}/currencies/`;
   }

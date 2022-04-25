@@ -1,10 +1,15 @@
 <mat-card class="account__item" (click)="onClick()" [class.active]="isCurrentAccount">
   <div class="account__item-col">
     <mat-card-title class="account__item-title">{{account.title}}</mat-card-title>
-    <p class="account__item-subtitle"> {{ account.balance | currency: account.currency.cc | titlecase }}</p>
+    <p class="account__item-subtitle">{{ account.balance | number: '1.2-2' | titlecase }}
+    </p>
   </div>
   <div class="account__item-col">
-    <div class="account__item-currency"> {{ account.currency.symbol }} </div>
+    <div class="account__item-currency">
+      <span>
+        {{ account.currency.symbol }}
+      </span>
+    </div>
     <mat-card-actions align="end" class="account__item-icon">
       <button mat-icon-button matSuffix (click)="viewAccount(account); $event.stopPropagation();"
         [attr.aria-label]="'Show account details'" type="button">
