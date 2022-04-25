@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, ElementRef, Input, OnInit, ViewChild } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Category } from 'src/app/shared/models/category';
 import { CategoriesService } from 'src/app/shared/services/categories.service';
@@ -13,19 +13,27 @@ export class CategoriesItemComponent implements OnInit {
   public isEditing: boolean = false;
 
   public categoryForm!: FormGroup;
+  @ViewChild('input', { static: false }) inputEl!: ElementRef;
 
   constructor(private categoriesService: CategoriesService) {}
-
-  public setisEditing(isEditing: boolean): void {
-    console.log('s', this.categoryForm.value);
-
-    this.isEditing = isEditing;
-  }
 
   ngOnInit(): void {
     this.categoryForm = new FormGroup({
       title: new FormControl(this.category.title, [Validators.required]),
     });
+  }
+
+  public setisEditing(isEditing: boolean): void {
+    if (isEditing)
+      setTimeout(() => {
+        this.inputEl.nativeElement.focus();
+      });
+
+    this.isEditing = isEditing;
+  }
+
+  public onBlur(): void {
+    this.setisEditing(false);
   }
 
   public updateCategory(): void {
