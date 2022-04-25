@@ -1,1 +1,2 @@
-<app-control-item iconName="plus" label="Add account" (emitClick)="openAddForm()"></app-control-item>
+<app-control-item *ngIf="this.routerService.isRoute('/')" iconName="plus" label="Add account"
+  (emitClick)="openAddForm()"></app-control-item>

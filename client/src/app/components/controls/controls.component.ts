@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { FormService } from 'src/app/shared/services/form.service';
 import { PanelService } from 'src/app/shared/services/panel.service';
+import { RouterService } from 'src/app/shared/services/router.service';
 import { AccountFormComponent } from '../accounts/account-form/account-form.component';
 
 @Component({
@@ -11,7 +12,8 @@ import { AccountFormComponent } from '../accounts/account-form/account-form.comp
 export class ControlsComponent {
   constructor(
     private formService: FormService,
-    private panelService: PanelService
+    private panelService: PanelService,
+    public routerService: RouterService
   ) {}
 
   public openAddForm(): void {

@@ -62,6 +62,10 @@ export class AccountsService {
             .filter((acc) => acc._id !== account._id)
         );
       });
+
+    if (account == this.getCurrentAccount()) {
+      this.setCurrentAccount(this.getAccounts()[0]);
+    }
   }
 
   public getAccounts(): Account[] {

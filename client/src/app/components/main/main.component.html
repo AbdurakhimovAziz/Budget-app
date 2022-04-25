@@ -3,10 +3,10 @@
     <app-header></app-header>
     <div class="container">
       <div class="main__content">
-        <app-accounts *ngIf="this.areAccountsVisible()" class="main__accounts scroll">
+        <app-accounts *ngIf="!this.routerService.isRoute('/categories')" class="main__accounts scroll">
         </app-accounts>
         <router-outlet></router-outlet>
-        <app-controls class="main__controls"></app-controls>
+        <app-controls *ngIf="!this.routerService.isRoute('/statistics')" class="main__controls"></app-controls>
       </div>
     </div>
   </mat-drawer-content>

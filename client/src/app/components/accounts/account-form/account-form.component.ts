@@ -82,6 +82,7 @@ export class AccountFormComponent {
           balance: this.accountsService.getSelectedAccount()?.balance!,
         };
         this.accountsService.updateAccount(editedAccount);
+        this.accountsService.setSelectedAccount(editedAccount);
       } else {
         this.accountsService.addAccount(account);
       }

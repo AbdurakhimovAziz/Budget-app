@@ -25,8 +25,6 @@ export class AccountViewComponent implements OnInit {
   }
 
   public edit(): void {
-    console.log('edit', this.account);
-
     this.panelService.setPanelContent(AccountFormComponent);
     this.formService.setEditing(true);
   }
