@@ -22,7 +22,7 @@ export class AccountFormComponent {
     currency: new FormControl(
       this.formService.isEditing
         ? this.accountsService.getSelectedAccount()?.currency.cc
-        : this.currecniesService.getDefaultCurrency().cc,
+        : this.currenciesService.getDefaultCurrency().cc,
       [Validators.required]
     ),
     description: new FormControl(
@@ -35,24 +35,26 @@ export class AccountFormComponent {
   constructor(
     private accountsService: AccountsService,
     private formService: FormService,
-    public currecniesService: CurrenciesService,
+    public currenciesService: CurrenciesService,
     private panelService: PanelService
   ) {}
 
   public close(): void {
     this.resetForm();
     this.panelService.close();
-    this.panelService.clearPanelPortal();
+    this.formService.setEditing(false);
   }
 
   public cancel(): void {
-    this.panelService.clearPanelPortal();
     this.resetForm();
-    this.panelService.setPanelContent(AccountViewComponent);
+
+    if (this.formService.isEditing)
+      this.panelService.setPanelContent(AccountViewComponent);
+    else this.close();
   }
 
   private resetForm(): void {
     this.accountForm.reset();
-    this.formService.setEditing(false);
+    this.panelService.clearPanelPortal();
   }
 }

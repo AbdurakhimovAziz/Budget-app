@@ -1,0 +1,28 @@
+@import "../../../shared/scss/variables";
+
+.control-item {
+  padding: 5px 10px;
+  background-color: $blue;
+  border-radius: 10px;
+  font-size: 1.2rem;
+  color: $text-dark;
+
+  &__label {
+    flex: 1;
+  }
+
+  &__icon-wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 5px;
+    background-color: $white;
+    border-radius: 50%;
+    margin-right: 10px;
+  }
+
+  &__icon {
+    width: 20px;
+    height: 20px;
+  }
+}

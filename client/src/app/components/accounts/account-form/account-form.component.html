@@ -14,7 +14,7 @@
   <mat-form-field appearance="outline">
     <mat-label>Currency</mat-label>
     <mat-select formControlName="currency">
-      <mat-option *ngFor="let currency of currecniesService.getAccountCurrencies()" [value]="currency.cc">
+      <mat-option *ngFor="let currency of currenciesService.getAccountCurrencies()" [value]="currency.cc">
         {{ currency.cc }} ({{ currency.symbol }})</mat-option>
     </mat-select>
   </mat-form-field>
@@ -24,6 +24,6 @@
   </mat-form-field>
   <div class="entity__footer">
     <button mat-button (click)="cancel()" type="button">Cancel</button>
-    <button mat-button type="submit">save</button>
+    <button mat-button type="submit" class="entity__save-btn">save</button>
   </div>
 </form>

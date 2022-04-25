@@ -25,6 +25,7 @@ import { AccountViewComponent } from './accounts/account-view/account-view.compo
 import { AccountFormComponent } from './accounts/account-form/account-form.component';
 import { TransactionIconComponent } from './transaction-icon/transaction-icon.component';
 import { TransactionViewComponent } from './transactions/transaction-view/transaction-view.component';
+import { ControlItemComponent } from './controls/control-item/control-item.component';
 
 @NgModule({
   declarations: [
@@ -48,6 +49,7 @@ import { TransactionViewComponent } from './transactions/transaction-view/transa
     AccountFormComponent,
     TransactionIconComponent,
     TransactionViewComponent,
+    ControlItemComponent,
   ],
   imports: [
     CommonModule,

@@ -25,8 +25,8 @@ export class AccountViewComponent implements OnInit {
   }
 
   public edit(): void {
-    this.formService.setEditing(true);
     this.panelService.setPanelContent(AccountFormComponent);
+    this.formService.setEditing(true);
   }
 
   public close(): void {

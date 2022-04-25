@@ -43,4 +43,9 @@
       text-transform: uppercase;
     }
   }
+
+  &__save-btn {
+    background-color: $blue;
+    margin-left: 5px;
+  }
 }

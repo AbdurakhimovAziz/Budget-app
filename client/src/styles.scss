@@ -30,3 +30,15 @@ a {
     display: none;
   }
 }
+
+.control-item {
+  & > .mat-button-wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  svg {
+    display: block;
+  }
+}

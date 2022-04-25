@@ -7,6 +7,7 @@ import {
 import { Injectable, TemplateRef, ViewContainerRef } from '@angular/core';
 import { MatDrawer, MatDrawerToggleResult } from '@angular/material/sidenav';
 import { BehaviorSubject, from, Observable } from 'rxjs';
+import { FormService } from './form.service';
 
 @Injectable({
   providedIn: 'root',
@@ -16,12 +17,17 @@ export class PanelService {
   private viewContainerRef!: ViewContainerRef;
   private panelPortal$ = new BehaviorSubject<Portal<any> | null>(null);
 
+  constructor(private formService: FormService) {}
+
   public get panelPortal(): Observable<Portal<any> | null> {
     return from(this.panelPortal$);
   }
 
   public setPanelRef(panel: MatDrawer): void {
     this.panel = panel;
+    this.panel.closedStart.subscribe(() => {
+      this.formService.setEditing(false);
+    });
   }
 
   public setViewContainerRef(vcr: ViewContainerRef): void {
@@ -63,6 +69,7 @@ export class PanelService {
   }
 
   public close(): Promise<MatDrawerToggleResult> {
+    this.clearPanelPortal();
     return this.panel.close();
   }
 }
