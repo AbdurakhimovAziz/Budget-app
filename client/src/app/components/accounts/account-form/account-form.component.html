@@ -1,5 +1,5 @@
 <div class="entity__header">
-  <h3 class="entity__title">Account Information</h3>
+  <h3 class="entity__title"> {{this.formService.isEditing ? 'Edit' : 'Add'}} Account </h3>
   <div class="entity__icons">
     <button mat-icon-button (click)="close()">
       <mat-icon svgIcon="close"></mat-icon>

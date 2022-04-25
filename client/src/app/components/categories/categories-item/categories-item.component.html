@@ -1,7 +1,15 @@
 <div class="category__item-content">
-  <p class="category__item-title">
+  <p *ngIf="!isEditing; else edit" class="category__item-title">
     {{category.title}}
   </p>
-  <mat-icon svgIcon="edit" class="category__item-icon edit"></mat-icon>
-  <mat-icon svgIcon="delete" class="category__item-icon delete"></mat-icon>
+  <ng-template #edit>
+    <form class="category__item-form" [formGroup]="categoryForm" (submit)="updateCategory()">
+      <input class="category__item-input" formControlName="title" type="text">
+      <button class="category__item-btn" type="submit">
+        <mat-icon svgIcon="checkmark" class="category__item-icon"></mat-icon>
+      </button>
+    </form>
+  </ng-template>
+  <mat-icon *ngIf="!isEditing" (click)="setisEditing(true)" svgIcon="edit" class="category__item-icon edit"></mat-icon>
+  <mat-icon (click)="delete()" svgIcon="delete" class="category__item-icon delete"></mat-icon>
 </div>

@@ -15,17 +15,18 @@ import { StatisticsComponent } from './statistics/statistics.component';
 import { AccountsItemComponent } from './accounts/accounts-item/accounts-item.component';
 import { AccountsListComponent } from './accounts/accounts-list/accounts-list.component';
 import { AccountsComponent } from './accounts/accounts.component';
-import { TransactionsComponent } from './transactions/transactions.component';
 import { ControlsComponent } from './controls/controls.component';
-import { TransactionsListComponent } from './transactions/transactions-list/transactions-list.component';
-import { TransactionsItemComponent } from './transactions/transactions-item/transactions-item.component';
 import { CategoriesListComponent } from './categories/categories-list/categories-list.component';
 import { CategoriesItemComponent } from './categories/categories-item/categories-item.component';
 import { AccountViewComponent } from './accounts/account-view/account-view.component';
 import { AccountFormComponent } from './accounts/account-form/account-form.component';
-import { TransactionIconComponent } from './transaction-icon/transaction-icon.component';
-import { TransactionViewComponent } from './transactions/transaction-view/transaction-view.component';
 import { ControlItemComponent } from './controls/control-item/control-item.component';
+import { CategoryFormComponent } from './categories/category-form/category-form.component';
+import { TransactionIconComponent } from './transactions/transaction-icon/transaction-icon.component';
+import { TransactionViewComponent } from './transactions/transaction-view/transaction-view.component';
+import { TransactionsItemComponent } from './transactions/transactions-item/transactions-item.component';
+import { TransactionsListComponent } from './transactions/transactions-list/transactions-list.component';
+import { TransactionsComponent } from './transactions/transactions.component';
 
 @NgModule({
   declarations: [
@@ -50,6 +51,7 @@ import { ControlItemComponent } from './controls/control-item/control-item.compo
     TransactionIconComponent,
     TransactionViewComponent,
     ControlItemComponent,
+    CategoryFormComponent,
   ],
   imports: [
     CommonModule,

@@ -12,6 +12,7 @@ import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatDividerModule } from '@angular/material/divider';
 import { MatListModule } from '@angular/material/list';
 import { MatSelectModule } from '@angular/material/select';
+import { MatButtonToggleModule } from '@angular/material/button-toggle';
 
 @NgModule({
   declarations: [],
@@ -28,6 +29,7 @@ import { MatSelectModule } from '@angular/material/select';
     MatDividerModule,
     MatListModule,
     MatSelectModule,
+    MatButtonToggleModule,
   ],
 })
 export class AppMaterialModule {}

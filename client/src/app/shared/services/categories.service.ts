@@ -2,7 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, map } from 'rxjs';
 import { BASE_URL } from '../constants';
-import { Category } from '../models/category';
+import { Category, FormCategory } from '../models/category';
 import { UserService } from './user.service';
 
 @Injectable({
@@ -27,12 +27,46 @@ export class CategoriesService {
       });
   }
 
+  public createCategory(category: FormCategory): void {
+    this.http
+      .post<Category>(this.getUrl(), category)
+      .subscribe((category: Category) => {
+        this.categoriesSubject.next([...this.getCategories(), category]);
+      });
+  }
+
+  public updateCategory(category: Category): void {
+    this.http
+      .put<Category>(this.getUrlWithId(category._id), category)
+      .subscribe(() => {
+        this.categoriesSubject.next(
+          this.getCategories().map((c) =>
+            c._id === category._id ? category : c
+          )
+        );
+      });
+  }
+
+  public deleteCategory(categoryId: string): void {
+    this.http.delete<Category>(this.getUrlWithId(categoryId)).subscribe(() => {
+      this.categoriesSubject.next(
+        this.getCategories().filter(
+          (category: Category) => category._id !== categoryId
+        )
+      );
+    });
+  }
+
   public getCategories(): Category[] {
     return this.categoriesSubject.getValue();
   }
 
   private getUrl(): string {
-    return `${BASE_URL}/categories/`;
+    return `${BASE_URL}/categories`;
+  }
+
+  public getUrlWithId(categoryId: string): string {
+    return `${this.getUrl()}/${categoryId}`;
   }
 
   private getUrlwithQueryParams(userId: string): string {

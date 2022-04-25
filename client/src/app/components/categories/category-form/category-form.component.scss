@@ -1,0 +1,19 @@
+@import "../../../shared/scss/entity-view.scss";
+
+:host {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.category-form {
+  &__toggles {
+    align-self: flex-start;
+    margin-bottom: 20px;
+  }
+}
+
+app-transaction-icon {
+  display: inline-grid;
+  margin-right: 10px;
+}

@@ -36,7 +36,7 @@ export class AccountFormComponent {
 
   constructor(
     private accountsService: AccountsService,
-    private formService: FormService,
+    public formService: FormService,
     public currenciesService: CurrenciesService,
     private panelService: PanelService,
     private userService: UserService

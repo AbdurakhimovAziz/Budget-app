@@ -4,3 +4,9 @@ export interface Category {
   type: 'income' | 'expense';
   user_id: string;
 }
+
+export interface FormCategory {
+  title: string;
+  type: 'income' | 'expense';
+  user_id: string;
+}

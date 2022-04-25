@@ -1,0 +1,27 @@
+<div class="entity__header">
+  <h3 class="entity__title"> Add category </h3>
+  <div class="entity__icons">
+    <button mat-icon-button (click)="close()">
+      <mat-icon svgIcon="close"></mat-icon>
+    </button>
+  </div>
+</div>
+<form [formGroup]="categoryForm" (submit)="create()" class="entity__form">
+  <mat-button-toggle-group class="category-form__toggles" formControlName="type" name="type"
+    aria-label="transaction type">
+    <mat-button-toggle value="income">
+      <app-transaction-icon type="income"></app-transaction-icon> Income
+    </mat-button-toggle>
+    <mat-button-toggle value="expense">
+      <app-transaction-icon type="expense"></app-transaction-icon>Expense
+    </mat-button-toggle>
+  </mat-button-toggle-group>
+  <mat-form-field appearance="outline">
+    <mat-label>Title</mat-label>
+    <input pattern="^([a-zA-Z]+\s)*[a-zA-Z]+$" matInput formControlName="title" type="text" />
+  </mat-form-field>
+  <div class="entity__footer">
+    <button mat-button (click)="close()" type="button">Cancel</button>
+    <button mat-button type="submit" class="entity__save-btn">save</button>
+  </div>
+</form>

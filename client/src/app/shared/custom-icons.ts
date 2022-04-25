@@ -31,4 +31,8 @@ export const customIcons = [
     name: 'plus',
     path: '../../assets/icons/plus.svg',
   },
+  {
+    name: 'checkmark',
+    path: '../../assets/icons/checkmark.svg',
+  },
 ];

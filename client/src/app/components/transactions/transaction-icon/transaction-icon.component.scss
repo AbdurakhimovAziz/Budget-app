@@ -1,7 +1,7 @@
-@import "../../shared/scss/variables";
+@import "../../../shared/scss/variables";
 
 .transaction-icon {
-  display: flex;
+  display: inline-flex;
   align-items: center;
   justify-content: center;
   width: 30px;
