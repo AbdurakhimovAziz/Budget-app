@@ -2,3 +2,5 @@
   (emitClick)="openAddForm()"></app-control-item>
 <app-control-item *ngIf="this.routerService.isRoute('/categories')" iconName="plus" label="Add category"
   (emitClick)="openCategoryForm()"></app-control-item>
+<app-control-item *ngIf="!this.routerService.isRoute('/categories')" iconName="plus" label="Add transaction"
+  (emitClick)="openTransactionForm()"></app-control-item>

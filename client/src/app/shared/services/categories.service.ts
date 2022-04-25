@@ -14,6 +14,21 @@ export class CategoriesService {
 
   constructor(private http: HttpClient, private uesrService: UserService) {}
 
+  private filterCategories(filter: 'income' | 'expense'): Category[] {
+    return this.getCategories().filter((c) => c.type === filter);
+  }
+
+  public getFilteredCategories(filter: 'income' | 'expense'): Category[] {
+    return this.filterCategories(filter);
+  }
+
+  public findCategory(title: string): Category | undefined {
+    const lowerTitle = title.toLowerCase();
+    return this.getCategories().find(
+      (category) => category.title.toLocaleLowerCase() === lowerTitle
+    );
+  }
+
   public fetchCategories(): void {
     this.http
       .get<Category[]>(this.getUrlwithQueryParams(this.uesrService.getId()))

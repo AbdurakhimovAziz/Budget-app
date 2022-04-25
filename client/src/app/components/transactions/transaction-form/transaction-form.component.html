@@ -1,0 +1,71 @@
+<div class="entity__header">
+  <h3 class="entity__title"> {{this.formService.isEditing ? 'Edit' : 'Add'}} Transaction</h3>
+  <div class="entity__icons">
+    <button mat-icon-button (click)="close()">
+      <mat-icon svgIcon="close"></mat-icon>
+    </button>
+  </div>
+</div>
+
+<form [formGroup]="transactionForm" class="entity__form">
+  <mat-button-toggle-group (change)="filterCategories()" class="entity__toggles" formControlName="type" name="type"
+    aria-label="transaction type">
+    <mat-button-toggle mat-button value="income">
+      <app-transaction-icon type="income"></app-transaction-icon> Income
+    </mat-button-toggle>
+    <mat-button-toggle value="expense">
+      <app-transaction-icon type="expense"></app-transaction-icon>Expense
+    </mat-button-toggle>
+  </mat-button-toggle-group>
+  <mat-form-field appearance="outline">
+    <mat-label>Title</mat-label>
+    <input pattern="^([a-zA-Z]+\s)*[a-zA-Z]+$" matInput formControlName="title" type="text" />
+  </mat-form-field>
+
+  <mat-form-field appearance="outline">
+    <mat-label>Categories</mat-label>
+    <mat-chip-list #chipList aria-label="categories">
+      <mat-chip *ngFor="let category of selectedCategories" (removed)="remove(category)">
+        {{ category.title }}
+        <button matChipRemove>
+          <mat-icon>cancel</mat-icon>
+        </button>
+      </mat-chip>
+      <input placeholder="New category..." [matChipInputFor]="chipList" [matAutocomplete]="auto" #categoryInput
+        [matChipInputSeparatorKeyCodes]="separatorKeysCodes" [matChipInputAddOnBlur]="addOnBlur"
+        (matChipInputTokenEnd)="add($event)" />
+    </mat-chip-list>
+  </mat-form-field>
+
+  <mat-autocomplete #auto="matAutocomplete" (optionSelected)="selected($event)">
+    <mat-option *ngFor="let category of filteredCategories" [value]="category.title">
+      {{category.title}}
+    </mat-option>
+  </mat-autocomplete>
+
+  <!-- <div *ngIf="isCategoryListShown" class="typeahead">
+    <ul class="typeahead__list">
+      <li class="typeahead__list-item" *ngFor="let category of filteredCategories"
+        (click)="onCategoryItemClick($event, category._id)">
+        {{ category.title | titlecase }}
+      </li>
+    </ul>
+  </div> - -->
+
+  <mat-form-field appearance="outline">
+    <mat-label>Amount</mat-label>
+    <input matInput formControlName="amount" type="number" />
+  </mat-form-field>
+  <mat-form-field appearance="outline">
+    <mat-label>Transaction Date</mat-label>
+    <input matInput formControlName="date" type="date" />
+  </mat-form-field>
+  <mat-form-field appearance="outline">
+    <mat-label>Description</mat-label>
+    <input pattern="^([a-zA-Z]+\s)*[a-zA-Z]+$" matInput formControlName="description" type="text" />
+  </mat-form-field>
+  <div class="entity__footer">
+    <button mat-button (click)="cancel()" type="button">Cancel</button>
+    <button mat-button type="submit" class="entity__save-btn">save</button>
+  </div>
+</form>

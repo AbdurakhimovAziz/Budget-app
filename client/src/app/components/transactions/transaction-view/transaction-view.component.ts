@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { Transaction } from 'src/app/shared/models/transaction';
+import { FormService } from 'src/app/shared/services/form.service';
 import { PanelService } from 'src/app/shared/services/panel.service';
 import { TransactionsService } from 'src/app/shared/services/transactions.service';
+import { TransactionFormComponent } from '../transaction-form/transaction-form.component';
 
 @Component({
   selector: 'app-transaction-view',
@@ -13,7 +15,8 @@ export class TransactionViewComponent implements OnInit {
 
   constructor(
     public transactionsService: TransactionsService,
-    private panelService: PanelService
+    private panelService: PanelService,
+    private formService: FormService
   ) {}
 
   public get currencySymbol(): string {
@@ -26,11 +29,13 @@ export class TransactionViewComponent implements OnInit {
   }
 
   public edit(): void {
-    // this.panelService.setPanelContent(AccountFormComponent);
-    // this.panelService.open();
+    this.formService.setEditing(true);
+    this.panelService.setPanelContent(TransactionFormComponent);
+    this.panelService.open();
   }
 
   public close(): void {
+    this.transactionsService.setSelectedTransaction(null);
     this.panelService.clearPanelPortal();
     this.panelService.close();
   }

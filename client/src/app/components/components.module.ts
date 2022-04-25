@@ -27,6 +27,7 @@ import { TransactionViewComponent } from './transactions/transaction-view/transa
 import { TransactionsItemComponent } from './transactions/transactions-item/transactions-item.component';
 import { TransactionsListComponent } from './transactions/transactions-list/transactions-list.component';
 import { TransactionsComponent } from './transactions/transactions.component';
+import { TransactionFormComponent } from './transactions/transaction-form/transaction-form.component';
 
 @NgModule({
   declarations: [
@@ -52,6 +53,7 @@ import { TransactionsComponent } from './transactions/transactions.component';
     TransactionViewComponent,
     ControlItemComponent,
     CategoryFormComponent,
+    TransactionFormComponent,
   ],
   imports: [
     CommonModule,

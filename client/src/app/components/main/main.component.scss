@@ -32,7 +32,10 @@ mat-drawer-container {
   &__modal {
     max-width: 600px;
     width: 100%;
-    padding: 35px;
+    padding-top: 90px;
+    padding-bottom: 90px;
+    padding-left: 35px;
+    padding-right: 35px;
     background-color: $bg-secondary;
     box-shadow: -10px 0px 20px rgba(0, 0, 0, 0.25);
   }

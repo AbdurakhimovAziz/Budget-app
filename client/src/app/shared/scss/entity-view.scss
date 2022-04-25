@@ -14,10 +14,13 @@
 
 .entity {
   &__header {
+    position: absolute;
+    top: 20px;
+    left: 35px;
+    right: 35px;
     display: flex;
     align-items: center;
     justify-content: space-between;
-    margin-bottom: 20px;
     padding-left: 16px;
     padding-right: 16px;
   }
@@ -37,6 +40,9 @@
   }
 
   &__footer {
+    position: absolute;
+    bottom: 20px;
+    right: 35px;
     align-self: flex-end;
     margin-top: auto;
     button {
@@ -48,4 +54,14 @@
     background-color: $blue;
     margin-left: 5px;
   }
+
+  &__toggles {
+    align-self: flex-start;
+    margin-bottom: 20px;
+  }
+}
+
+app-transaction-icon {
+  display: inline-grid;
+  margin-right: 10px;
 }

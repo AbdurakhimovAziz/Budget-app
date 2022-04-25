@@ -7,8 +7,7 @@
   </div>
 </div>
 <form [formGroup]="categoryForm" (submit)="create()" class="entity__form">
-  <mat-button-toggle-group class="category-form__toggles" formControlName="type" name="type"
-    aria-label="transaction type">
+  <mat-button-toggle-group class="entity__toggles" formControlName="type" name="type" aria-label="transaction type">
     <mat-button-toggle value="income">
       <app-transaction-icon type="income"></app-transaction-icon> Income
     </mat-button-toggle>

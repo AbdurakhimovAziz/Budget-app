@@ -1,7 +1,9 @@
 @import "../../../shared/scss/variables";
 
 .control-item {
+  width: 100%;
   padding: 5px 15px;
+  margin-bottom: 20px;
   background-color: $blue;
   border-radius: 10px;
   font-size: 1.2rem;
