@@ -14,6 +14,10 @@ export class CategoriesService {
   private readonly categoriesSubject = new BehaviorSubject<Category[]>([]);
   public readonly categories$ = this.categoriesSubject.asObservable();
 
+  public filteredCategories$ = this.categoriesSubject.asObservable();
+  private filterSubject = new BehaviorSubject<'income' | 'expense' | ''>('');
+  public filter$ = this.filterSubject.asObservable();
+
   constructor(
     private http: HttpClient,
     private userService: UserService,
@@ -21,8 +25,12 @@ export class CategoriesService {
     private accountsService: AccountsService
   ) {}
 
-  private filterCategories(filter: 'income' | 'expense'): Category[] {
+  public filterCategories(filter: 'income' | 'expense'): Category[] {
     return this.getCategories().filter((c) => c.type === filter);
+  }
+
+  public setFilter(filter: 'income' | 'expense' | ''): void {
+    this.filterSubject.next(filter);
   }
 
   public getFilteredCategories(filter: 'income' | 'expense'): Category[] {

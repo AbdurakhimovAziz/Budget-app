@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { CategoriesService } from 'src/app/shared/services/categories.service';
 import { FormService } from 'src/app/shared/services/form.service';
 import { PanelService } from 'src/app/shared/services/panel.service';
 import { RouterService } from 'src/app/shared/services/router.service';
@@ -17,7 +18,8 @@ export class ControlsComponent {
     private formService: FormService,
     private panelService: PanelService,
     public routerService: RouterService,
-    private transactionsService: TransactionsService
+    private transactionsService: TransactionsService,
+    private categoriesService: CategoriesService
   ) {}
 
   public openAddForm(): void {
@@ -37,6 +39,8 @@ export class ControlsComponent {
   }
 
   public setFilter(filter: 'income' | 'expense' | ''): void {
-    this.transactionsService.setFilter(filter);
+    if (this.routerService.isRoute('/'))
+      this.transactionsService.setFilter(filter);
+    else this.categoriesService.setFilter(filter);
   }
 }

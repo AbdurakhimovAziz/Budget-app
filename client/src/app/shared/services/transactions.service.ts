@@ -23,23 +23,11 @@ export class TransactionsService {
     private http: HttpClient,
     private accountsService: AccountsService,
     private userService: UserService
-  ) {
-    // this.filterSubject.subscribe((filter: 'income' | 'expense' | '') => {
-    //   console.log(this.filteredTransactions);
-    //   if (filter !== '')
-    //     this.filteredTransactions = this.filterTransactions(filter);
-    // });
-  }
+  ) {}
 
   public setFilter(filter: 'income' | 'expense' | ''): void {
     this.filterSubject.next(filter);
   }
-
-  // public get filteredTransactions$() {
-  //   // console.log(this.filteredTransactions);
-
-  //   return this.filteredTransactions;
-  // }
 
   public filterTransactions(filter: 'income' | 'expense'): Transaction[] {
     return this.getTransactions().filter((t) => t.type === filter);
