@@ -1,3 +1,14 @@
+<div class="control__filters" *ngIf="this.routerService.isRoute('/') || this.routerService.isRoute('/categories')">
+  <button mat-button class="controls__filters-btn" (click)="this.setFilter('income')">
+    <app-transaction-icon class="controls__icon" type="income"></app-transaction-icon>
+    <span>Income</span>
+  </button>
+  <button mat-button class="controls__filters-btn" (click)="this.setFilter('expense')">
+    <app-transaction-icon class="controls__icon" type="expense"></app-transaction-icon>
+    <span>Expense</span>
+  </button>
+</div>
+
 <app-control-item *ngIf="this.routerService.isRoute('/')" iconName="plus" label="Add account"
   (emitClick)="openAddForm()"></app-control-item>
 <app-control-item *ngIf="this.routerService.isRoute('/categories')" iconName="plus" label="Add category"

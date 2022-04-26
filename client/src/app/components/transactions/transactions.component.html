@@ -1,1 +1,1 @@
-<app-transactions-list [transactions]="(transactionsService.transactions$ | async) || []"></app-transactions-list>
+<app-transactions-list [transactions]="(this.filteredTransactions) || []"></app-transactions-list>

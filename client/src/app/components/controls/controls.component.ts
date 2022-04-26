@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { FormService } from 'src/app/shared/services/form.service';
 import { PanelService } from 'src/app/shared/services/panel.service';
 import { RouterService } from 'src/app/shared/services/router.service';
+import { TransactionsService } from 'src/app/shared/services/transactions.service';
 import { AccountFormComponent } from '../accounts/account-form/account-form.component';
 import { CategoryFormComponent } from '../categories/category-form/category-form.component';
 import { TransactionFormComponent } from '../transactions/transaction-form/transaction-form.component';
@@ -15,7 +16,8 @@ export class ControlsComponent {
   constructor(
     private formService: FormService,
     private panelService: PanelService,
-    public routerService: RouterService
+    public routerService: RouterService,
+    private transactionsService: TransactionsService
   ) {}
 
   public openAddForm(): void {
@@ -32,5 +34,9 @@ export class ControlsComponent {
   public openTransactionForm(): void {
     this.panelService.setPanelContent(TransactionFormComponent);
     this.panelService.open();
+  }
+
+  public setFilter(filter: 'income' | 'expense' | ''): void {
+    this.transactionsService.setFilter(filter);
   }
 }

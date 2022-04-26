@@ -13,15 +13,35 @@ export class TransactionsService {
   private readonly transactionsSubject = new BehaviorSubject<Transaction[]>([]);
   public readonly transactions$ = this.transactionsSubject.asObservable();
 
+  public filteredTransactions$ = this.transactionsSubject.asObservable();
+
   private selectedTransaction: Transaction | null = null;
+  private filterSubject = new BehaviorSubject<'income' | 'expense' | ''>('');
+  public filter$ = this.filterSubject.asObservable();
 
   constructor(
     private http: HttpClient,
     private accountsService: AccountsService,
     private userService: UserService
-  ) {}
+  ) {
+    // this.filterSubject.subscribe((filter: 'income' | 'expense' | '') => {
+    //   console.log(this.filteredTransactions);
+    //   if (filter !== '')
+    //     this.filteredTransactions = this.filterTransactions(filter);
+    // });
+  }
 
-  private filterTransactions(filter: 'income' | 'expense'): Transaction[] {
+  public setFilter(filter: 'income' | 'expense' | ''): void {
+    this.filterSubject.next(filter);
+  }
+
+  // public get filteredTransactions$() {
+  //   // console.log(this.filteredTransactions);
+
+  //   return this.filteredTransactions;
+  // }
+
+  public filterTransactions(filter: 'income' | 'expense'): Transaction[] {
     return this.getTransactions().filter((t) => t.type === filter);
   }
 

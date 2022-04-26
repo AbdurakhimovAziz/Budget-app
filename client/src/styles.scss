@@ -46,3 +46,16 @@ a {
 *::-webkit-scrollbar {
   display: none;
 }
+
+.controls__filters-btn {
+  &:first-child {
+    .mat-icon {
+      margin-top: 3px;
+    }
+  }
+  &:last-child {
+    .mat-icon {
+      margin-bottom: 3px;
+    }
+  }
+}

@@ -1,4 +1,27 @@
+@import "../../shared/scss/variables";
+@import "../../shared/scss/entity-view.scss";
+
 :host {
   display: block;
   width: 100%;
+}
+
+.controls {
+  &__filters {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    border: 0;
+  }
+
+  &__filters-btn {
+    width: 100%;
+    padding: 10px;
+    background-color: $white;
+    margin-bottom: 10px;
+    text-align: start;
+    .active {
+      opacity: 0.5;
+    }
+  }
 }
