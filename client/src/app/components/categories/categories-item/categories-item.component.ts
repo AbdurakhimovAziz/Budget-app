@@ -2,6 +2,7 @@ import { Component, ElementRef, Input, OnInit, ViewChild } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Category } from 'src/app/shared/models/category';
 import { CategoriesService } from 'src/app/shared/services/categories.service';
+import { TransactionsService } from 'src/app/shared/services/transactions.service';
 
 @Component({
   selector: 'app-categories-item',
@@ -19,7 +20,10 @@ export class CategoriesItemComponent implements OnInit {
 
   ngOnInit(): void {
     this.categoryForm = new FormGroup({
-      title: new FormControl(this.category.title, [Validators.required]),
+      title: new FormControl(this.category.title, [
+        Validators.required,
+        Validators.pattern('[a-zA-Z0-9\\s]+'),
+      ]),
     });
   }
 
@@ -32,7 +36,11 @@ export class CategoriesItemComponent implements OnInit {
     this.isEditing = isEditing;
   }
 
-  public onBlur(): void {
+  public onBlur(event: FocusEvent): void {
+    const el = event.relatedTarget as HTMLInputElement;
+    if (el?.tagName === 'BUTTON') {
+      return;
+    }
     this.setisEditing(false);
   }
 

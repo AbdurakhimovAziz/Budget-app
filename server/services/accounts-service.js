@@ -1,4 +1,5 @@
 const Account = require('../models/accounts-model');
+const Transaction = require('../models/transactions-model');
 
 class AccountsService {
   async create(account) {
@@ -18,7 +19,8 @@ class AccountsService {
     return Account.findByIdAndUpdate(id, account, { new: true }).populate('currency');
   }
 
-  delete(id) {
+  async delete(id) {
+    await Transaction.deleteMany({ account_id: id });
     return Account.findByIdAndDelete(id);
   }
 

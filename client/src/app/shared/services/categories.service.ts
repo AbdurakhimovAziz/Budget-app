@@ -3,6 +3,8 @@ import { Injectable } from '@angular/core';
 import { BehaviorSubject, map } from 'rxjs';
 import { BASE_URL } from '../constants';
 import { Category, FormCategory } from '../models/category';
+import { AccountsService } from './accounts.service';
+import { TransactionsService } from './transactions.service';
 import { UserService } from './user.service';
 
 @Injectable({
@@ -12,7 +14,12 @@ export class CategoriesService {
   private readonly categoriesSubject = new BehaviorSubject<Category[]>([]);
   public readonly categories$ = this.categoriesSubject.asObservable();
 
-  constructor(private http: HttpClient, private uesrService: UserService) {}
+  constructor(
+    private http: HttpClient,
+    private userService: UserService,
+    private transactionsService: TransactionsService,
+    private accountsService: AccountsService
+  ) {}
 
   private filterCategories(filter: 'income' | 'expense'): Category[] {
     return this.getCategories().filter((c) => c.type === filter);
@@ -31,7 +38,7 @@ export class CategoriesService {
 
   public fetchCategories(): void {
     this.http
-      .get<Category[]>(this.getUrlwithQueryParams(this.uesrService.getId()))
+      .get<Category[]>(this.getUrlwithQueryParams(this.userService.getId()))
       .pipe(
         map((categories: Category[]) =>
           categories.sort((a, b) => a.title.localeCompare(b.title))
@@ -53,12 +60,15 @@ export class CategoriesService {
   public updateCategory(category: Category): void {
     this.http
       .put<Category>(this.getUrlWithId(category._id), category)
-      .subscribe(() => {
-        this.categoriesSubject.next(
-          this.getCategories().map((c) =>
-            c._id === category._id ? category : c
-          )
-        );
+      .subscribe({
+        complete: () => {
+          this.categoriesSubject.next(
+            this.getCategories().map((c) =>
+              c._id === category._id ? category : c
+            )
+          );
+        },
+        next: this.updateTransactions.bind(this),
       });
   }
 
@@ -70,6 +80,11 @@ export class CategoriesService {
         )
       );
     });
+  }
+
+  private updateTransactions(): void {
+    const id = this.accountsService.getCurrentAccount()?._id;
+    id && this.transactionsService.fetchTransactions(id);
   }
 
   public getCategories(): Category[] {

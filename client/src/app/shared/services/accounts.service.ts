@@ -42,15 +42,16 @@ export class AccountsService {
   }
 
   public updateAccount(account: Account) {
-    this.http
-      .put<Account>(this.getUrlWithId(account._id), account)
-      .subscribe((account: Account) => {
+    this.http.put<Account>(this.getUrlWithId(account._id), account).subscribe({
+      next: (account: Account) => {
         this.accountsSubject.next([
           ...this.getAccounts().map((acc) =>
             acc._id === account._id ? account : acc
           ),
         ]);
-      });
+      },
+      complete: this.updateTransactions.bind(this, account),
+    });
   }
 
   public deleteAccount(account: Account): void {
@@ -66,6 +67,13 @@ export class AccountsService {
 
     if (account == this.getCurrentAccount()) {
       this.setCurrentAccount(this.getAccounts()[0]);
+    }
+  }
+
+  private updateTransactions(account: Account): void {
+    const id = this.selectedAccount?._id;
+    if (id && this.getCurrentAccount()?._id === id) {
+      this.setCurrentAccount(account);
     }
   }
 

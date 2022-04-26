@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Transaction } from 'src/app/shared/models/transaction';
+import { CategoriesService } from 'src/app/shared/services/categories.service';
 import { FormService } from 'src/app/shared/services/form.service';
 import { PanelService } from 'src/app/shared/services/panel.service';
 import { TransactionsService } from 'src/app/shared/services/transactions.service';
@@ -16,7 +17,8 @@ export class TransactionViewComponent implements OnInit {
   constructor(
     public transactionsService: TransactionsService,
     private panelService: PanelService,
-    private formService: FormService
+    private formService: FormService,
+    private categoriesService: CategoriesService
   ) {}
 
   public get currencySymbol(): string {

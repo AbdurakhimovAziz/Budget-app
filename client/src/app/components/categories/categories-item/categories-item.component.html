@@ -4,7 +4,8 @@
   </p>
   <ng-template #edit>
     <form class="category__item-form" [formGroup]="categoryForm" (submit)="updateCategory()">
-      <input class="category__item-input" formControlName="title" type="text" (blur)="onBlur()" required #input>
+      <input class="category__item-input" [ngClass]="categoryForm.invalid ? 'invalid' : ''" formControlName="title"
+        type="text" (blur)="onBlur($event)" required #input>
       <button class="category__item-btn" type="submit">
         <mat-icon svgIcon="checkmark" class="category__item-icon"></mat-icon>
       </button>

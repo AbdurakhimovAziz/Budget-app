@@ -80,7 +80,7 @@ export class TransactionFormComponent implements OnInit {
   }
 
   public submit(): void {
-    if (this.transactionForm.valid) {
+    if (this.transactionForm.valid && this.selectedCategories.length) {
       const transaction: Transaction = this.transactionForm.value;
       transaction.account_id =
         this.accountsService.getCurrentAccount()?._id || '';
