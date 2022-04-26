@@ -23,8 +23,6 @@ export class TransactionsItemComponent {
   }
 
   public viewTransaction(): void {
-    console.log('viewTransaction');
-
     this.transactionsService.setSelectedTransaction(this.transaction);
     this.panelService.setPanelContent(TransactionViewComponent);
     this.panelService.open();

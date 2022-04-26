@@ -39,4 +39,9 @@ export class TransactionViewComponent implements OnInit {
     this.panelService.clearPanelPortal();
     this.panelService.close();
   }
+
+  public delete(): void {
+    this.transactionsService.deleteTransaction(this.transaction);
+    this.close();
+  }
 }

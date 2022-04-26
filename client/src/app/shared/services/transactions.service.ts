@@ -4,6 +4,7 @@ import { BehaviorSubject } from 'rxjs';
 import { BASE_URL } from '../constants';
 import { FormTransaction, Transaction } from '../models/transaction';
 import { AccountsService } from './accounts.service';
+import { UserService } from './user.service';
 
 @Injectable({
   providedIn: 'root',
@@ -16,7 +17,8 @@ export class TransactionsService {
 
   constructor(
     private http: HttpClient,
-    private accountsService: AccountsService
+    private accountsService: AccountsService,
+    private userService: UserService
   ) {}
 
   private filterTransactions(filter: 'income' | 'expense'): Transaction[] {
@@ -36,38 +38,49 @@ export class TransactionsService {
   }
 
   public createTransaction(transaction: FormTransaction): void {
-    this.http
-      .post<Transaction>(this.getUrl(), transaction)
-      .subscribe((transaction: Transaction) => {
+    this.http.post<Transaction>(this.getUrl(), transaction).subscribe({
+      next: (transaction: Transaction) => {
         this.transactionsSubject.next([
           ...this.transactionsSubject.getValue(),
           transaction,
         ]);
-      });
+      },
+      complete: this.updateAccounts.bind(this),
+    });
   }
 
   public updateTransaction(transaction: Transaction): void {
     this.http
       .put<Transaction>(this.getUrlWithId(transaction._id), transaction)
-      .subscribe((transaction: Transaction) => {
-        this.transactionsSubject.next([
-          ...this.transactionsSubject
-            .getValue()
-            .map((t) => (t._id === transaction._id ? transaction : t)),
-        ]);
+      .subscribe({
+        next: (transaction: Transaction) => {
+          this.transactionsSubject.next([
+            ...this.transactionsSubject
+              .getValue()
+              .map((t) => (t._id === transaction._id ? transaction : t)),
+          ]);
+        },
+        complete: this.updateAccounts.bind(this),
       });
   }
 
   public deleteTransaction(transaction: Transaction): void {
     this.http
       .delete<Transaction>(this.getUrlWithId(transaction._id))
-      .subscribe(() => {
-        this.transactionsSubject.next(
-          this.transactionsSubject
-            .getValue()
-            .filter((t) => t._id !== transaction._id)
-        );
+      .subscribe({
+        next: () => {
+          this.transactionsSubject.next(
+            this.transactionsSubject
+              .getValue()
+              .filter((t) => t._id !== transaction._id)
+          );
+        },
+        complete: this.updateAccounts.bind(this),
       });
+  }
+
+  private updateAccounts(): void {
+    this.accountsService.fetchAccounts(this.userService.getId());
   }
 
   public getTransactions(): Transaction[] {

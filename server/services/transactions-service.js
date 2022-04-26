@@ -7,25 +7,23 @@ class TransactionsService {
   }
 
   getById(id) {
-    return Transaction.findById(id);
+    return Transaction.findById(id).populate('categories', 'title');
   }
 
   async create(transaction) {
     const newTransaction = await new Transaction(transaction).save();
     const { account_id, amount, type } = newTransaction;
     await accountsService.updateBalance(account_id, amount, type);
-    return newTransaction;
+    return newTransaction.populate('categories', 'title');
   }
 
   async update(id, transaction) {
-    const oldTransaction = await Transaction.findByIdAndUpdate(id, transaction);
+    const oldTransaction = await Transaction.findByIdAndUpdate(id, transaction).populate('categories', 'title');
     if (oldTransaction) {
       const { account_id, amount, type } = transaction;
       let newAmount = 0;
-
-      if (oldTransaction.amount !== amount)
-        throw new Error({ message: 'Transaction type can not be changed', status: 400 });
-      else newAmount = transaction.amount - oldTransaction.amount;
+      if (type === oldTransaction.type) newAmount = transaction.amount - oldTransaction.amount;
+      else newAmount = amount + oldTransaction.amount;
 
       await accountsService.updateBalance(account_id, newAmount, type);
     }

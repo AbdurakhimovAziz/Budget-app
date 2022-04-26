@@ -25,7 +25,8 @@ export class AccountsService {
       .get<Account[]>(this.getUrlWithQueryParams(userId))
       .subscribe((accounts: Account[]) => {
         this.accountsSubject.next(accounts);
-        this.currentAccountSubject.next(accounts[0]);
+        if (this.getCurrentAccount() == null)
+          this.currentAccountSubject.next(accounts[0]);
       });
   }
 

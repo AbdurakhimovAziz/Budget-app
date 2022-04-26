@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Account } from 'src/app/shared/models/account';
 import { AccountsService } from 'src/app/shared/services/accounts.service';
 
 @Component({

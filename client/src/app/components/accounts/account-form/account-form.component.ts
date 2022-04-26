@@ -19,7 +19,11 @@ export class AccountFormComponent {
       this.formService.isEditing
         ? this.accountsService.getSelectedAccount()?.title
         : '',
-      [Validators.required]
+      [
+        Validators.required,
+        Validators.pattern('[a-zA-Z0-9\\s]+'),
+        Validators.maxLength(128),
+      ]
     ),
     currency: new FormControl(
       this.formService.isEditing
@@ -30,7 +34,8 @@ export class AccountFormComponent {
     description: new FormControl(
       this.formService.isEditing
         ? this.accountsService.getSelectedAccount()?.description
-        : ''
+        : '',
+      [Validators.maxLength(256)]
     ),
   });
 

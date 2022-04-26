@@ -13,7 +13,7 @@ export class AccountsItemComponent {
   @Input() public account!: Account;
 
   public get isCurrentAccount(): boolean {
-    return this.accountsService.getCurrentAccount() === this.account;
+    return this.accountsService.getCurrentAccount()?._id === this.account._id;
   }
 
   public onClick(): void {

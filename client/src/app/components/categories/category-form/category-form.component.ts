@@ -12,7 +12,11 @@ import { UserService } from 'src/app/shared/services/user.service';
 })
 export class CategoryFormComponent {
   public categoryForm: FormGroup = new FormGroup({
-    title: new FormControl('', [Validators.required]),
+    title: new FormControl('', [
+      Validators.required,
+      Validators.pattern('[a-zA-Z0-9\\s]+'),
+      Validators.maxLength(128),
+    ]),
     type: new FormControl('income', [Validators.required]),
   });
 

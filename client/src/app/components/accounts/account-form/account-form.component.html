@@ -9,7 +9,7 @@
 <form [formGroup]="accountForm" (submit)="saveAccount()" class="entity__form">
   <mat-form-field appearance="outline">
     <mat-label>Title</mat-label>
-    <input pattern="^([a-zA-Z]+\s)*[a-zA-Z]+$" matInput formControlName="title" type="text" />
+    <input matInput formControlName="title" type="text" />
   </mat-form-field>
   <mat-form-field appearance="outline">
     <mat-label>Currency</mat-label>
@@ -20,7 +20,7 @@
   </mat-form-field>
   <mat-form-field appearance="outline">
     <mat-label>Description</mat-label>
-    <input pattern="^([a-zA-Z]+\s)*[a-zA-Z]+$" matInput formControlName="description" type="text" />
+    <input matInput formControlName="description" type="text" />
   </mat-form-field>
   <div class="entity__footer">
     <button mat-button (click)="cancel()" type="button">Cancel</button>

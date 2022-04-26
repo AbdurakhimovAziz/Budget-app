@@ -11,6 +11,12 @@ import { TransactionsService } from 'src/app/shared/services/transactions.servic
 import { TransactionViewComponent } from '../transaction-view/transaction-view.component';
 import { Category } from 'src/app/shared/models/category';
 import { MatAutocompleteSelectedEvent } from '@angular/material/autocomplete';
+import {
+  FormTransaction,
+  Transaction,
+} from 'src/app/shared/models/transaction';
+import { UserService } from 'src/app/shared/services/user.service';
+import { MatButtonToggleChange } from '@angular/material/button-toggle';
 
 @Component({
   selector: 'app-transaction-form',
@@ -32,7 +38,11 @@ export class TransactionFormComponent implements OnInit {
   public transactionForm: FormGroup = new FormGroup({
     title: new FormControl(
       this.formService.isEditing ? this.selectedTransaction?.title : '',
-      [Validators.required]
+      [
+        Validators.required,
+        Validators.pattern('[a-zA-Z0-9\\s]+'),
+        Validators.maxLength(128),
+      ]
     ),
     type: new FormControl(
       this.formService.isEditing ? this.selectedTransaction?.type : 'income',
@@ -40,17 +50,19 @@ export class TransactionFormComponent implements OnInit {
     ),
     amount: new FormControl(
       this.formService.isEditing ? this.selectedTransaction?.amount : '',
-      [Validators.required]
+      [Validators.required, Validators.min(0)]
     ),
     date: new FormControl(
-      this.formService.isEditing ? this.selectedTransaction?.date : '',
+      this.formService.isEditing ? this.selectedTransaction?.date : new Date(),
       [Validators.required]
     ),
     payee: new FormControl(
-      this.formService.isEditing ? this.selectedTransaction?.payee : ''
+      this.formService.isEditing ? this.selectedTransaction?.payee : '',
+      [Validators.pattern('[a-zA-Z0-9\\s]+')]
     ),
     description: new FormControl(
-      this.formService.isEditing ? this.selectedTransaction?.description : ''
+      this.formService.isEditing ? this.selectedTransaction?.description : '',
+      [Validators.maxLength(256)]
     ),
   });
 
@@ -65,6 +77,24 @@ export class TransactionFormComponent implements OnInit {
 
   ngOnInit(): void {
     this.filterCategories();
+  }
+
+  public submit(): void {
+    if (this.transactionForm.valid) {
+      const transaction: Transaction = this.transactionForm.value;
+      transaction.account_id =
+        this.accountsService.getCurrentAccount()?._id || '';
+      transaction.categories = this.selectedCategories;
+
+      if (!this.formService.isEditing) {
+        this.transactionsService.createTransaction(transaction);
+      } else {
+        transaction._id = this.selectedTransaction?._id!;
+        this.transactionsService.updateTransaction(transaction);
+        this.transactionsService.setSelectedTransaction(transaction);
+      }
+      this.returnToView();
+    }
   }
 
   public close(): void {
@@ -89,10 +119,22 @@ export class TransactionFormComponent implements OnInit {
     this.panelService.clearPanelPortal();
   }
 
-  public filterCategories(): void {
-    this.filteredCategories = this.categoriesService.getFilteredCategories(
-      this.transactionForm.value.type
-    );
+  public filterCategories(event?: MatButtonToggleChange): void {
+    this.filteredCategories = this.categoriesService
+      .getFilteredCategories(this.transactionForm.value.type)
+      .filter((c: Category) => {
+        return !this.selectedCategories.find((s: Category) => s._id === c._id);
+      });
+
+    if (event) {
+      const tType = this.transactionsService.getSelectedTransaction()?.type;
+      console.log(this.transactionForm.value.type, tType);
+
+      this.selectedCategories =
+        this.transactionForm.value.type !== tType
+          ? []
+          : [...(this.selectedTransaction?.categories || [])];
+    }
   }
 
   add(event: MatChipInputEvent): void {
@@ -121,10 +163,7 @@ export class TransactionFormComponent implements OnInit {
 
     if (category) {
       this.selectedCategories.push(category);
-      console.log('selected', category);
-
       const index = this.filteredCategories.indexOf(category);
-      console.log('index', index);
 
       if (index >= 0) this.filteredCategories.splice(index, 1);
 
