@@ -29,6 +29,10 @@ export class CategoriesService {
     return this.getCategories().filter((c) => c.type === filter);
   }
 
+  public getFilter(): string {
+    return this.filterSubject.getValue();
+  }
+
   public setFilter(filter: 'income' | 'expense' | ''): void {
     this.filterSubject.next(filter);
   }

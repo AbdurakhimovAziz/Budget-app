@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { MatSnackBar } from '@angular/material/snack-bar';
 import { Account } from 'src/app/shared/models/account';
 import { AccountsService } from 'src/app/shared/services/accounts.service';
 import { CurrenciesService } from 'src/app/shared/services/currencies.service';
@@ -44,7 +45,8 @@ export class AccountFormComponent {
     public formService: FormService,
     public currenciesService: CurrenciesService,
     private panelService: PanelService,
-    private userService: UserService
+    private userService: UserService,
+    private _snackBar: MatSnackBar
   ) {}
 
   public close(): void {
@@ -88,23 +90,18 @@ export class AccountFormComponent {
         };
         this.accountsService.updateAccount(editedAccount);
         this.accountsService.setSelectedAccount(editedAccount);
+        this._snackBar.open('Account succesfully edited', 'x', {
+          horizontalPosition: 'center',
+          verticalPosition: 'top',
+        });
       } else {
         this.accountsService.addAccount(account);
+        this._snackBar.open('Account succesfully created', 'x', {
+          horizontalPosition: 'center',
+          verticalPosition: 'top',
+        });
       }
-
       this.returnToView();
-
-      /*
-      TODO: if account currency is changed show modal
-      with confirmation to change all accounts with the same currency
-      if(condition above) {
-        this.modalService.setTitle('Change currency');
-        this.modalService.setContent(
-          'Are you sure you want to change currency of all accounts with the same currency?'
-        );
-        this.modalService.open();
-      }
-      */
     }
   }
 }

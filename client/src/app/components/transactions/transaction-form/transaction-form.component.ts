@@ -17,6 +17,7 @@ import {
 } from 'src/app/shared/models/transaction';
 import { UserService } from 'src/app/shared/services/user.service';
 import { MatButtonToggleChange } from '@angular/material/button-toggle';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-transaction-form',
@@ -72,7 +73,8 @@ export class TransactionFormComponent implements OnInit {
     public formService: FormService,
     public currenciesService: CurrenciesService,
     private panelService: PanelService,
-    public categoriesService: CategoriesService
+    public categoriesService: CategoriesService,
+    private _snackBar: MatSnackBar
   ) {}
 
   ngOnInit(): void {
@@ -85,14 +87,22 @@ export class TransactionFormComponent implements OnInit {
       transaction.account_id =
         this.accountsService.getCurrentAccount()?._id || '';
       transaction.categories = this.selectedCategories;
+      let message = '';
 
       if (!this.formService.isEditing) {
         this.transactionsService.createTransaction(transaction);
+        message = 'Transaction created successfully';
       } else {
         transaction._id = this.selectedTransaction?._id!;
         this.transactionsService.updateTransaction(transaction);
         this.transactionsService.setSelectedTransaction(transaction);
+        message = 'Transaction updated successfully';
       }
+      this._snackBar.open(message, 'x', {
+        horizontalPosition: 'center',
+        verticalPosition: 'top',
+      });
+
       this.returnToView();
     }
   }

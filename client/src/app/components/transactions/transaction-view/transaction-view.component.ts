@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { MatSnackBar } from '@angular/material/snack-bar';
 import { Transaction } from 'src/app/shared/models/transaction';
 import { CategoriesService } from 'src/app/shared/services/categories.service';
 import { FormService } from 'src/app/shared/services/form.service';
@@ -18,7 +19,8 @@ export class TransactionViewComponent implements OnInit {
     public transactionsService: TransactionsService,
     private panelService: PanelService,
     private formService: FormService,
-    private categoriesService: CategoriesService
+    private categoriesService: CategoriesService,
+    private _snackBar: MatSnackBar
   ) {}
 
   public get currencySymbol(): string {
@@ -44,6 +46,10 @@ export class TransactionViewComponent implements OnInit {
 
   public delete(): void {
     this.transactionsService.deleteTransaction(this.transaction);
+    this._snackBar.open('Transaction deleted', 'x', {
+      horizontalPosition: 'center',
+      verticalPosition: 'top',
+    });
     this.close();
   }
 }

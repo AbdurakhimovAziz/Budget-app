@@ -22,6 +22,10 @@ export class TransactionsComponent implements OnInit {
       if (filter !== '')
         this.filteredTransactions =
           this.transactionsService.filterTransactions(filter);
+      else
+        this.filteredTransactions = [
+          ...this.transactionsService.getTransactions(),
+        ];
     });
   }
 }

@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { MatSnackBar } from '@angular/material/snack-bar';
 import { FormCategory } from 'src/app/shared/models/category';
 import { CategoriesService } from 'src/app/shared/services/categories.service';
 import { PanelService } from 'src/app/shared/services/panel.service';
@@ -23,7 +24,8 @@ export class CategoryFormComponent {
   constructor(
     private panelService: PanelService,
     private categoriesService: CategoriesService,
-    private userService: UserService
+    private userService: UserService,
+    private _snackBar: MatSnackBar
   ) {}
 
   public create(): void {
@@ -35,6 +37,11 @@ export class CategoryFormComponent {
       };
 
       this.categoriesService.createCategory(category);
+      this._snackBar.open('Category created succesfully', 'x', {
+        horizontalPosition: 'center',
+        verticalPosition: 'top',
+      });
+
       this.close();
     } else return;
   }

@@ -1,9 +1,9 @@
 <div class="control__filters" *ngIf="this.routerService.isRoute('/') || this.routerService.isRoute('/categories')">
-  <button mat-button class="controls__filters-btn" (click)="this.setFilter('income')">
+  <button mat-button class="controls__filters-btn" (click)="this.setFilter($event, 'income')" #incomeBtn>
     <app-transaction-icon class="controls__icon" type="income"></app-transaction-icon>
     <span>Income</span>
   </button>
-  <button mat-button class="controls__filters-btn" (click)="this.setFilter('expense')">
+  <button mat-button class="controls__filters-btn" (click)="this.setFilter($event, 'expense')" #expenseBtn>
     <app-transaction-icon class="controls__icon" type="expense"></app-transaction-icon>
     <span>Expense</span>
   </button>

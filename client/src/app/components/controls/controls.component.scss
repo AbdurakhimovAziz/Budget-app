@@ -20,8 +20,8 @@
     background-color: $white;
     margin-bottom: 10px;
     text-align: start;
-    .active {
-      opacity: 0.5;
+    &.active {
+      background-color: $shadow-black;
     }
   }
 }
